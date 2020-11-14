@@ -3,7 +3,7 @@ from Bio import SeqIO
 def fasta_to_genome(filename):
     genome = []
 
-    for seq_record in SeqIO.parse("../genome/"+filename, "fasta"):
+    for seq_record in SeqIO.parse(filename, "fasta"):
         genome.append(seq_record.seq)
 
     return genome
