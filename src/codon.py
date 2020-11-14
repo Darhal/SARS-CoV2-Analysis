@@ -4,6 +4,14 @@ from globals import *
 
 
 def codons(ARNm):
+    '''Fonction qui retourne les acides aminés codé par l'ARN
+    
+    Args:
+        ARNm: Seq d'ARN
+    
+    Returns:
+        liste des acides aminés
+    '''
     amino_acids_seq = []
     amino_acids = []
 
@@ -18,8 +26,5 @@ def codons(ARNm):
                 amino_acids = []
         else:
             amino_acids.append(amino_acid)
-
+    
     return amino_acids_seq
-
-print(codons(FastaToGenome("sequences.fasta")[0]))
-

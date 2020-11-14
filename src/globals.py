@@ -1,7 +1,6 @@
 """
-    * All constants must be here
+* All constants must be here & global variables
 """
-
 
 """
     * # These are extracted from here: https://courses.lumenlearning.com/wm-biology1/chapter/reading-codons/
