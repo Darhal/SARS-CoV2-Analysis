@@ -2,7 +2,16 @@ from utility import *
 
 
 def proportions(ARNm):
+    '''Retourne un dictionaire contenant les proportions des différents nucléotides de la séquence d'ARNm entré.
 
+    Args:
+        ARNm : the ARNm sequence (type : string)
+
+    Returns:
+        dico_proportions : Dictionnaire associant les proportions aux différentes bases
+    '''
+    
+    
     dico_nombre_nucleotides = nombre_nucleotide(ARNm)
     total_nucleotides = total_nucleotide(ARNm)
 
