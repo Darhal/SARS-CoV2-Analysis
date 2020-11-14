@@ -4,13 +4,13 @@ from globals import *
 
 
 def codons(ARNm):
-    '''Fonction qui retourne les acides aminés codé par l'ARN
+    '''Function that return the amino acids coded by the ARNm sequence
     
     Args:
-        ARNm: Seq d'ARN
+        ARNm: ARN sequence
     
     Returns:
-        liste des acides aminés
+        List of the amino acids
     '''
     amino_acids_seq = []
     amino_acids = []
