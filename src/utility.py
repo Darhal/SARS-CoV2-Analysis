@@ -20,6 +20,31 @@ def fasta_to_genome(filename):
     return genome
 
 
+
+def transcription_complementaire(ADNc):
+    '''Function qui remplace la séquence de ADNc (ADN complémentaire) en ARNm
+    
+    Args:
+        ADN : La séquence d'ADN complémentaire du génome à retranscrire en ARNm
+
+    Returns:
+        ARNm : La séquence d'ARNm issue de la séquence d'ADNc entrée.
+    '''
+    d_transcription = []
+    
+    for base in ADNc:
+        if base == "T" :
+            d_transcription.append("U")
+        else:
+            d_transcription.append(base)
+
+    ARNm = ''.join(d_transcription)
+        
+    return ARNm
+
+    
+
+
 def total_nucleotide(ARNm):
     '''Nombre total des nucléotides dans une sequence
 
