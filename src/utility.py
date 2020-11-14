@@ -9,10 +9,28 @@ def fasta_to_genome(filename):
     return genome
 
 
-def total_nucleotide(ARNm):         #nombre total des nucléotides dans une sequence
+def total_nucleotide(ARNm):
+    '''
+        Fonction qui retourne le nombre total des nucléotides dans une sequence
+
+        Args:
+            ARNm: Seq d'ARN
+
+        Returns:
+            un entier qui représente la taille de seq
+        '''
     return len(ARNm)
 
-def nombre_nucleotide(ARNm):        #retourne un dictionnaire indiquant le nombre de chaque type de nucléotide
+def nombre_nucleotide(ARNm):
+    '''
+    Fonction qui retourne le nombre de chaque type de nucléotide
+
+    Args:
+        ARNm: Seq d'ARN
+
+    Returns:
+        un dictionnaire qui prend les nucléotides comme clés et le nombre de chaque nucléotides comme valeurs
+    '''
     d = {'A':0, 'T':0, 'G':0, 'C':0}
 
     for i in range(len(ARNm)):
