@@ -1,22 +1,21 @@
 from utility import *
 
 
-def proportions(filename):
+def proportions(ARNm):
 
-    tableau = compteur_bases(fichier)
-    
-    init = open(fichier, "r")
-    sequence = init.read()
-    liste_sequence = [base for base in sequence if base != "\n"]
-    longueur = len(liste_sequence)
+    dico_nombre_nucleotides = nombre_nucleotide(ARNm)
+    total_nucleotides = total_nucleotide(ARNm)
 
-    prop_a = 100*tableau[0][1]/longueur
-    prop_c = 100*tableau[1][1]/longueur
-    prop_t = 100*tableau[2][1]/longueur
-    prop_g = 100*tableau[3][1]/longueur
+    prop_a = 100*dico_nombre_nucleotides["A"]/total_nucleotides
+    prop_t = 100*dico_nombre_nucleotides["T"]/total_nucleotides
+    prop_g = 100*dico_nombre_nucleotides["G"]/total_nucleotides
+    prop_c = 100*dico_nombre_nucleotides["C"]/total_nucleotides
 
-    print("Proportion de A :",prop_a,"% (",tableau[0][1],"bases / ",longueur,"bases)")
-    print("Proportion de C :",prop_c,"% (",tableau[1][1],"bases / ",longueur,"bases)")
-    print("Proportion de T :",prop_t,"% (",tableau[2][1],"bases / ",longueur,"bases)")
-    print("Proportion de G :",prop_g,"% (",tableau[3][1],"bases / ",longueur,"bases)")
+    dico_proportions = {"A" : prop_a, "T" : prop_t, "G" : prop_g, "C" : prop_c}
 
+#    print("Proportion de A :",prop_a,"% (",dico_nombre_nucleotides["A"],"bases / ",total_nucleotides,"bases)")
+#    print("Proportion de T :",prop_t,"% (",dico_nombre_nucleotides["T"],"bases / ",total_nucleotides,"bases)")
+#    print("Proportion de C :",prop_c,"% (",dico_nombre_nucleotides["C"],"bases / ",total_nucleotides,"bases)")
+#    print("Proportion de G :",prop_g,"% (",dico_nombre_nucleotides["G"],"bases / ",total_nucleotides,"bases)\n")
+
+    return dico_proportions
