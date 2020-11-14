@@ -1,5 +1,6 @@
 from Bio import SeqIO
 
+
 def fasta_to_genome(filename):
     '''Function that parse a fasta file
     

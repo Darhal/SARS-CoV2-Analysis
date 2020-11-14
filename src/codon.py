@@ -12,19 +12,11 @@ def codons(ARNm):
     Returns:
         List of the amino acids
     '''
-    amino_acids_seq = []
     amino_acids = []
 
     for i in range(0, len(ARNm) - 3, 3):
         codons = "".join([ARNm[i], ARNm[i + 1], ARNm[i + 2]])   # Constructing a codon
-        codons = codons.replace('T', 'U')                       # replace T with U
-        amino_acid = CODONS_TO_PROTEINS[codons]
-
-        if amino_acid == "STOP":
-            if len(amino_acids) != 0:
-                amino_acids_seq.append(amino_acids)
-                amino_acids = []
-        else:
-            amino_acids.append(amino_acid)
+        amino_acid = CODONS_TO_AMINO_ACIDS[codons]
+        amino_acids.append(amino_acid)
     
-    return amino_acids_seq
+    return amino_acids
