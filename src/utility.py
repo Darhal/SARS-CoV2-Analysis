@@ -5,5 +5,5 @@ def FastaToGenome(filename):
 
     for seq_record in SeqIO.parse("../genome/"+filename, "fasta"):
         genome.append(seq_record.seq)
-
+        
     return genome
