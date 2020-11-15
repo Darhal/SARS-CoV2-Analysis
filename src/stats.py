@@ -147,7 +147,7 @@ def ecart_type(list):
     return math.sqrt(variance(list))
 
 
-def moyenne_proportion(list):
+def moyenne_proportion(liste):
     ''' function that calculate the average of proportions of a nucleotide based on different RNA
 
     Args :
@@ -157,17 +157,13 @@ def moyenne_proportion(list):
         Dictionary that contains the average of proportions of nucleotides as values and nucleotides as keys
     '''
     s = 0
-    d = {'A': 0, 'T': 0, 'G': 0, 'C': 0}
+    d = {'A': 0, 'U': 0, 'G': 0, 'C': 0}
 
-    for nucl in ["A", "C", "G", "T"]:
-        for p in range(len(list)):
-            seq = L[p]
+    for nucl in ["A", "C", "G", "U"]:
+        for p in range(len(liste)):
+            seq = liste[p]
             s+= seq[nucl]
 
-        d[nucl] = s/len(list)
+        d[nucl] = s/len(liste)
 
     return(d)
-
-
-
-
