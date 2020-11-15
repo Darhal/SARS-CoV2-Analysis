@@ -20,7 +20,6 @@ def fasta_to_genome(filename):
     return genome
 
 
-
 def transcription_complementaire(ADNc):
     '''Function qui remplace la séquence de ADNc (ADN complémentaire) en ARNm
     
@@ -41,8 +40,6 @@ def transcription_complementaire(ADNc):
     ARNm = ''.join(d_transcription)
         
     return ARNm
-
-    
 
 
 def total_nucleotide(ARNm):
