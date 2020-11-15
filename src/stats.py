@@ -1,5 +1,5 @@
+import math
 from utility import *
-
 
 def proportions(ARNm):
     '''Retourne un dictionaire contenant les proportions des différents nucléotides de la séquence d'ARNm entré.
