@@ -65,12 +65,12 @@ def nombre_nucleotide(ARNm):
     Returns:
         Dictionary that contains the number of nucleotides as value and nucleotide as key
     '''
-    d = {'A':0, 'T':0, 'G':0, 'C':0}
+    d = {'A':0, 'U':0, 'G':0, 'C':0}
 
     for i in range(len(ARNm)):
         if ARNm[i] == 'A':
             d['A'] += 1
-        elif ARNm[i] == 'T':
+        elif ARNm[i] == 'U':
             d['T'] += 1
         elif ARNm[i] == 'G':
             d['G'] += 1
