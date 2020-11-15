@@ -30,24 +30,8 @@ def proportions(ARNm):
     return dico_proportions
 
 
-def taille_ensemble(L): # liste de la taille de chaque séquence d'une liste de séquence
-    ''' on aura un échantillon de séquence, la fonction permet de donner la taille de chaque séquence dans une liste
-
-    Args :
-        liste de séquences
-
-    Returns :
-        liste de la taille de chaque séquence de l'échantillon
-    '''
-    l = []
-
-    for k in L:
-        l.append(len(k))
-    return l
-
-
 def moyenne(list): # on prend en entée une liste de valeur
-    ''' la fonction fait la moyenne des valeurs d'une liste
+    ''' La fonction fait la moyenne des valeurs d'une liste
 
     Args :
         liste de valeurs
@@ -64,8 +48,9 @@ def moyenne(list): # on prend en entée une liste de valeur
         res += k
     return res/len(list)
 
+
 def mediane(list): # on prend en entrée une liste de valeur
-    ''' la fonction donne la médiane de l'échantillon
+    ''' La fonction donne la médiane de l'échantillon
 
     Args :
         liste de valeurs
@@ -84,8 +69,9 @@ def mediane(list): # on prend en entrée une liste de valeur
     else:
         return L[(n-1)/2]
 
+
 def quartile(n,list): # quartile(2,list) est la médiane
-    ''' la fonction donne le quartile (1er, 2e, ou 3e) de l'échantillon
+    ''' La fonction donne le quartile (1er, 2e, ou 3e) de l'échantillon
 
     Args :
         liste de valeurs
@@ -101,22 +87,27 @@ def quartile(n,list): # quartile(2,list) est la médiane
     L = list.sort()
     t = len(list)
     
-    if n == 1: # le 1er quartile
-        if t%4 == 0:
-            return (L[n/4]+L[n/4-1])/2
-        else:
-            return L[int(n/4)]
-    elif n == 2: # la médiane
+    if n == 2: # la médiane
         return mediane(list)
-    elif n == 3: # le 3e quartile
-        if t%4 == 0:
-            return (L[3*n/4]+L[3*n/4-1])/2
-        else:
-            return L[int(3*n/4)]
+    elif t%4 == 0:
+        if n == 1:
+            return (L[t/4]+L[t/4 - 1]) / 2
+        elif n == 3:
+            return (L[3*t/4]+L[3*t/4 - 1]) / 2
+    elif (t%4 == 1) or (t%4 == 2):
+        if n == 1:
+            return L(int(t/4))
+        elif n == 3:
+            return L(int(3*t/4))
+    elif t%4 == 3:
+        if n == 1:
+            return (L[int(t/4)]+L[int(t/4) + 1]) / 2
+        elif n == 3:
+            return (L[int(3*t/4)]+L[int(3*t/4) - 1]) / 2
 
 
 def variance(list):
-    ''' la fonction calcule la variance de l'échantillon
+    ''' La fonction calcule la variance de l'échantillon
 
     Args :
         liste de valeurs
@@ -136,7 +127,7 @@ def variance(list):
 
 
 def ecart_type(list):
-    ''' la fonction calcule l'écart-type de l'échantillon
+    ''' La fonction calcule l'écart-type de l'échantillon
 
     Args :
         liste de valeurs

@@ -162,3 +162,7 @@ def ecart_type(list):
     '''
     return math.sqrt(variance(list))
 
+
+def intervalle_interquartile(list):
+    return quartile(3,list) - quartile(1,list)
+
