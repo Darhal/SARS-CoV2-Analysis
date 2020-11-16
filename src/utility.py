@@ -54,6 +54,22 @@ def total_nucleotide(ARNm):
     return len(ARNm)
 
 
+def taille_ensemble(L): # liste de la taille de chaque séquence d'une liste de séquence
+    ''' On aura un échantillon de séquence, la fonction permet de donner la taille de chaque séquence dans une liste
+
+    Args :
+        liste de séquences
+
+    Returns :
+        liste de la taille de chaque séquence de l'échantillon
+    '''
+    l = []
+
+    for k in L:
+        l.append(len(k))
+    return l
+
+
 def nombre_nucleotide(ARNm):
     '''Retourne un dictionnaire indiquant le nombre de chaque type de nucléotide
 
