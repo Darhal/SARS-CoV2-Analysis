@@ -16,11 +16,11 @@ def proportions(ARNm):
     total_nucleotides = total_nucleotide(ARNm)
 
     prop_a = 100*dico_nombre_nucleotides["A"]/total_nucleotides
-    prop_t = 100*dico_nombre_nucleotides["T"]/total_nucleotides
+    prop_t = 100*dico_nombre_nucleotides["U"]/total_nucleotides
     prop_g = 100*dico_nombre_nucleotides["G"]/total_nucleotides
     prop_c = 100*dico_nombre_nucleotides["C"]/total_nucleotides
 
-    dico_proportions = {"A" : prop_a, "T" : prop_t, "G" : prop_g, "C" : prop_c}
+    dico_proportions = {"A" : prop_a, "U" : prop_t, "G" : prop_g, "C" : prop_c}
 
 #    print("Proportion de A :",prop_a,"% (",dico_nombre_nucleotides["A"],"bases / ",total_nucleotides,"bases)")
 #    print("Proportion de T :",prop_t,"% (",dico_nombre_nucleotides["T"],"bases / ",total_nucleotides,"bases)")
