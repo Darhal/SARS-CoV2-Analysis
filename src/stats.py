@@ -1,5 +1,5 @@
 import math
-from utility import *
+from .utility import *
 
 def proportions(ARNm):
     '''Retourne un dictionaire contenant les proportions des différents nucléotides de la séquence d'ARNm entré.
@@ -58,10 +58,10 @@ def mediane(list): # on prend en entrée une liste de valeur
     Returns :
         la médiane de la liste
     '''
-    if not list:
+    if list is None:
         return None
 
-    L = list.sort()
+    L = sorted(list)
     n = len(L)
 
     if n%2 == 0:
@@ -84,7 +84,7 @@ def quartile(n,list): # quartile(2,list) est la médiane
     if n not in [1,2,3]:
         return None
     
-    L = list.sort()
+    L = sorted(list)
     t = len(list)
     
     if n == 2: # la médiane
