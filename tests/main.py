@@ -14,4 +14,4 @@ def fnct_generatrice(convert, analyse_stat, param):
     return analyse_stat(convert(param))
 
 def convert_arn_to_nuermicals(arnm):
-    retr
+    pass
