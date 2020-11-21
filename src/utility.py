@@ -84,7 +84,7 @@ def nombre_nucleotide(ARNm):
         if ARNm[i] == 'A':
             d['A'] += 1
         elif ARNm[i] == 'U':
-            d['T'] += 1
+            d['U'] += 1
         elif ARNm[i] == 'G':
             d['G'] += 1
         elif ARNm[i] == 'C':
