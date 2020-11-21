@@ -1,24 +1,5 @@
 from Bio import SeqIO
 
-def fasta_to_genome(filename):
-    '''Function that parse a fasta file
-    
-    Args:
-        filename: the fasta file that contain the genomic data
-
-    Returns:
-        The first sequence if the file contains only one, a table of sequences otherwise
-    '''
-    genome = []
-
-    for seq_record in SeqIO.parse(filename, "fasta"):
-        genome.append(transcription_complementaire(seq_record.seq))
-
-    if len(genome) == 1:
-        return genome[0]
-    return genome
-
-
 def transcription_complementaire(ADNc):
     '''Function qui remplace la séquence de ADNc (ADN complémentaire) en ARNm
     
@@ -40,6 +21,23 @@ def transcription_complementaire(ADNc):
         
     return ARNm
 
+def fasta_to_genome(filename):
+    '''Function that parse a fasta file
+    
+    Args:
+        filename: the fasta file that contain the genomic data
+
+    Returns:
+        The first sequence if the file contains only one, a table of sequences otherwise
+    '''
+    genome = []
+
+    for seq_record in SeqIO.parse(filename, "fasta"):
+        genome.append(transcription_complementaire(seq_record.seq))
+
+    if len(genome) == 1:
+        return genome[0]
+    return genome
 
 def total_nucleotide(ARNm):
     '''Nombre total des nucléotides dans une sequence
