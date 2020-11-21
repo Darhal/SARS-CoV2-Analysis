@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3c08865b-676c-455f-8eb8-6be33c9a3075" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/stats.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JupyterTrust" id="1a265bd1-9c06-4319-9674-b1006d87c413" />
+  <component name="TaskManager">
+    <servers />
+  </component>
+</project>
