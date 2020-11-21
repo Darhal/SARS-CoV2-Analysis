@@ -155,3 +155,169 @@ def moyenne_proportion(liste):
     return(d)
 
 
+def moyenne_nucleotide(tab):
+    ''' La fonction calcule la moyenne d'apparition de chaque nucleotide dans l'échantillon
+
+    Args :
+        échantillon (liste) de séquences
+
+    Returns :
+        dictionnaire des apparitions moyenne des nucléotides dans l'échantillon
+    '''
+    A = moyenne(nombre_nucleotide_echantillon(tab)[0])
+    U = moyenne(nombre_nucleotide_echantillon(tab)[1])
+    G = moyenne(nombre_nucleotide_echantillon(tab)[2])
+    C = moyenne(nombre_nucleotide_echantillon(tab)[3])
+    return {'A':A, 'U':U, 'G':G, 'C':C}
+
+
+def mediane_nucleotide(tab):
+    ''' La fonction calcule la médiane d'apparition de chaque nucleotide dans l'échantillon
+
+    Args :
+        échantillon (liste) de séquences
+
+    Returns :
+        dictionnaire des apparitions médiane des nucléotides dans l'échantillon
+    '''
+    A = mediane(nombre_nucleotide_echantillon(tab)[0])
+    U = mediane(nombre_nucleotide_echantillon(tab)[1])
+    G = mediane(nombre_nucleotide_echantillon(tab)[2])
+    C = mediane(nombre_nucleotide_echantillon(tab)[3])
+    return {'A': A, 'U': U, 'G': G, 'C': C}
+
+
+def quartile_nucleotide(n, tab):
+    ''' La fonction calcule le quartile (1er ou 3e) d'apparition de chaque nucléotide dans l'échantillon
+
+    Args :
+        échantillon (liste) de séquences
+
+    Returns :
+        dictionnaire des apparitions quartile (1er ou 3e) des nucléotides dans l'échantillon
+    '''
+    A = quartile(n, nombre_nucleotide_echantillon(tab)[0])
+    U = quartile(n, nombre_nucleotide_echantillon(tab)[1])
+    G = quartile(n, nombre_nucleotide_echantillon(tab)[2])
+    C = quartile(n, nombre_nucleotide_echantillon(tab)[3])
+    return {'A': A, 'U': U, 'G': G, 'C': C}
+
+
+def intervalle_interquartile_nucleotide(tab):
+    ''' La fonction calcule l'interquartile (Q3 - Q1) d'apparition de chaque nucléotide dans l'échantillon
+
+    Args :
+        échantillon (liste) de séquences
+
+    Returns :
+        dictionnaire valeur interquartile (Q3 - Q1) des nucléotides dans l'échantillon
+    '''
+    A = intervalle_interquartile(nombre_nucleotide_echantillon(tab)[0])
+    U = intervalle_interquartile(nombre_nucleotide_echantillon(tab)[1])
+    G = intervalle_interquartile(nombre_nucleotide_echantillon(tab)[2])
+    C = intervalle_interquartile(nombre_nucleotide_echantillon(tab)[3])
+    return {'A': A, 'U': U, 'G': G, 'C': C}
+
+
+def variance_nucleotide(tab):
+    ''' La fonction calcule la variance d'apparition de chaque nucléotide dans l'échantillon
+
+    Args :
+        échantillon (liste) de séquences
+
+    Returns :
+        dictionnaire valeur de la variance des apparitions des nucléotides dans l'échantillon
+    '''
+    A = variance(nombre_nucleotide_echantillon(tab)[0])
+    U = variance(nombre_nucleotide_echantillon(tab)[1])
+    G = variance(nombre_nucleotide_echantillon(tab)[2])
+    C = variance(nombre_nucleotide_echantillon(tab)[3])
+    return {'A': A, 'U': U, 'G': G, 'C': C}
+
+
+def ecart_type_nucleotide(tab):
+    ''' La fonction calcule l'écart-type d'apparition de chaque nucléotide dans l'échantillon
+
+    Args :
+        échantillon (liste) de séquences
+
+    Returns :
+        dictionnaire valeur de l'écart-type des apparitions des nucléotides dans l'échantillon
+    '''
+    A = ecart_type(nombre_nucleotide_echantillon(tab)[0])
+    U = ecart_type(nombre_nucleotide_echantillon(tab)[1])
+    G = ecart_type(nombre_nucleotide_echantillon(tab)[2])
+    C = ecart_type(nombre_nucleotide_echantillon(tab)[3])
+    return {'A': A, 'U': U, 'G': G, 'C': C}
+
+
+def moyenne_taille_genome(tab):
+    ''' La fonction calcule la taille moyenne du genome dans l'échantillon
+
+    Args :
+        échantillon (liste) de séquences
+
+    Returns :
+        valeur de la taille moyenne du genome dans l'échantillon
+    '''
+    return moyenne(taille_ensemble(tab))
+
+
+def mediane_taille_genome(tab):
+    ''' La fonction calcule la taille médiane du genome dans l'échantillon
+
+    Args :
+        échantillon (liste) de séquences
+
+    Returns :
+        valeur de la taille médiane du genome dans l'échantillon
+    '''
+    return mediane(taille_ensemble(tab))
+
+
+def quartile_taille_genome(n, tab):
+    ''' La fonction calcule la taille du quartile (1er ou 3e) du genome dans l'échantillon
+
+    Args :
+        échantillon (liste) de séquences
+
+    Returns :
+        valeur de la taille du quartile (1er ou 3e) du genome dans l'échantillon
+    '''
+    return quartile(n, taille_ensemble(tab))
+
+
+def intervalle_interquartile_taille_genome(tab):
+    ''' La fonction calcule l'intervalle interquartile de la taille du genome dans l'échantillon
+
+    Args :
+        échantillon (liste) de séquences
+
+    Returns :
+        valeur de l'intervalle interquartile de la taille du genome dans l'échantillon
+    '''
+    return intervalle_interquartile(taille_ensemble(tab))
+
+
+def variance_taille_genome(tab):
+    ''' La fonction calcule la variance des tailles des genomes dans l'échantillon
+
+    Args :
+        échantillon (liste) de séquences
+
+    Returns :
+        valeur de la variance des tailles des genomes dans l'échantillon
+    '''
+    return variance(taille_ensemble(tab))
+
+
+def ecart_type_taille_genome(tab):
+    ''' La fonction calcule l'écrat-type des tailles des genomes dans l'échantillon
+
+    Args :
+        échantillon (liste) de séquences
+
+    Returns :
+        valeur de l'écrat-type des tailles des genomes dans l'échantillon
+    '''
+    return ecart_type(taille_ensemble(tab))
