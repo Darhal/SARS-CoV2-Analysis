@@ -16,7 +16,7 @@ def proportions(sequence):
     dico_proportions = {}
     
     for element in dico_nombre_elements:
-        dico_proportions[element] = dico_nombre_elements[element]/nombre_total_elements
+        dico_proportions[element] = dico_nombre_elements[element] / nombre_total_elements
 
     return dico_proportions
 
