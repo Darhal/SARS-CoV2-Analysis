@@ -1,5 +1,33 @@
 from Bio import SeqIO
 
+<<<<<<< HEAD
+=======
+def fasta_to_ADNc(filename):
+    '''Function that parse a fasta file
+    
+    Args:
+        filename: the fasta file that contain the genomic data
+
+    Returns:
+        The first sequence if the file contains only one, a table of sequences otherwise
+    '''
+    ADNc = []
+
+    for seq_record in SeqIO.parse(filename, "fasta"):
+<<<<<<< HEAD
+        ADNc.append(seq_record.seq)
+||||||| 1877de8
+        genome.append(seq_record.seq)
+=======
+        genome.append(transcription_complementaire(seq_record.seq))
+>>>>>>> 13a2329afbf116f6f0a0ecf5ad2f399b9aee821a
+
+    if len(ADNc) == 1:
+        return ADNc[0]
+    return ADNc
+
+
+>>>>>>> e8f1a93e862f1d4979974503f8fcd9ea3b721530
 def transcription_complementaire(ADNc):
     '''Function qui remplace la séquence de ADNc (ADN complémentaire) en ARNm
     
@@ -39,16 +67,16 @@ def fasta_to_genome(filename):
         return genome[0]
     return genome
 
-def total_nucleotide(ARNm):
-    '''Nombre total des nucléotides dans une sequence
+def total_elements(sequence):
+    '''Nombre total d'éléments dans une sequence (ARN, ADN ou Acides aminés)
 
     Args:
-        ARNm: the RNA sequence
+        sequence: the RNA/DNA/amino-acid sequence
 
     Returns:
         Length of the RNA sequence
     '''
-    return len(ARNm)
+    return len(sequence)
 
 
 def taille_ensemble(L): # liste de la taille de chaque séquence d'une liste de séquence
@@ -66,16 +94,42 @@ def taille_ensemble(L): # liste de la taille de chaque séquence d'une liste de 
         l.append(len(k))
     return l
 
-
-def nombre_nucleotide(ARNm):
-    '''Retourne un dictionnaire indiquant le nombre de chaque type de nucléotide
+def nombre_elements(sequence):
+    '''Retourne un dictionnaire indiquant le nombre de chaque element de la sequence
 
     Args:
-        ARNm: the RNA sequence
+        sequence: the RNA/DNA/amino-acid sequence
     
     Returns:
-        Dictionary that contains the number of nucleotides as value and nucleotide as key
+        Dictionary that contains the number of elements as value and the element as key
     '''
+<<<<<<< HEAD
+
+    d = {}
+
+    for i in sequence:
+        if i not in d:
+            d[i] = 1
+        
+        else:
+            d[i] += 1
+
+    return d
+||||||| 1877de8
+    d = {'A':0, 'U':0, 'G':0, 'C':0}
+
+    for i in range(len(ARNm)):
+        if ARNm[i] == 'A':
+            d['A'] += 1
+        elif ARNm[i] == 'U':
+            d['U'] += 1
+        elif ARNm[i] == 'G':
+            d['G'] += 1
+        elif ARNm[i] == 'C':
+            d['C'] += 1
+
+    return d
+=======
     d = {'A':0, 'U':0, 'G':0, 'C':0}
 
     for i in range(len(ARNm)):
@@ -104,3 +158,4 @@ def nombre_nucleotide_echantillon(tab):
         G.append(N['G'])
         C.append(N['C'])
     return [A, U, G, C]
+>>>>>>> 13a2329afbf116f6f0a0ecf5ad2f399b9aee821a

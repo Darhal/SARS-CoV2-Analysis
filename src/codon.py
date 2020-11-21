@@ -19,4 +19,4 @@ def codons(ARNm):
         amino_acid = CODONS_TO_AMINO_ACIDS[codons]
         amino_acids.append(amino_acid)
     
-    return amino_acids
+    return ''.join(amino_acids)
