@@ -37,7 +37,7 @@ def moyenne(list): # on prend en entée une liste de valeur
 
     for k in list:
         res += k
-    return res/len(list)
+    return res / len(list)
 
 
 def mediane(list): # on prend en entrée une liste de valeur
@@ -56,9 +56,9 @@ def mediane(list): # on prend en entrée une liste de valeur
     n = len(L)
 
     if n%2 == 0:
-        return (L[n//2]+L[n//2-1])/2
+        return (L[n//2] + L[n//2-1]) / 2
     else:
-        return L[(n-1)//2]
+        return L[(n-1) // 2]
 
 
 def quartile(n,list): # quartile(2,list) est la médiane
@@ -82,23 +82,23 @@ def quartile(n,list): # quartile(2,list) est la médiane
         return mediane(list)
     elif t%4 == 0:
         if n == 1:
-            return (L[t//4]+L[t//4 - 1]) / 2
+            return (L[t//4] + L[t//4 - 1]) / 2
         elif n == 3:
-            return (L[3*t//4]+L[3*t//4 - 1]) / 2
-    elif (t%4 == 1) or (t%4 == 2):
+            return (L[3*t//4] + L[3*t//4 - 1]) / 2
+    elif (t % 4 == 1) or (t % 4 == 2):
         if n == 1:
             return L[int(t/4)]
         elif n == 3:
             return L[int(3*t/4)]
     elif t%4 == 3:
         if n == 1:
-            return (L[int(t/4)]+L[int(t/4) + 1]) / 2
+            return (L[int(t/4)] + L[int(t/4) + 1]) / 2
         elif n == 3:
-            return (L[int(3*t/4)]+L[int(3*t/4) - 1]) / 2
+            return (L[int(3*t/4)] + L[int(3*t/4) - 1]) / 2
 
 
 def intervalle_interquartile(list):
-    return quartile(3,list) - quartile(1,list)
+    return quartile(3, list) - quartile(1, list)
 
 
 def variance(list):
@@ -118,7 +118,7 @@ def variance(list):
 
     for k in list:
         res += (m-k)**2
-    return res/len(list)
+    return res / len(list)
 
 
 def ecart_type(list):
@@ -150,7 +150,7 @@ def moyenne_proportion(liste):
             seq = liste[p]
             s+= seq[nucl]
 
-        d[nucl] = s/len(liste)
+        d[nucl] = s / len(liste)
 
     return(d)
 
