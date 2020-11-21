@@ -10,5 +10,8 @@ def apply_math(fnc, a, b):
 print(apply_math(add, 5, 3))
 print(apply_math(mult, 5, 3))
 
-def apply_stats(fnc, param):
-    
+def fnct_generatrice(convert, analyse_stat, param):
+    return analyse_stat(convert(param))
+
+def convert_arn_to_nuermicals(arnm):
+    retr

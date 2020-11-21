@@ -335,3 +335,8 @@ def ecart_type_taille_genome(tab):
 
 # print(apply_math(add, 5, 3))
 # print(apply_math(mult, 5, 3))
+
+
+# TODO: (BONUS/simplification): des fonctions génératrices qui fait à la foix 1, 2, 4
+# def fnct_generatrice(convert, analyse_stat, param):
+#     return analyse_stat(convert(param))
