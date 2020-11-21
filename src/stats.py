@@ -164,3 +164,4 @@ def moyenne_proportion(liste):
     return(d)
 
 
+

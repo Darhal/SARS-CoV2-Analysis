@@ -91,3 +91,18 @@ def nombre_nucleotide(ARNm):
             d['C'] += 1
 
     return d
+
+
+def nombre_nucleotide_echantillon(tab):
+    A = []
+    U = []
+    G = []
+    C = []
+
+    for k in tab:
+        N = nombre_nucleotide(k)
+        A.append(N['A'])
+        U.append(N['U'])
+        G.append(N['G'])
+        C.append(N['C'])
+    return [A, U, G, C]

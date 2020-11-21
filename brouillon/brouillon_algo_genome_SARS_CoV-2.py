@@ -8,7 +8,7 @@ from Bio.SeqUtils import GC, GC123
 import timeit
 import matplotlib
 import math
-
+from src.stats import *
 
 #def sum(n):
 #    res = 0
@@ -166,3 +166,85 @@ def ecart_type(list):
 def intervalle_interquartile(list):
     return quartile(3,list) - quartile(1,list)
 
+
+def nombre_nucleotide_echantillon(tab):
+    A = []
+    U = []
+    G = []
+    C = []
+
+    for k in tab:
+        N = nombre_nucleotide(k)
+        A.append(N['A'])
+        U.append(N['U'])
+        G.append(N['G'])
+        C.append(N['C'])
+    return [A, U, G, C]
+
+
+def moyenne_nucleotide(tab):
+    A = moyenne(nombre_nucleotide_echantillon(tab)[0])
+    U = moyenne(nombre_nucleotide_echantillon(tab)[1])
+    G = moyenne(nombre_nucleotide_echantillon(tab)[2])
+    C = moyenne(nombre_nucleotide_echantillon(tab)[3])
+    return {'A':A, 'U':U, 'G':G, 'C':C}
+
+
+def mediane_nucleotide(tab):
+    A = mediane(nombre_nucleotide_echantillon(tab)[0])
+    U = mediane(nombre_nucleotide_echantillon(tab)[1])
+    G = mediane(nombre_nucleotide_echantillon(tab)[2])
+    C = mediane(nombre_nucleotide_echantillon(tab)[3])
+    return {'A': A, 'U': U, 'G': G, 'C': C}
+
+
+def quartile_nucleotide(n, tab):
+    A = quartile(n, nombre_nucleotide_echantillon(tab)[0])
+    U = quartile(n, nombre_nucleotide_echantillon(tab)[1])
+    G = quartile(n, nombre_nucleotide_echantillon(tab)[2])
+    C = quartile(n, nombre_nucleotide_echantillon(tab)[3])
+    return {'A': A, 'U': U, 'G': G, 'C': C}
+
+
+def intervalle_interquartile_nucleotide(tab):
+    A = intervalle_interquartile(nombre_nucleotide_echantillon(tab)[0])
+    U = intervalle_interquartile(nombre_nucleotide_echantillon(tab)[1])
+    G = intervalle_interquartile(nombre_nucleotide_echantillon(tab)[2])
+    C = intervalle_interquartile(nombre_nucleotide_echantillon(tab)[3])
+    return {'A': A, 'U': U, 'G': G, 'C': C}
+
+
+def variance_nucleotide(tab):
+    A = variance(nombre_nucleotide_echantillon(tab)[0])
+    U = variance(nombre_nucleotide_echantillon(tab)[1])
+    G = variance(nombre_nucleotide_echantillon(tab)[2])
+    C = variance(nombre_nucleotide_echantillon(tab)[3])
+    return {'A': A, 'U': U, 'G': G, 'C': C}
+
+
+def ecart_type_nucleotide(tab):
+    A = ecart_type(nombre_nucleotide_echantillon(tab)[0])
+    U = ecart_type(nombre_nucleotide_echantillon(tab)[1])
+    G = ecart_type(nombre_nucleotide_echantillon(tab)[2])
+    C = ecart_type(nombre_nucleotide_echantillon(tab)[3])
+    return {'A': A, 'U': U, 'G': G, 'C': C}
+
+
+def moyenne_taille_genome(tab):
+    return moyenne(taille_ensemble(tab))
+
+
+def mediane_taille_genome(tab):
+    return mediane(taille_ensemble(tab))
+
+
+def quartile_taille_genome(n, tab):
+    return quartile(n, taille_ensemble(tab))
+
+
+def intervalle_interquartile_taille_genome(tab):
+    return intervalle_interquartile(taille_ensemble(tab))
+
+
+def ecart_type_taille_genome(tab):
+    return ecart_type(taille_ensemble(tab))
