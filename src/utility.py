@@ -94,7 +94,7 @@ def nombre_nucleotide_echantillon(tab):
     C = []
 
     for k in tab:
-        N = nombre_nucleotide(k)
+        N = nombre_elements(k)
         A.append(N['A'])
         U.append(N['U'])
         G.append(N['G'])

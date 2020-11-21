@@ -64,3 +64,7 @@ def test_ecart_type():
     assert ecart_type([1, 2, 3, 4, 5]) == math.sqrt(np.var([1, 2, 3, 4, 5]))
 
 
+def test_mediane_nucleotide():
+    print(mediane_nucleotide(fasta_to_genome("./genome/dix_sequences.fasta")))
+
+
