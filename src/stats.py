@@ -16,7 +16,7 @@ def proportions(sequence):
     dico_proportions = {}
     
     for element in dico_nombre_elements:
-        dico_proportions[element] = dico_nombre_elements[element]/nombre_total_elements
+        dico_proportions[element] = dico_nombre_elements[element] / nombre_total_elements
 
     return dico_proportions
 
@@ -37,7 +37,7 @@ def moyenne(list): # on prend en entée une liste de valeur
 
     for k in list:
         res += k
-    return res/len(list)
+    return res / len(list)
 
 
 def mediane(list): # on prend en entrée une liste de valeur
@@ -56,9 +56,9 @@ def mediane(list): # on prend en entrée une liste de valeur
     n = len(L)
 
     if n%2 == 0:
-        return (L[n//2]+L[n//2-1])/2
+        return (L[n//2] + L[n//2-1]) / 2
     else:
-        return L[(n-1)//2]
+        return L[(n-1) // 2]
 
 
 def quartile(n,list): # quartile(2,list) est la médiane
@@ -82,23 +82,23 @@ def quartile(n,list): # quartile(2,list) est la médiane
         return mediane(list)
     elif t%4 == 0:
         if n == 1:
-            return (L[t//4]+L[t//4 - 1]) / 2
+            return (L[t//4] + L[t//4 - 1]) / 2
         elif n == 3:
-            return (L[3*t//4]+L[3*t//4 - 1]) / 2
-    elif (t%4 == 1) or (t%4 == 2):
+            return (L[3*t//4] + L[3*t//4 - 1]) / 2
+    elif (t % 4 == 1) or (t % 4 == 2):
         if n == 1:
             return L[int(t/4)]
         elif n == 3:
             return L[int(3*t/4)]
     elif t%4 == 3:
         if n == 1:
-            return (L[int(t/4)]+L[int(t/4) + 1]) / 2
+            return (L[int(t/4)] + L[int(t/4) + 1]) / 2
         elif n == 3:
-            return (L[int(3*t/4)]+L[int(3*t/4) - 1]) / 2
+            return (L[int(3*t/4)] + L[int(3*t/4) - 1]) / 2
 
 
 def intervalle_interquartile(list):
-    return quartile(3,list) - quartile(1,list)
+    return quartile(3, list) - quartile(1, list)
 
 
 def variance(list):
@@ -118,7 +118,7 @@ def variance(list):
 
     for k in list:
         res += (m-k)**2
-    return res/len(list)
+    return res / len(list)
 
 
 def ecart_type(list):
@@ -150,7 +150,7 @@ def moyenne_proportion(liste):
             seq = liste[p]
             s+= seq[nucl]
 
-        d[nucl] = s/len(liste)
+        d[nucl] = s / len(liste)
 
     return(d)
 
@@ -321,4 +321,24 @@ def ecart_type_taille_genome(tab):
         valeur de l'écrat-type des tailles des genomes dans l'échantillon
     '''
     return ecart_type(taille_ensemble(tab))
+
+
+# TODO: (BONUS/SIMPLIFICATION) ajouter fonction "génératrice" pour appeler les fonctions qu'on veut avec un seul nom de fonction
+# PROOF OF CONCEPT: (regarder aussi tests/main.py)
+# def add(a, b):
+#     return a + b
+
+# def mult(a, b):
+#     return a * b
+
+# def apply_math(fnc, a, b):
+#     return fnc(a, b)
+
+# print(apply_math(add, 5, 3))
+# print(apply_math(mult, 5, 3))
+
+
+# TODO: (BONUS/simplification): des fonctions génératrices qui fait à la foix 1, 2, 4
+# def fnct_generatrice(convert, analyse_stat, param):
+#     return analyse_stat(convert(param))
 
