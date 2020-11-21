@@ -1,3 +1,6 @@
+# Project Managment
+We use trello as our project managment tool
+The link to the board is: https://trello.com/b/N92bj53G/
 # Our python coding style
 ## Introduction:
 It's mandatory to accept these coding style, to have a clear and coherent code base.
