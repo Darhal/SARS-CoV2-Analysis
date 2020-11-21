@@ -4,13 +4,6 @@ import numpy as np
 from src.stats import *
 
 
-def test_taille_ensemble():
-    # assert taille_ensenble([[1, 2, 3, 4, 5], [4, 5, 6, 5, 6, 8, 0, 'a'], ['a', 'b1', 123, 147, 000], [], [''], [1]]) == [5, 8, 5, 0, 1, 1]
-    # assert taille_ensenble([]) == []
-    # assert taille_ensemble([[]]) == [0]
-    pass
-
-
 def test_moyenne(): # on n'a pas test les chaînes de caractère, ou des lites qui n'ont pas comme éléments des nombres
     assert moyenne([1, 2, 3]) == 2
     assert moyenne([]) == None

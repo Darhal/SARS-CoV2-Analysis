@@ -321,3 +321,4 @@ def ecart_type_taille_genome(tab):
         valeur de l'écrat-type des tailles des genomes dans l'échantillon
     '''
     return ecart_type(taille_ensemble(tab))
+

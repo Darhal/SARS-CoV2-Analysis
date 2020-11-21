@@ -2,6 +2,13 @@ import pytest
 
 from src.utility import *
 
+
+def test_taille_ensemble():
+    assert taille_ensenble([[1, 2, 3, 4, 5], [4, 5, 6, 5, 6, 8, 0, 'a'], ['a', 'b1', 123, 147, 000], [], [''], [1]]) == [5, 8, 5, 0, 1, 1]
+    assert taille_ensenble([]) == []
+    assert taille_ensemble([[]]) == [0]
+
+
 def test_total_nucleotide():
     assert total_nucleotide(['A', 'C', 'U']) == 3
     assert total_nucleotide(['A', 'C', 'U','C', 'U']) == 5
