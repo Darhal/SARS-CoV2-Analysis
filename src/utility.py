@@ -12,7 +12,7 @@ def fasta_to_genome(filename):
     genome = []
 
     for seq_record in SeqIO.parse(filename, "fasta"):
-        genome.append(seq_record.seq)
+        genome.append(transcription_complementaire(seq_record.seq))
 
     if len(genome) == 1:
         return genome[0]
