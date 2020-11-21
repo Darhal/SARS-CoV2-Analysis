@@ -1,33 +1,5 @@
 from Bio import SeqIO
 
-<<<<<<< HEAD
-=======
-def fasta_to_ADNc(filename):
-    '''Function that parse a fasta file
-    
-    Args:
-        filename: the fasta file that contain the genomic data
-
-    Returns:
-        The first sequence if the file contains only one, a table of sequences otherwise
-    '''
-    ADNc = []
-
-    for seq_record in SeqIO.parse(filename, "fasta"):
-<<<<<<< HEAD
-        ADNc.append(seq_record.seq)
-||||||| 1877de8
-        genome.append(seq_record.seq)
-=======
-        genome.append(transcription_complementaire(seq_record.seq))
->>>>>>> 13a2329afbf116f6f0a0ecf5ad2f399b9aee821a
-
-    if len(ADNc) == 1:
-        return ADNc[0]
-    return ADNc
-
-
->>>>>>> e8f1a93e862f1d4979974503f8fcd9ea3b721530
 def transcription_complementaire(ADNc):
     '''Function qui remplace la séquence de ADNc (ADN complémentaire) en ARNm
     
@@ -103,7 +75,6 @@ def nombre_elements(sequence):
     Returns:
         Dictionary that contains the number of elements as value and the element as key
     '''
-<<<<<<< HEAD
 
     d = {}
 
@@ -115,35 +86,6 @@ def nombre_elements(sequence):
             d[i] += 1
 
     return d
-||||||| 1877de8
-    d = {'A':0, 'U':0, 'G':0, 'C':0}
-
-    for i in range(len(ARNm)):
-        if ARNm[i] == 'A':
-            d['A'] += 1
-        elif ARNm[i] == 'U':
-            d['U'] += 1
-        elif ARNm[i] == 'G':
-            d['G'] += 1
-        elif ARNm[i] == 'C':
-            d['C'] += 1
-
-    return d
-=======
-    d = {'A':0, 'U':0, 'G':0, 'C':0}
-
-    for i in range(len(ARNm)):
-        if ARNm[i] == 'A':
-            d['A'] += 1
-        elif ARNm[i] == 'U':
-            d['U'] += 1
-        elif ARNm[i] == 'G':
-            d['G'] += 1
-        elif ARNm[i] == 'C':
-            d['C'] += 1
-
-    return d
-
 
 def nombre_nucleotide_echantillon(tab):
     A = []
@@ -158,4 +100,3 @@ def nombre_nucleotide_echantillon(tab):
         G.append(N['G'])
         C.append(N['C'])
     return [A, U, G, C]
->>>>>>> 13a2329afbf116f6f0a0ecf5ad2f399b9aee821a
