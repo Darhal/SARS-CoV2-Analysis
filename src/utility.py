@@ -1,6 +1,6 @@
 from Bio import SeqIO
 
-def fasta_to_genome(filename):
+def fasta_to_ADNc(filename):
     '''Function that parse a fasta file
     
     Args:
@@ -9,14 +9,14 @@ def fasta_to_genome(filename):
     Returns:
         The first sequence if the file contains only one, a table of sequences otherwise
     '''
-    genome = []
+    ADNc = []
 
     for seq_record in SeqIO.parse(filename, "fasta"):
-        genome.append(seq_record.seq)
+        ADNc.append(seq_record.seq)
 
-    if len(genome) == 1:
-        return genome[0]
-    return genome
+    if len(ADNc) == 1:
+        return ADNc[0]
+    return ADNc
 
 
 def transcription_complementaire(ADNc):
@@ -41,16 +41,16 @@ def transcription_complementaire(ADNc):
     return ARNm
 
 
-def total_nucleotide(ARNm):
-    '''Nombre total des nucléotides dans une sequence
+def total_elements(sequence):
+    '''Nombre total d'éléments dans une sequence (ARN, ADN ou Acides aminés)
 
     Args:
-        ARNm: the RNA sequence
+        sequence: the RNA/DNA/amino-acid sequence
 
     Returns:
         Length of the RNA sequence
     '''
-    return len(ARNm)
+    return len(sequence)
 
 
 def taille_ensemble(L): # liste de la taille de chaque séquence d'une liste de séquence
@@ -68,26 +68,23 @@ def taille_ensemble(L): # liste de la taille de chaque séquence d'une liste de 
         l.append(len(k))
     return l
 
-
-def nombre_nucleotide(ARNm):
-    '''Retourne un dictionnaire indiquant le nombre de chaque type de nucléotide
+def nombre_elements(sequence):
+    '''Retourne un dictionnaire indiquant le nombre de chaque element de la sequence
 
     Args:
-        ARNm: the RNA sequence
+        sequence: the RNA/DNA/amino-acid sequence
     
     Returns:
-        Dictionary that contains the number of nucleotides as value and nucleotide as key
+        Dictionary that contains the number of elements as value and the element as key
     '''
-    d = {'A':0, 'U':0, 'G':0, 'C':0}
 
-    for i in range(len(ARNm)):
-        if ARNm[i] == 'A':
-            d['A'] += 1
-        elif ARNm[i] == 'U':
-            d['U'] += 1
-        elif ARNm[i] == 'G':
-            d['G'] += 1
-        elif ARNm[i] == 'C':
-            d['C'] += 1
+    d = {}
+
+    for i in sequence:
+        if i not in d:
+            d[i] = 1
+        
+        else:
+            d[i] += 1
 
     return d

@@ -1,31 +1,22 @@
 import math
 from .utility import *
 
-def proportions(ARNm):
+def proportions(sequence):
     '''Retourne un dictionaire contenant les proportions des différents nucléotides de la séquence d'ARNm entré.
 
     Args:
-        ARNm : the ARNm sequence (type : string)
+        sequence : the ARNm or codons sequence (type : string)
 
     Returns:
-        dico_proportions : Dictionnaire associant les proportions aux différentes bases
+        dico_proportions : Dictionnaire associant les proportions aux éléments de la séquence
     '''
+
+    dico_nombre_elements = nombre_elements(sequence)
+    nombre_total_elements = total_elements(sequence)
+    dico_proportions = {}
     
-    
-    dico_nombre_nucleotides = nombre_nucleotide(ARNm)
-    total_nucleotides = total_nucleotide(ARNm)
-
-    prop_a = 100*dico_nombre_nucleotides["A"]/total_nucleotides
-    prop_t = 100*dico_nombre_nucleotides["U"]/total_nucleotides
-    prop_g = 100*dico_nombre_nucleotides["G"]/total_nucleotides
-    prop_c = 100*dico_nombre_nucleotides["C"]/total_nucleotides
-
-    dico_proportions = {"A" : prop_a, "U" : prop_t, "G" : prop_g, "C" : prop_c}
-
-#    print("Proportion de A :",prop_a,"% (",dico_nombre_nucleotides["A"],"bases / ",total_nucleotides,"bases)")
-#    print("Proportion de T :",prop_t,"% (",dico_nombre_nucleotides["T"],"bases / ",total_nucleotides,"bases)")
-#    print("Proportion de C :",prop_c,"% (",dico_nombre_nucleotides["C"],"bases / ",total_nucleotides,"bases)")
-#    print("Proportion de G :",prop_g,"% (",dico_nombre_nucleotides["G"],"bases / ",total_nucleotides,"bases)\n")
+    for element in dico_nombre_elements:
+        dico_proportions[element] = dico_nombre_elements[element]/nombre_total_elements
 
     return dico_proportions
 
