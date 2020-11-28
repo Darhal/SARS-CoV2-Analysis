@@ -22,26 +22,26 @@ def test_mediane(): # les tests ont aussi été fait à la main manuellement san
 
 
 def test_quartile():
-    assert quartile(1, []) == None
-    assert quartile(5, [1, 2, 3]) == None
-    assert quartile(2, [4, 5, 6]) == mediane([4, 5, 6])
-    assert quartile(1, [4, 5, 6]) == 4.5
-    assert quartile(3, [4, 5, 6]) == 5.5
-    assert quartile(2, [9, 8, 7, 6, 5, 4, 3, 2, 1]) == mediane([9, 8, 7, 6, 5, 4, 3, 2, 1])
-    assert quartile(1, [9, 8, 7, 6, 5, 4, 3, 2, 1]) == 3
-    assert quartile(3, [9, 8, 7, 6, 5, 4, 3, 2, 1]) == 7
-    assert quartile(2, [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) == mediane([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
-    assert quartile(1, [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) == 2
-    assert quartile(3, [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) == 7
-    assert quartile(2, [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10]) == mediane([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10])
-    assert quartile(1, [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10]) == 2.5
-    assert quartile(3, [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10]) == 7.5
-    assert quartile(2, [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11]) == mediane([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11])
-    assert quartile(1, [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11]) == 2.5
-    assert quartile(3, [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11]) == 8.5
-    assert quartile(2, [1, 1, 3, 3, 5, 5, 5]) == mediane([1, 1, 3, 3, 5, 5, 5])
-    assert quartile(1, [1, 1, 3, 3, 5, 5, 5]) == 2
-    assert quartile(3, [1, 1, 3, 3, 5, 5, 5]) == 5
+    assert quartile([], 1) == None
+    assert quartile([1, 2, 3], 5) == None
+    assert quartile([4, 5, 6], 2) == mediane([4, 5, 6])
+    assert quartile([4, 5, 6], 1) == 4.5
+    assert quartile([4, 5, 6], 3) == 5.5
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1], 2) == mediane([9, 8, 7, 6, 5, 4, 3, 2, 1])
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1], 1) == 3
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1], 3) == 7
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 2) == mediane([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 1) == 2
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 3) == 7
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10], 2) == mediane([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10])
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10], 1) == 2.5
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10], 3) == 7.5
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11], 2) == mediane([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11])
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11], 1) == 2.5
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11], 3) == 8.5
+    assert quartile([1, 1, 3, 3, 5, 5, 5], 2) == mediane([1, 1, 3, 3, 5, 5, 5])
+    assert quartile([1, 1, 3, 3, 5, 5, 5], 1) == 2
+    assert quartile([1, 1, 3, 3, 5, 5, 5], 3) == 5
 
 
 def test_intervalle_interquartile():
@@ -67,6 +67,7 @@ def test_ecart_type():
 
 
 def test_mediane_nucleotide():
-    print(mediane_nucleotide(fasta_to_genome("./genome/dix_sequences.fasta")))
+    # print(mediane_nucleotide(fasta_to_genome("./genome/dix_sequences.fasta")))
+    pass
 
 
