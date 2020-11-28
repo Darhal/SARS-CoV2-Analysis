@@ -44,6 +44,14 @@ def test_quartile():
     assert quartile(3, [1, 1, 3, 3, 5, 5, 5]) == 5
 
 
+def test_intervalle_interquartile():
+    assert intervalle_interquartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) == 5
+    assert intervalle_interquartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10]) == 5
+    assert intervalle_interquartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11]) == 6
+    assert intervalle_interquartile([1, 1, 3, 3, 5, 5, 5]) == 3
+    assert intervalle_interquartile([9, 8, 7, 6, 5, 4, 3, 2, 1]) == 4
+
+
 def test_variance():
     assert variance([1, 2, 3, 4, 5]) == np.var([1, 2, 3, 4, 5])
     assert variance([]) == None
@@ -55,6 +63,7 @@ def test_variance():
 def test_ecart_type():
     assert ecart_type([4, 8, 5, 6, 2, 4, 3, 6, 5, 7, 8, 5, 2, 6, 3, 6, 5, 4, 1000, 22, -500, 46, 12, 0, 0, 0]) == math.sqrt(np.var([4, 8, 5, 6, 2, 4, 3, 6, 5, 7, 8, 5, 2, 6, 3, 6, 5, 4, 1000, 22, -500, 46, 12, 0, 0, 0]))
     assert ecart_type([1, 2, 3, 4, 5]) == math.sqrt(np.var([1, 2, 3, 4, 5]))
+
 
 
 def test_mediane_nucleotide():

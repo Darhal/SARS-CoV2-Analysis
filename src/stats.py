@@ -25,7 +25,7 @@ def moyenne(list): # on prend en entée une liste de valeur
     ''' La fonction fait la moyenne des valeurs d'une liste
 
     Args :
-        liste de valeurs
+        list : liste de valeurs
 
     Returns :
         la moyenne des valeurs
@@ -44,7 +44,7 @@ def mediane(list): # on prend en entrée une liste de valeur
     ''' La fonction donne la médiane de l'échantillon
 
     Args :
-        liste de valeurs
+        list : liste de valeurs
 
     Returns :
         la médiane de la liste
@@ -65,7 +65,7 @@ def quartile(n,list): # quartile(2,list) est la médiane
     ''' La fonction donne le quartile (1er, 2e, ou 3e) de l'échantillon
 
     Args :
-        liste de valeurs
+        list : liste de valeurs
 
     Returns :
         le quartile (1er, 2e, ou 3e) de la liste
@@ -98,6 +98,14 @@ def quartile(n,list): # quartile(2,list) est la médiane
 
 
 def intervalle_interquartile(list):
+    '''La fonction calcule l'intervalle interquartile (Q3-Q1) d'une liste de valeurs en entrée (list)
+
+    Args:
+        list: une liste de valeurs
+
+    Returns:
+        la valeur de l'invertalle interquartile (Q3-Q1) de la liste d'entrée
+    '''
     return quartile(3, list) - quartile(1, list)
 
 
@@ -105,7 +113,7 @@ def variance(list):
     ''' La fonction calcule la variance de l'échantillon
 
     Args :
-        liste de valeurs
+        list : liste de valeurs
 
     Returns :
         la variance de la liste
@@ -125,7 +133,7 @@ def ecart_type(list):
     ''' La fonction calcule l'écart-type de l'échantillon
 
     Args :
-        liste de valeurs
+        list : liste de valeurs
 
     Returns :
         l'écart-type' de la liste
@@ -137,7 +145,7 @@ def moyenne_proportion(liste):
     ''' function that calculate the average of proportions of a nucleotide based on different RNA
 
     Args :
-        list of dictionaries that represent the RNA sequences
+        liste : list of dictionaries that represent the RNA sequences
 
     Returns :
         Dictionary that contains the average of proportions of nucleotides as values and nucleotides as keys
@@ -159,7 +167,7 @@ def moyenne_nucleotide(tab):
     ''' La fonction calcule la moyenne d'apparition de chaque nucleotide dans l'échantillon
 
     Args :
-        échantillon (liste) de séquences
+        tab : échantillon (liste) de séquences
 
     Returns :
         dictionnaire des apparitions moyenne des nucléotides dans l'échantillon
@@ -175,7 +183,7 @@ def mediane_nucleotide(tab):
     ''' La fonction calcule la médiane d'apparition de chaque nucleotide dans l'échantillon
 
     Args :
-        échantillon (liste) de séquences
+        tab : échantillon (liste) de séquences
 
     Returns :
         dictionnaire des apparitions médiane des nucléotides dans l'échantillon
@@ -191,7 +199,7 @@ def quartile_nucleotide(n, tab):
     ''' La fonction calcule le quartile (1er ou 3e) d'apparition de chaque nucléotide dans l'échantillon
 
     Args :
-        échantillon (liste) de séquences
+        tab : échantillon (liste) de séquences
 
     Returns :
         dictionnaire des apparitions quartile (1er ou 3e) des nucléotides dans l'échantillon
@@ -207,7 +215,7 @@ def intervalle_interquartile_nucleotide(tab):
     ''' La fonction calcule l'interquartile (Q3 - Q1) d'apparition de chaque nucléotide dans l'échantillon
 
     Args :
-        échantillon (liste) de séquences
+        tab : échantillon (liste) de séquences
 
     Returns :
         dictionnaire valeur interquartile (Q3 - Q1) des nucléotides dans l'échantillon
@@ -223,7 +231,7 @@ def variance_nucleotide(tab):
     ''' La fonction calcule la variance d'apparition de chaque nucléotide dans l'échantillon
 
     Args :
-        échantillon (liste) de séquences
+        tab : échantillon (liste) de séquences
 
     Returns :
         dictionnaire valeur de la variance des apparitions des nucléotides dans l'échantillon
@@ -239,7 +247,7 @@ def ecart_type_nucleotide(tab):
     ''' La fonction calcule l'écart-type d'apparition de chaque nucléotide dans l'échantillon
 
     Args :
-        échantillon (liste) de séquences
+        tab : échantillon (liste) de séquences
 
     Returns :
         dictionnaire valeur de l'écart-type des apparitions des nucléotides dans l'échantillon
@@ -255,7 +263,7 @@ def moyenne_taille_genome(tab):
     ''' La fonction calcule la taille moyenne du genome dans l'échantillon
 
     Args :
-        échantillon (liste) de séquences
+        tab : échantillon (liste) de séquences
 
     Returns :
         valeur de la taille moyenne du genome dans l'échantillon
@@ -267,7 +275,7 @@ def mediane_taille_genome(tab):
     ''' La fonction calcule la taille médiane du genome dans l'échantillon
 
     Args :
-        échantillon (liste) de séquences
+        tab : échantillon (liste) de séquences
 
     Returns :
         valeur de la taille médiane du genome dans l'échantillon
@@ -279,7 +287,7 @@ def quartile_taille_genome(n, tab):
     ''' La fonction calcule la taille du quartile (1er ou 3e) du genome dans l'échantillon
 
     Args :
-        échantillon (liste) de séquences
+        tab : échantillon (liste) de séquences
 
     Returns :
         valeur de la taille du quartile (1er ou 3e) du genome dans l'échantillon
@@ -291,7 +299,7 @@ def intervalle_interquartile_taille_genome(tab):
     ''' La fonction calcule l'intervalle interquartile de la taille du genome dans l'échantillon
 
     Args :
-        échantillon (liste) de séquences
+        tab : échantillon (liste) de séquences
 
     Returns :
         valeur de l'intervalle interquartile de la taille du genome dans l'échantillon
@@ -303,7 +311,7 @@ def variance_taille_genome(tab):
     ''' La fonction calcule la variance des tailles des genomes dans l'échantillon
 
     Args :
-        échantillon (liste) de séquences
+        tab : échantillon (liste) de séquences
 
     Returns :
         valeur de la variance des tailles des genomes dans l'échantillon
@@ -315,7 +323,7 @@ def ecart_type_taille_genome(tab):
     ''' La fonction calcule l'écrat-type des tailles des genomes dans l'échantillon
 
     Args :
-        échantillon (liste) de séquences
+        tab : échantillon (liste) de séquences
 
     Returns :
         valeur de l'écrat-type des tailles des genomes dans l'échantillon

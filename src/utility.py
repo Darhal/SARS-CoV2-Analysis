@@ -55,7 +55,7 @@ def taille_ensemble(L): # liste de la taille de chaque séquence d'une liste de 
     ''' On aura un échantillon de séquence, la fonction permet de donner la taille de chaque séquence dans une liste
 
     Args :
-        liste de séquences
+        L : liste de séquences
 
     Returns :
         liste de la taille de chaque séquence de l'échantillon
@@ -88,6 +88,16 @@ def nombre_elements(sequence):
     return d
 
 def nombre_nucleotide_echantillon(tab):
+    '''La fonction calcule le nomvre de nucléotides (A,U,G,C) dans chaque séquence de l'échantillon d'entrée (tab) et
+    renvoie une liste de 4 listes représentant respectivement de le nombre de A, U, G, C dans chaque séquence de l'échantillon
+
+    Args:
+        tab: L'échantillon qui est une liste de séquence de nucléotides (ARNm par exemple)
+
+    Returns:
+        une liste de 4 listes représentant respectivement de le nombre de A, U, G, C dans chaque séquence de l'échantillon
+
+    '''
     A = []
     U = []
     G = []
