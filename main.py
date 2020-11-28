@@ -1,6 +1,7 @@
 import numpy as np
 
 from src.stats import *
+from Bio import Seq
 
 
 arns = fasta_to_genome("./genome/dix_sequences.fasta")
