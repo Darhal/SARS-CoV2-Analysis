@@ -2,9 +2,15 @@ import numpy as np
 
 from src.stats import *
 
-###### Test de la fonction mediane_nucleotide ######
+###### Test des fonctions _nucleotide ######
 
+print(moyenne_nucleotide(fasta_to_genome("./genome/dix_sequences.fasta")))
 print(mediane_nucleotide(fasta_to_genome("./genome/dix_sequences.fasta")))
+print(variance_nucleotide(fasta_to_genome("./genome/dix_sequences.fasta")))
+print(quartile_nucleotide(1,fasta_to_genome("./genome/dix_sequences.fasta")))
+print(quartile_nucleotide(3,fasta_to_genome("./genome/dix_sequences.fasta")))
+print(intervalle_interquartile(fasta_to_genome("./genome/dix_sequences.fasta")))
+print(ecart_type(fasta_to_genome("./genome/dix_sequences.fasta")))
 
 ####################################################
 
@@ -12,23 +18,5 @@ print(mediane_nucleotide(fasta_to_genome("./genome/dix_sequences.fasta")))
 
 print(variance_nucleotide(fasta_to_genome("./genome/dix_sequences.fasta")))
 
-####################################################
-
-def add(a, b):
-    return a + b
-
-def mult(a, b):
-    return a * b
-
-def apply_math(fnc, a, b):
-    return fnc(a, b)
-
-print(apply_math(add, 5, 3))
-print(apply_math(mult, 5, 3))
-
-def fnct_generatrice(convert, analyse_stat, param):
-    return analyse_stat(convert(param))
-
-def convert_arn_to_nuermicals(arnm):
-    pass
+print(moyenne_acide(fasta_to_genome("./genome/dix_sequences.fasta")))
 

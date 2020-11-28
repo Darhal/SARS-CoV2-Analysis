@@ -1,6 +1,6 @@
 import math
-from .utility import *
-from .codon import *
+# from .utility import *
+# from .codon import *
 
 def proportions(sequence):
     '''Retourne un dictionaire contenant les proportions des différents éléments de la séquence.
