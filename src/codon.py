@@ -16,7 +16,7 @@ def codons(ARNm):
     length = len(ARNm)
     length = length - length % 3
 
-    for i in range(0, len(ARNm) - 2, 3):
+    for i in range(0, length - 2, 3):
         codons = "".join([ARNm[i], ARNm[i + 1], ARNm[i + 2]])   # Constructing a codon
         amino_acid = CODONS_TO_AMINO_ACIDS[codons]
         amino_acids.append(amino_acid)
