@@ -1,6 +1,7 @@
 import pytest
 
 from src.utility import *
+from src.globals import *
 
 
 def test_taille_ensemble():
@@ -16,7 +17,7 @@ def test_total_elements():
 
 
 def test_nombre_elements():
-    assert nombre_elements(['A', 'C', 'U']) == {'A': 1, 'U': 1, 'G': 0, 'C': 1}
-    assert nombre_elements(['A', 'A', 'A']) == {'A': 3, 'U': 0, 'G': 0, 'C': 0}
-    assert nombre_elements(['A', 'C', 'U']) == {'A': 1, 'U': 1, 'G': 0, 'C': 1}
-    assert nombre_elements(['A', 'C', 'U', 'G', 'A', 'C', 'U']) == {'A': 2, 'U': 2, 'G': 1, 'C': 2}
+    assert nombre_elements(['A', 'C', 'U'], NUCLEOTIDES) == {'A': 1, 'U': 1, 'G': 0, 'C': 1}
+    assert nombre_elements(['A', 'A', 'A'], NUCLEOTIDES) == {'A': 3, 'U': 0, 'G': 0, 'C': 0}
+    assert nombre_elements(['A', 'C', 'U'], NUCLEOTIDES) == {'A': 1, 'U': 1, 'G': 0, 'C': 1}
+    assert nombre_elements(['A', 'C', 'U', 'G', 'A', 'C', 'U'], NUCLEOTIDES) == {'A': 2, 'U': 2, 'G': 1, 'C': 2}

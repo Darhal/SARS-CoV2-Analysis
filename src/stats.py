@@ -174,7 +174,7 @@ def call_stat(stat_func, sequences, sampler, *args):
         sequences:  tableau des sequances ARN, Acides aminés
         sampler:    les valeurs à prendre comme des echantillons
         *args:      arguments supplémentaires optionelle
-    
+
     Returns: 
         Dictionnaire qui à le retoure de la fonction
     '''
