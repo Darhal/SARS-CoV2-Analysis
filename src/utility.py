@@ -123,7 +123,7 @@ def nombre_element_echantillon(tab):
         nbr = nombre_elements(seq)
         l = list(nbr.keys())
 
-        for element in range(l):
+        for element in l:
 
             if element not in d:
                 d[element] = [nbr[element]]
