@@ -69,7 +69,7 @@ def taille_ensemble(L): # liste de la taille de chaque séquence d'une liste de 
     return l
 
 
-def nombre_elements(sequence):
+def nombre_elements(sequence, sampler):
     '''Retourne un dictionnaire indiquant le nombre de chaque element de la sequence
 
     Args:
@@ -78,45 +78,16 @@ def nombre_elements(sequence):
     Returns:
         Dictionary that contains the number of elements as value and the element as key
     '''
-
-    d = {}
+    d = {s: 0 for s in sampler}
 
     for i in sequence:
-        if i not in d:
-            d[i] = 1
-        
-        else:
+        if i in sampler:
             d[i] += 1
 
     return d
 
 
-def nombre_nucleotide_echantillon(tab):
-    '''La fonction calcule le nomvre de nucléotides (A,U,G,C) dans chaque séquence de l'échantillon d'entrée (tab) et
-    renvoie une liste de 4 listes représentant respectivement de le nombre de A, U, G, C dans chaque séquence de l'échantillon
-
-    Args:
-        tab: L'échantillon qui est une liste de séquence de nucléotides (ARNm par exemple)
-
-    Returns:
-        une liste de 4 listes représentant respectivement de le nombre de A, U, G, C dans chaque séquence de l'échantillon
-
-    '''
-    A = []
-    U = []
-    G = []
-    C = []
-
-    for k in tab:
-        N = nombre_elements(k)
-        A.append(N['A'])
-        U.append(N['U'])
-        G.append(N['G'])
-        C.append(N['C'])
-    return [A, U, G, C]
-
-
-def nombre_element_echantillon(tab):
+def nombre_element_echantillon(tab, sampler):
     '''Retourne un dictionnaire indiquant le nombre de chaque element dans l'echantillon
 
        Args:
@@ -125,16 +96,13 @@ def nombre_element_echantillon(tab):
        Returns:
            Dictionary that contains the number of elements (a list) as value and the element as key
     '''
-
     d = {}
 
     for seq in tab:
-
-        nbr = nombre_elements(seq)
+        nbr = nombre_elements(seq, sampler)
         l = list(nbr.keys())
 
         for element in l:
-
             if element not in d:
                 d[element] = [nbr[element]]
             else:

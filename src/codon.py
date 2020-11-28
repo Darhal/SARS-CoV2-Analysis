@@ -23,10 +23,10 @@ def codons(ARNm):
 
 def codons_echantillon(liste):
     '''Function that return the amino acids sequences coded by the ARNm sequence list
-    
+
     Args:
         ARNm: ARN sequence list
-    
+
     Returns:
         List of the amino acid sequences
     '''

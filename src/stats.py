@@ -1,6 +1,11 @@
 import math
+from os import stat
 from .utility import *
 from .codon import *
+
+#####################################
+# FONCTION STATS DE BASE            #
+#####################################
 
 def proportions(sequence):
     '''Retourne un dictionaire contenant les proportions des différents éléments de la séquence.
@@ -62,7 +67,7 @@ def mediane(list):
         return L[(n-1) // 2]
 
 
-def quartile(n,list): # quartile(2,list) est la médiane
+def quartile(list, n): # quartile(2,list) est la médiane
     ''' La fonction donne le quartile (1er, 2e, ou 3e) de l'échantillon
 
     Args :
@@ -107,7 +112,7 @@ def intervalle_interquartile(list):
     Returns:
         la valeur de l'invertalle interquartile (Q3-Q1) de la liste d'entrée
     '''
-    return quartile(3, list) - quartile(1, list)
+    return quartile(list, 3) - quartile(list, 1)
 
 
 def variance(list):
@@ -142,332 +147,79 @@ def ecart_type(list):
     return math.sqrt(variance(list))
 
 
-def moyenne_proportion_nucleotide(liste):
-    ''' Function that calculate the average of proportions of a nucleotide based on different RNA
+#####################################
+# FONCTION BOOTSTRAP                #
+#####################################
 
-    Args :
-        liste : list of dictionaries that represent the RNA sequences
+def call_stat_taille_genome(stat_func, tab, *args):
+    '''Fonction general qui appelle les autres fonctions statistiques sur les tailles de genomes
 
-    Returns :
-        Dictionary that contains the average of proportions of nucleotides as values and nucleotides as keys
+    Args:
+        stat_func:  fonction statistique à appeler
+        tab:        tableau des sequances ARN, Acides aminés
+        *args:      arguments supplémentaires optionelle
+    
+    Returns: 
+        les reusltats statistiques
     '''
-    s = 0
-    d = {'A': 0, 'U': 0, 'G': 0, 'C': 0}
-
-    for nucl in ["A", "C", "G", "U"]:
-        for p in range(len(liste)):
-            seq = liste[p]
-            s+= seq[nucl]
-
-        d[nucl] = s / len(liste)
-
-    return(d)
+    tailles = taille_ensemble(tab)
+    return stat_func(tailles, *args)
 
 
-def moyenne_nucleotide(tab):
-    ''' La fonction calcule la moyenne d'apparition de chaque nucleotide dans l'échantillon
+def call_stat(stat_func, sequences, sampler, *args):
+    '''Fonction general qui appelle les autres fonctions statistiques
 
-    Args :
-        tab : échantillon (liste) de séquences
-
-    Returns :
-        dictionnaire des apparitions moyenne des nucléotides dans l'échantillon
+    Args:
+        stat_func:  fonction statistique à appeler
+        sequences:  tableau des sequances ARN, Acides aminés
+        sampler:    les valeurs à prendre comme des echantillons
+        *args:      arguments supplémentaires optionelle
+    
+    Returns: 
+        Dictionnaire qui à le retoure de la fonction
     '''
-    A = moyenne(nombre_nucleotide_echantillon(tab)[0])
-    U = moyenne(nombre_nucleotide_echantillon(tab)[1])
-    G = moyenne(nombre_nucleotide_echantillon(tab)[2])
-    C = moyenne(nombre_nucleotide_echantillon(tab)[3])
-    return {'A':A, 'U':U, 'G':G, 'C':C}
+    nbr = nombre_element_echantillon(sequences, sampler)
+    return call_stat_on_echantillon(stat_func, nbr, *args)
 
 
-def mediane_nucleotide(tab):
-    ''' La fonction calcule la médiane d'apparition de chaque nucleotide dans l'échantillon
+def call_stat_on_echantillon(stat_func, nb_elm_ech, *args):
+    '''Fonction general qui appelle les autres fonctions statistiques
 
-    Args :
-        tab : échantillon (liste) de séquences
-
-    Returns :
-        dictionnaire des apparitions médiane des nucléotides dans l'échantillon
+    Args:
+        stat_func:  fonction statistique à appeler
+        nb_elm_ech: nombre elements echantillon d'une séquence donées
+        *args:      arguments supplémentaires optionelle
+    
+    Returns: 
+        Dictionnaire qui à le retoure de la fonction
     '''
-    A = mediane(nombre_nucleotide_echantillon(tab)[0])
-    U = mediane(nombre_nucleotide_echantillon(tab)[1])
-    G = mediane(nombre_nucleotide_echantillon(tab)[2])
-    C = mediane(nombre_nucleotide_echantillon(tab)[3])
-    return {'A': A, 'U': U, 'G': G, 'C': C}
-
-
-def quartile_nucleotide(n, tab):
-    ''' La fonction calcule le quartile (1er ou 3e) d'apparition de chaque nucléotide dans l'échantillon
-
-    Args :
-        tab : échantillon (liste) de séquences
-
-    Returns :
-        dictionnaire des apparitions quartile (1er ou 3e) des nucléotides dans l'échantillon
-    '''
-    A = quartile(n, nombre_nucleotide_echantillon(tab)[0])
-    U = quartile(n, nombre_nucleotide_echantillon(tab)[1])
-    G = quartile(n, nombre_nucleotide_echantillon(tab)[2])
-    C = quartile(n, nombre_nucleotide_echantillon(tab)[3])
-    return {'A': A, 'U': U, 'G': G, 'C': C}
-
-
-def intervalle_interquartile_nucleotide(tab):
-    ''' La fonction calcule l'interquartile (Q3 - Q1) d'apparition de chaque nucléotide dans l'échantillon
-
-    Args :
-        tab : échantillon (liste) de séquences
-
-    Returns :
-        dictionnaire valeur interquartile (Q3 - Q1) des nucléotides dans l'échantillon
-    '''
-    A = intervalle_interquartile(nombre_nucleotide_echantillon(tab)[0])
-    U = intervalle_interquartile(nombre_nucleotide_echantillon(tab)[1])
-    G = intervalle_interquartile(nombre_nucleotide_echantillon(tab)[2])
-    C = intervalle_interquartile(nombre_nucleotide_echantillon(tab)[3])
-    return {'A': A, 'U': U, 'G': G, 'C': C}
-
-
-def variance_nucleotide(tab):
-    ''' La fonction calcule la variance d'apparition de chaque nucléotide dans l'échantillon
-
-    Args :
-        tab : échantillon (liste) de séquences
-
-    Returns :
-        dictionnaire valeur de la variance des apparitions des nucléotides dans l'échantillon
-    '''
-    A = variance(nombre_nucleotide_echantillon(tab)[0])
-    U = variance(nombre_nucleotide_echantillon(tab)[1])
-    G = variance(nombre_nucleotide_echantillon(tab)[2])
-    C = variance(nombre_nucleotide_echantillon(tab)[3])
-    return {'A': A, 'U': U, 'G': G, 'C': C}
-
-
-def ecart_type_nucleotide(tab):
-    ''' La fonction calcule l'écart-type d'apparition de chaque nucléotide dans l'échantillon
-
-    Args :
-        tab : échantillon (liste) de séquences
-
-    Returns :
-        dictionnaire valeur de l'écart-type des apparitions des nucléotides dans l'échantillon
-    '''
-    A = ecart_type(nombre_nucleotide_echantillon(tab)[0])
-    U = ecart_type(nombre_nucleotide_echantillon(tab)[1])
-    G = ecart_type(nombre_nucleotide_echantillon(tab)[2])
-    C = ecart_type(nombre_nucleotide_echantillon(tab)[3])
-    return {'A': A, 'U': U, 'G': G, 'C': C}
-
-
-def moyenne_taille_genome(tab):
-    ''' La fonction calcule la taille moyenne du genome dans l'échantillon
-
-    Args :
-        tab : échantillon (liste) de séquences
-
-    Returns :
-        valeur de la taille moyenne du genome dans l'échantillon
-    '''
-    return moyenne(taille_ensemble(tab))
-
-
-def mediane_taille_genome(tab):
-    ''' La fonction calcule la taille médiane du genome dans l'échantillon
-
-    Args :
-        tab : échantillon (liste) de séquences
-
-    Returns :
-        valeur de la taille médiane du genome dans l'échantillon
-    '''
-    return mediane(taille_ensemble(tab))
-
-
-def quartile_taille_genome(n, tab):
-    ''' La fonction calcule la taille du quartile (1er ou 3e) du genome dans l'échantillon
-
-    Args :
-        tab : échantillon (liste) de séquences
-
-    Returns :
-        valeur de la taille du quartile (1er ou 3e) du genome dans l'échantillon
-    '''
-    return quartile(n, taille_ensemble(tab))
-
-
-def intervalle_interquartile_taille_genome(tab):
-    ''' La fonction calcule l'intervalle interquartile de la taille du genome dans l'échantillon
-
-    Args :
-        tab : échantillon (liste) de séquences
-
-    Returns :
-        valeur de l'intervalle interquartile de la taille du genome dans l'échantillon
-    '''
-    return intervalle_interquartile(taille_ensemble(tab))
-
-
-def variance_taille_genome(tab):
-    ''' La fonction calcule la variance des tailles des genomes dans l'échantillon
-
-    Args :
-        tab : échantillon (liste) de séquences
-
-    Returns :
-        valeur de la variance des tailles des genomes dans l'échantillon
-    '''
-    return variance(taille_ensemble(tab))
-
-
-def ecart_type_taille_genome(tab):
-    ''' La fonction calcule l'écrat-type des tailles des genomes dans l'échantillon
-
-    Args :
-        tab : échantillon (liste) de séquences
-
-    Returns :
-        valeur de l'écrat-type des tailles des genomes dans l'échantillon
-    '''
-    return ecart_type(taille_ensemble(tab))
-
-
-# TODO: (BONUS/SIMPLIFICATION) ajouter fonction "génératrice" pour appeler les fonctions qu'on veut avec un seul nom de fonction
-# PROOF OF CONCEPT: (regarder aussi tests/main.py)
-# def add(a, b):
-#     return a + b
-
-# def mult(a, b):
-#     return a * b
-
-# def apply_math(fnc, a, b):
-#     return fnc(a, b)
-
-# print(apply_math(add, 5, 3))
-# print(apply_math(mult, 5, 3))
-
-
-# TODO: (BONUS/simplification): des fonctions génératrices qui fait à la foix 1, 2, 4
-# def fnct_generatrice(convert, analyse_stat, param):
-#     return analyse_stat(convert(param))
-
-
-def moyenne_acide(tab):
-    '''Function that returns the average of occurence of each amino-acid in the sample
-
-       Args:
-           tab: sample of amino-acid sequences
-
-       Returns:
-           Dictionary that contains the average of occurence of elements as value and the element as key
-    '''
-
-    d = {}
-    nbr = nombre_element_echantillon(tab)
-    list_element = list(nbr.keys())
+    list_element = list(nb_elm_ech.keys())
+    d = {s: 0 for s in list_element}
 
     for element in list_element:
-        d[element] = moyenne(nbr[element])
+        d[element] = stat_func(nb_elm_ech[element], *args)
 
-    return(d)
+    return d
 
 
-def mediane_acide(tab):
-    '''Function that returns the median of occurence of each amino-acid in the sample
+def perform_all_stats(sequences, sampler):
+    '''Fonction general qui fait tout l'analyse statistique
 
-       Args:
-           tab: sample of amino-acid sequences
-
-       Returns:
-           Dictionary that contains the median of occurence of elements as value and the element as key
+    Args:
+        stat_func:  fonction statistique à appeler
+        sampler:    les valeurs à prendre comme des echantillons
+    
+    Returns: 
+        Dictionnaire qui contients les stats
     '''
-
-    d = {}
-    nbr = nombre_element_echantillon(tab)
-    list_element = list(nbr.keys())
-
-    for element in list_element:
-        d[element] = mediane(nbr[element])
-
-    return (d)
-
-
-def quartile_acide(n, tab):
-    '''Function that returns the first or third quartile of occurence of each amino-acid in the sample
-
-       Args:
-           n: integer (1 or 3 )
-           tab: sample of amino-acid sequences
-
-       Returns:
-           Dictionary that contains the quartile of occurence of elements as value and the element as key
-    '''
-
-    d = {}
-    nbr = nombre_element_echantillon(tab)
-    list_element = list(nbr.keys())
-
-    for element in list_element:
-        d[element] = quartile(n, nbr[element])
-
-    return (d)
-
-
-def intervalle_interquartile_acide(tab):
-    '''Function that returns the interquartile (Q3 - Q1) of occurence of each amino-acid in the sample
-
-       Args:
-           tab: sample of amino-acid sequences
-
-       Returns:
-           Dictionary that contains the interquartile of occurence of elements as value and the element as key
-    '''
-
-    d = {}
-    nbr = nombre_element_echantillon(tab)
-    list_element = list(nbr.keys())
-
-    for element in list_element:
-        d[element] = intervalle_interquartile(nbr[element])
-
-    return (d)
-
-
-def variance_acide(tab):
-    '''Function that returns the variance of occurence of each amino-acid in the sample
-
-       Args:
-           tab: sample of amino-acid sequences
-
-       Returns:
-           Dictionary that contains the variance of occurence of elements as value and the element as key
-    '''
-
-    d = {}
-    nbr = nombre_element_echantillon(tab)
-    list_element = list(nbr.keys())
-
-    for element in list_element:
-        d[element] = variance(nbr[element])
-
-    return (d)
-
-
-def ecart_type_acide(tab):
-    '''Function that returns the standard deviation of occurence of each amino-acid in the sample
-
-        Args:
-          tab: sample of amino-acid sequences
-
-        Returns:
-          Dictionary that contains the standard deviation of occurence of elements as value and the element as key
-    '''
-
-    d = {}
-    nbr = nombre_element_echantillon(tab)
-    list_element = list(nbr.keys())
-
-    for element in list_element:
-        d[element] = ecart_type(nbr[element])
-
-    return (d)
+    # Optimise this function by calling nombre_element_echantillion outside
+    nbr_elm_ech = nombre_element_echantillon(sequences, sampler)
+    stats = {}
+    stats["moy"]        = call_stat_on_echantillon(moyenne, nbr_elm_ech)
+    stats["med"]        = call_stat_on_echantillon(mediane, nbr_elm_ech)
+    stats["ecartt"]     = call_stat_on_echantillon(ecart_type, nbr_elm_ech)
+    stats["var"]        = call_stat_on_echantillon(variance, nbr_elm_ech)
+    stats["quart1"]     = call_stat_on_echantillon(quartile, nbr_elm_ech, 1)
+    stats["quart3"]     = call_stat_on_echantillon(quartile, nbr_elm_ech, 3)
+    stats["int_quart"]  = call_stat_on_echantillon(intervalle_interquartile, nbr_elm_ech)
+    return stats
