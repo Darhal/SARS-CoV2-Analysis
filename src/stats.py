@@ -1,8 +1,9 @@
 import math
 from .utility import *
+from .codon import *
 
 def proportions(sequence):
-    '''Retourne un dictionaire contenant les proportions des différents nucléotides de la séquence d'ARNm entré.
+    '''Retourne un dictionaire contenant les proportions des différents éléments de la séquence.
 
     Args:
         sequence : the ARNm or codons sequence (type : string)
@@ -21,7 +22,7 @@ def proportions(sequence):
     return dico_proportions
 
 
-def moyenne(list): # on prend en entée une liste de valeur
+def moyenne(list):
     ''' La fonction fait la moyenne des valeurs d'une liste
 
     Args :
@@ -40,7 +41,7 @@ def moyenne(list): # on prend en entée une liste de valeur
     return res / len(list)
 
 
-def mediane(list): # on prend en entrée une liste de valeur
+def mediane(list):
     ''' La fonction donne la médiane de l'échantillon
 
     Args :
@@ -141,8 +142,8 @@ def ecart_type(list):
     return math.sqrt(variance(list))
 
 
-def moyenne_proportion(liste):
-    ''' function that calculate the average of proportions of a nucleotide based on different RNA
+def moyenne_proportion_nucleotide(liste):
+    ''' Function that calculate the average of proportions of a nucleotide based on different RNA
 
     Args :
         liste : list of dictionaries that represent the RNA sequences
@@ -350,3 +351,123 @@ def ecart_type_taille_genome(tab):
 # def fnct_generatrice(convert, analyse_stat, param):
 #     return analyse_stat(convert(param))
 
+
+def moyenne_acide(tab):
+    '''Function that returns the average of occurence of each amino-acid in the sample
+
+       Args:
+           tab: sample of amino-acid sequences
+
+       Returns:
+           Dictionary that contains the average of occurence of elements as value and the element as key
+    '''
+
+    d = {}
+    nbr = nombre_element_echantillon(tab)
+    list_element = list(nbr.keys())
+
+    for element in list_element:
+        d[element] = moyenne(nbr[element])
+
+    return(d)
+
+
+def mediane_acide(tab):
+    '''Function that returns the median of occurence of each amino-acid in the sample
+
+       Args:
+           tab: sample of amino-acid sequences
+
+       Returns:
+           Dictionary that contains the median of occurence of elements as value and the element as key
+    '''
+
+    d = {}
+    nbr = nombre_element_echantillon(tab)
+    list_element = list(nbr.keys())
+
+    for element in list_element:
+        d[element] = mediane(nbr[element])
+
+    return (d)
+
+
+def quartile_acide(n, tab):
+    '''Function that returns the first or third quartile of occurence of each amino-acid in the sample
+
+       Args:
+           n: integer (1 or 3 )
+           tab: sample of amino-acid sequences
+
+       Returns:
+           Dictionary that contains the quartile of occurence of elements as value and the element as key
+    '''
+
+    d = {}
+    nbr = nombre_element_echantillon(tab)
+    list_element = list(nbr.keys())
+
+    for element in list_element:
+        d[element] = quartile(n, nbr[element])
+
+    return (d)
+
+
+def intervalle_interquartile_acide(tab):
+    '''Function that returns the interquartile (Q3 - Q1) of occurence of each amino-acid in the sample
+
+       Args:
+           tab: sample of amino-acid sequences
+
+       Returns:
+           Dictionary that contains the interquartile of occurence of elements as value and the element as key
+    '''
+
+    d = {}
+    nbr = nombre_element_echantillon(tab)
+    list_element = list(nbr.keys())
+
+    for element in list_element:
+        d[element] = intervalle_interquartile(nbr[element])
+
+    return (d)
+
+
+def variance_acide(tab):
+    '''Function that returns the variance of occurence of each amino-acid in the sample
+
+       Args:
+           tab: sample of amino-acid sequences
+
+       Returns:
+           Dictionary that contains the variance of occurence of elements as value and the element as key
+    '''
+
+    d = {}
+    nbr = nombre_element_echantillon(tab)
+    list_element = list(nbr.keys())
+
+    for element in list_element:
+        d[element] = variance(nbr[element])
+
+    return (d)
+
+
+def ecart_type_acide(tab):
+    '''Function that returns the standard deviation of occurence of each amino-acid in the sample
+
+        Args:
+          tab: sample of amino-acid sequences
+
+        Returns:
+          Dictionary that contains the standard deviation of occurence of elements as value and the element as key
+    '''
+
+    d = {}
+    nbr = nombre_element_echantillon(tab)
+    list_element = list(nbr.keys())
+
+    for element in list_element:
+        d[element] = ecart_type(nbr[element])
+
+    return (d)
