@@ -1,5 +1,6 @@
 import pytest
 import numpy as np
+# import statistics as st
 
 from src.stats import *
 
@@ -10,14 +11,14 @@ def test_moyenne(): # on n'a pas test les chaînes de caractère, ou des lites q
     assert moyenne([2.5, 2.5, 2.6, 2.7, 2.2, 0]) == np.mean([2.5, 2.5, 2.6, 2.7, 2.2, 0])
 
 
-def test_mediane():
-    assert mediane([1, 2]) == 1.5
-    assert mediane([10, 20, 30]) == 20
-    assert mediane([0, 0, 0, 1]) == 0
+def test_mediane(): # les tests ont aussi été fait à la main manuellement sans le module statistics
+    assert mediane([1, 2]) == np.median([1, 2])
+    assert mediane([10, 20, 30]) == np.median([10, 20, 30])
+    assert mediane([0, 0, 0, 1]) == np.median([0, 0, 0, 1])
     assert mediane([]) == None
-    assert mediane([5, 5, 1]) == 5
-    assert mediane([3.5, 2.5]) == 3
-    assert mediane([9, 4, 7, 5, 8, 6, 3, 2, 1, 10]) == 5.5
+    assert mediane([5, 5, 1]) == np.median([5, 5, 1])
+    assert mediane([3.5, 2.5]) == np.median([3.5, 2.5])
+    assert mediane([9, 4, 7, 5, 8, 6, 3, 2, 1, 10]) == np.median([9, 4, 7, 5, 8, 6, 3, 2, 1, 10])
 
 
 def test_quartile():
