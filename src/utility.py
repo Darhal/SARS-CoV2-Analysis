@@ -21,6 +21,7 @@ def transcription_complementaire(ADNc):
         
     return ARNm
 
+
 def fasta_to_genome(filename):
     '''Function that parse a fasta file
     
@@ -38,6 +39,7 @@ def fasta_to_genome(filename):
     if len(genome) == 1:
         return genome[0]
     return genome
+
 
 def total_elements(sequence):
     '''Nombre total d'éléments dans une sequence (ARN, ADN ou Acides aminés)
@@ -66,6 +68,7 @@ def taille_ensemble(L): # liste de la taille de chaque séquence d'une liste de 
         l.append(len(k))
     return l
 
+
 def nombre_elements(sequence):
     '''Retourne un dictionnaire indiquant le nombre de chaque element de la sequence
 
@@ -87,6 +90,7 @@ def nombre_elements(sequence):
 
     return d
 
+
 def nombre_nucleotide_echantillon(tab):
     A = []
     U = []
@@ -100,3 +104,30 @@ def nombre_nucleotide_echantillon(tab):
         G.append(N['G'])
         C.append(N['C'])
     return [A, U, G, C]
+
+
+def nombre_element_echantillon(tab):
+    '''Retourne un dictionnaire indiquant le nombre de chaque element dans l'echantillon
+
+       Args:
+           sequence: the RNA/DNA/amino-acid sequence
+
+       Returns:
+           Dictionary that contains the number of elements (a list) as value and the element as key
+    '''
+
+    d = {}
+
+    for seq in tab:
+
+        nbr = nombre_elements(seq)
+        l = list(nbr.keys())
+
+        for element in range(l):
+
+            if element not in d:
+                d[element] = [nbr[element]]
+            else:
+                d[element].append(nbr[element])
+
+    return (d)
