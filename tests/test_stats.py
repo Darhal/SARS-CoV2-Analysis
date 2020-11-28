@@ -3,7 +3,6 @@ import numpy as np
 
 from src.stats import *
 
-
 def test_moyenne(): # on n'a pas test les chaînes de caractère, ou des lites qui n'ont pas comme éléments des nombres
     assert moyenne([1, 2, 3]) == 2
     assert moyenne([]) == None
