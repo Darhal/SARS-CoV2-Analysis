@@ -25,31 +25,33 @@ def test_quartile():
     assert quartile([], 1) == None
     assert quartile([1, 2, 3], 5) == None
     assert quartile([4, 5, 6], 2) == mediane([4, 5, 6])
-    assert quartile([4, 5, 6], 1) == 4.5
-    assert quartile([4, 5, 6], 3) == 5.5
+    assert quartile([4, 5, 6], 1) == np.quantile([4, 5, 6], 0.25, interpolation="lower")
+    assert quartile([4, 5, 6], 3) == np.quantile([4, 5, 6], 0.75, interpolation="higher")
+    assert quartile([30, 90, 95, 100], 1) == np.quantile([30, 90, 95, 100], 0.25, interpolation="lower")
+    assert quartile([30, 90, 95, 100], 3) == np.quantile([30, 90, 95, 100], 0.75, interpolation="higher")
     assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1], 2) == mediane([9, 8, 7, 6, 5, 4, 3, 2, 1])
-    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1], 1) == 3
-    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1], 3) == 7
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1], 1) == np.quantile([9, 8, 7, 6, 5, 4, 3, 2, 1], 0.25, interpolation="lower")
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1], 3) == np.quantile([9, 8, 7, 6, 5, 4, 3, 2, 1], 0.75, interpolation="higher")
     assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 2) == mediane([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
-    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 1) == 2
-    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 3) == 7
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 1) == np.quantile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 0.25, interpolation="lower")
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 3) == np.quantile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 0.75, interpolation="higher")
     assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10], 2) == mediane([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10])
-    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10], 1) == 2.5
-    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10], 3) == 7.5
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10], 1) == np.quantile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10], 0.25, interpolation="lower")
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10], 3) == np.quantile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10], 0.75, interpolation="higher")
     assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11], 2) == mediane([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11])
-    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11], 1) == 2.5
-    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11], 3) == 8.5
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11], 1) == np.quantile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11], 0.25, interpolation="lower")
+    assert quartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11], 3) == np.quantile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11], 0.75, interpolation="higher")
     assert quartile([1, 1, 3, 3, 5, 5, 5], 2) == mediane([1, 1, 3, 3, 5, 5, 5])
-    assert quartile([1, 1, 3, 3, 5, 5, 5], 1) == 2
-    assert quartile([1, 1, 3, 3, 5, 5, 5], 3) == 5
+    assert quartile([1, 1, 3, 3, 5, 5, 5], 1) == np.quantile([1, 1, 3, 3, 5, 5, 5], 0.25, interpolation="lower")
+    assert quartile([1, 1, 3, 3, 5, 5, 5], 3) == np.quantile([1, 1, 3, 3, 5, 5, 5], 0.75, interpolation="higher")
 
 
 def test_intervalle_interquartile():
-    assert intervalle_interquartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) == 5
-    assert intervalle_interquartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10]) == 5
-    assert intervalle_interquartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11]) == 6
-    assert intervalle_interquartile([1, 1, 3, 3, 5, 5, 5]) == 3
-    assert intervalle_interquartile([9, 8, 7, 6, 5, 4, 3, 2, 1]) == 4
+    assert intervalle_interquartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) == np.quantile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 0.75, interpolation="higher")-np.quantile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 0.25, interpolation="lower")
+    assert intervalle_interquartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10]) == np.quantile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10], 0.75, interpolation="higher")-np.quantile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10], 0.25, interpolation="lower")
+    assert intervalle_interquartile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11]) == np.quantile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11], 0.75, interpolation="higher")-np.quantile([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 10, 11], 0.25, interpolation="lower")
+    assert intervalle_interquartile([1, 1, 3, 3, 5, 5, 5]) == np.quantile([1, 1, 3, 3, 5, 5, 5], 0.75, interpolation="higher")-np.quantile([1, 1, 3, 3, 5, 5, 5], 0.25, interpolation="lower")
+    assert intervalle_interquartile([9, 8, 7, 6, 5, 4, 3, 2, 1]) == np.quantile([9, 8, 7, 6, 5, 4, 3, 2, 1], 0.75, interpolation="higher")-np.quantile([9, 8, 7, 6, 5, 4, 3, 2, 1], 0.25, interpolation="lower")
 
 
 def test_variance():

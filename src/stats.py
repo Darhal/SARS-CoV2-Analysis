@@ -68,7 +68,7 @@ def mediane(list):
         return L[(n-1) // 2]
 
 
-def quartile(list, n): # quartile(2,list) est la médiane
+def quartile(list, n):  # quartile(2,list) est la médiane
     ''' La fonction donne le quartile (1er, 2e, ou 3e) de l'échantillon
 
     Args :
@@ -79,29 +79,24 @@ def quartile(list, n): # quartile(2,list) est la médiane
     '''
     if not list:
         return None
-    if n not in [1,2,3]:
+    if n not in [1, 2, 3]:
         return None
-    
+
     L = sorted(list)
     t = len(list)
-    
-    if n == 2: # la médiane
+
+    if n == 2:  # la médiane
         return mediane(list)
-    elif t%4 == 0:
+    if t % 4 == 0:
         if n == 1:
-            return (L[t//4] + L[t//4 - 1]) / 2
+            return L[t//4 - 1]
         elif n == 3:
-            return (L[3*t//4] + L[3*t//4 - 1]) / 2
-    elif (t % 4 == 1) or (t % 4 == 2):
+            return L[3*t//4]
+    else:
         if n == 1:
-            return L[int(t/4)]
+            return L[t//4]
         elif n == 3:
             return L[int(3*t/4)]
-    elif t%4 == 3:
-        if n == 1:
-            return (L[int(t/4)] + L[int(t/4) + 1]) / 2
-        elif n == 3:
-            return (L[int(3*t/4)] + L[int(3*t/4) - 1]) / 2
 
 
 def intervalle_interquartile(list):
