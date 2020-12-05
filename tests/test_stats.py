@@ -120,3 +120,11 @@ def test_call_stat_on_echantillon():
 def test_mediane_nucleotide():
     # print(mediane_nucleotide(fasta_to_genome("./genome/dix_sequences.fasta")))
     pass
+
+
+def test_proportions():
+    assert proportions('AUGC', ['A', 'U', 'G', 'C']) == {'A': 0.25, 'U': 0.25, 'G': 0.25, 'C': 0.25}
+    assert proportions('', ['A', 'U', 'G', 'C']) == {'A': 0, 'U': 0, 'G': 0, 'C': 0}
+    assert proportions('AAAA', ['A', 'U', 'G', 'C']) == {'A': 1, 'U': 0, 'G': 0, 'C': 0}
+    assert proportions('AAAAAAA', ['U', 'G', 'C']) == {'U': 0, 'G': 0, 'C': 0}
+    assert proportions('UGCC', ['A', 'U', 'G', 'C']) == {'A' : 0, 'U': 0.25, 'G': 0.25, 'C': 0.5}
