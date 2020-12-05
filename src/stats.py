@@ -183,8 +183,8 @@ def call_stat_on_echantillon(stat_func, nb_elm_ech, *args):
 
     Args:
         stat_func:  fonction statistique à appeler
-        nb_elm_ech: nombre elements echantillon d'une séquence donée
-        *args:      arguments supplémentaires optionelle
+        nb_elm_ech: nombre elements echantillon d'une séquence donnée
+        *args:      argument supplémentaire optionelle
     
     Returns: 
         Dictionnaire qui à le retoure de la fonction
