@@ -150,129 +150,8 @@ def proportions(sequence, sampler):
     return dico_proportions
 
 
-def moy_proportions(sequences, sampler):
-    '''Retourne un dictionaire contenant les moyennes des proportions des différents éléments de la séquence.
-
-    Args:
-        sequence : The ARNm or codons sequence (type : string)
-        sampler : The list of elements to sample (ARMm nucleotides or Amino-acids) (type : list)
-
-    Returns:
-        dico_proportions : Dictionnaire associant les moyennes des proportions aux éléments de la séquence.
-    '''
-    dicos = [proportions(sequence, sampler) for sequence in sequences]
-    resultat = {}
-
-    for element in sampler:
-        liste = [dico[element] for dico in dicos]
-        resultat[element] = moyenne(liste)
-
-    return resultat
-
-
-def mediane_proportions(sequences, sampler):
-    '''Retourne un dictionaire contenant la médiane des proportions des différents éléments de la séquence.
-
-    Args:
-        sequence : The ARNm or codons sequence (type : string)
-        sampler : The list of elements to sample (ARMm nucleotides or Amino-acids) (type : list)
-
-    Returns:
-        dico_proportions : Dictionnaire associant les médianes des proportions aux éléments de la séquence.
-    '''
-    dicos = [proportions(sequence, sampler) for sequence in sequences]
-    resultat = {}
-
-    for element in sampler:
-        liste = [dico[element] for dico in dicos]
-        resultat[element] = mediane(liste)
-
-    return resultat
-
-
-def quartile_proportions(sequences, sampler, n):
-    '''Retourne un dictionaire contenant les quartiles n des proportions des différents éléments de la séquence.
-
-    Args:
-        sequence : The ARNm or codons sequence (type : string)
-        sampler : The list of elements to sample (ARMm nucleotides or Amino-acids) (type : list)
-        n : Le quartile désiré entre 1, 2(médiane) ou 3 (type : int)
-
-    Returns:
-        dico_proportions : Dictionnaire associant les quartiles n des proportions aux éléments de la séquence.
-    '''
-    dicos = [proportions(sequence, sampler) for sequence in sequences]
-    resultat = {}
-
-    for element in sampler:
-        liste = [dico[element] for dico in dicos]
-        resultat[element] = quartile(liste, n)
-
-    return resultat
-
-
-def intervalle_proportions(sequences, sampler):
-    '''Retourne un dictionaire contenant les intervales interquartiles des proportions des différents éléments de la séquence.
-
-    Args:
-        sequence : The ARNm or codons sequence (type : string)
-        sampler : The list of elements to sample (ARMm nucleotides or Amino-acids) (type : list)
-
-    Returns:
-        dico_proportions : Dictionnaire associant les intervales interquartiles proportions aux éléments de la séquence
-    '''
-    dicos = [proportions(sequence, sampler) for sequence in sequences]
-    resultat = {}
-
-    for element in sampler:
-        liste = [dico[element] for dico in dicos]
-        resultat[element] = intervalle_interquartile(liste)
-
-    return resultat
-
-
-def variance_proportions(sequences, sampler):
-    '''Retourne un dictionaire contenant les variances proportions des différents éléments de la séquence.
-
-    Args:
-        sequence : The ARNm or codons sequence (type : string)
-        sampler : The list of elements to sample (ARMm nucleotides or Amino-acids) (type : list)
-
-    Returns:
-        dico_proportions : Dictionnaire associant les variances des proportions aux éléments de la séquence
-    '''
-    dicos = [proportions(sequence, sampler) for sequence in sequences]
-    resultat = {}
-
-    for element in sampler:
-        liste = [dico[element] for dico in dicos]
-        resultat[element] = variance(liste)
-
-    return resultat
-
-
-def ecart_type_proportions(sequences, sampler):
-    '''Retourne un dictionaire contenant les écarts types des proportions des différents éléments de la séquence.
-
-    Args:
-        sequence : The ARNm or codons sequence (type : string)
-        sampler : The list of elements to sample (ARMm nucleotides or Amino-acids) (type : list)
-
-    Returns:
-        dico_proportions : Dictionnaire associant les écarts types des proportions aux éléments de la séquence
-    '''
-    dicos = [proportions(sequence, sampler) for sequence in sequences]
-    resultat = {}
-
-    for element in sampler:
-        liste = [dico[element] for dico in dicos]
-        resultat[element] = ecart_type(liste)
-
-    return resultat
-
-
 #####################################
-# FONCTION BOOTSTRAP                #
+# FONCTIONs BOOTSTRAP               #
 #####################################
 
 def call_stat_taille_genome(stat_func, tab, *args):
@@ -324,6 +203,28 @@ def call_stat_on_echantillon(stat_func, nb_elm_ech, *args):
         d[element] = stat_func(nb_elm_ech[element], *args)
 
     return d
+
+
+def call_stat_prop(stat_func, sequences, sampler, *args):
+    '''Fonction generale qui appelle les autres fonctions statistiques pour les proportions
+
+    Args:
+        stat_func:  fonction statistique à appeler (moyenne, mediane, quartile, intervalle_interquartile, variance, ecart_type)
+        sequences:  tableau des sequances ARNm ou d'Acides aminés
+        sampler:    les valeurs à prendre comme des echantillons (NUCLEOTIDES ou AMINO_ACIDS
+        *args:      arguments supplémentaires optionel (notamment n pour l'appel de quartile)
+
+    Returns: 
+        Dictionnaire qui à le retoure de la fonction
+    '''
+    dicos = [proportions(sequence, sampler) for sequence in sequences]
+    resultat = {}
+
+    for element in sampler:
+        liste = [dico[element] for dico in dicos]
+        resultat[element] = stat_func(liste, *args)
+
+    return resultat
 
 
 def perform_all_stats(sequences, sampler):
