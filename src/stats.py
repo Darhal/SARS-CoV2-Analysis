@@ -8,26 +8,6 @@ from .codon import *
 # FONCTION STATS DE BASE            #
 #####################################
 
-def proportions(sequence):
-    '''Retourne un dictionaire contenant les proportions des différents éléments de la séquence.
-
-    Args:
-        sequence : the ARNm or codons sequence (type : string)
-
-    Returns:
-        dico_proportions : Dictionnaire associant les proportions aux éléments de la séquence
-    '''
-
-    dico_nombre_elements = nombre_elements(sequence)
-    nombre_total_elements = total_elements(sequence)
-    dico_proportions = {}
-    
-    for element in dico_nombre_elements:
-        dico_proportions[element] = dico_nombre_elements[element] / nombre_total_elements
-
-    return dico_proportions
-
-
 def moyenne(list):
     ''' La fonction fait la moyenne des valeurs d'une liste
 
@@ -141,6 +121,154 @@ def ecart_type(list):
         l'écart-type' de la liste
     '''
     return math.sqrt(variance(list))
+
+#####################################
+# FONCTION SUR LES PROPORTIONS      #
+#####################################
+
+def proportions(sequence, sampler):
+    '''Retourne un dictionaire contenant les proportions des différents éléments de la séquence.
+
+    Args:
+        sequence : The ARNm or codons sequence (type : string)
+        sampler : The list of elements to sample (ARMm nucleotides or Amino-acids) (type : list)
+
+    Returns:
+        dico_proportions : Dictionnaire associant les proportions aux éléments de la séquence
+    '''
+
+    dico_nombre_elements = nombre_elements(sequence, sampler)
+    nombre_total_elements = total_elements(sequence)
+    if nombre_total_elements == 0:
+        return {s: 0 for s in sampler}
+    
+    dico_proportions = {}
+    
+    for element in dico_nombre_elements:
+        dico_proportions[element] = dico_nombre_elements[element] / nombre_total_elements
+
+    return dico_proportions
+
+
+def moy_proportions(sequences, sampler):
+    '''Retourne un dictionaire contenant les moyennes des proportions des différents éléments de la séquence.
+
+    Args:
+        sequence : The ARNm or codons sequence (type : string)
+        sampler : The list of elements to sample (ARMm nucleotides or Amino-acids) (type : list)
+
+    Returns:
+        dico_proportions : Dictionnaire associant les moyennes des proportions aux éléments de la séquence.
+    '''
+    dicos = [proportions(sequence, sampler) for sequence in sequences]
+    resultat = {}
+
+    for element in sampler:
+        liste = [dico[element] for dico in dicos]
+        resultat[element] = moyenne(liste)
+
+    return resultat
+
+
+def mediane_proportions(sequences, sampler):
+    '''Retourne un dictionaire contenant la médiane des proportions des différents éléments de la séquence.
+
+    Args:
+        sequence : The ARNm or codons sequence (type : string)
+        sampler : The list of elements to sample (ARMm nucleotides or Amino-acids) (type : list)
+
+    Returns:
+        dico_proportions : Dictionnaire associant les médianes des proportions aux éléments de la séquence.
+    '''
+    dicos = [proportions(sequence, sampler) for sequence in sequences]
+    resultat = {}
+
+    for element in sampler:
+        liste = [dico[element] for dico in dicos]
+        resultat[element] = mediane(liste)
+
+    return resultat
+
+
+def quartile_proportions(sequences, sampler, n):
+    '''Retourne un dictionaire contenant les quartiles n des proportions des différents éléments de la séquence.
+
+    Args:
+        sequence : The ARNm or codons sequence (type : string)
+        sampler : The list of elements to sample (ARMm nucleotides or Amino-acids) (type : list)
+        n : Le quartile désiré entre 1, 2(médiane) ou 3 (type : int)
+
+    Returns:
+        dico_proportions : Dictionnaire associant les quartiles n des proportions aux éléments de la séquence.
+    '''
+    dicos = [proportions(sequence, sampler) for sequence in sequences]
+    resultat = {}
+
+    for element in sampler:
+        liste = [dico[element] for dico in dicos]
+        resultat[element] = quartile(liste, n)
+
+    return resultat
+
+
+def intervalle_proportions(sequences, sampler):
+    '''Retourne un dictionaire contenant les intervales interquartiles des proportions des différents éléments de la séquence.
+
+    Args:
+        sequence : The ARNm or codons sequence (type : string)
+        sampler : The list of elements to sample (ARMm nucleotides or Amino-acids) (type : list)
+
+    Returns:
+        dico_proportions : Dictionnaire associant les intervales interquartiles proportions aux éléments de la séquence
+    '''
+    dicos = [proportions(sequence, sampler) for sequence in sequences]
+    resultat = {}
+
+    for element in sampler:
+        liste = [dico[element] for dico in dicos]
+        resultat[element] = intervalle_interquartile(liste)
+
+    return resultat
+
+
+def variance_proportions(sequences, sampler):
+    '''Retourne un dictionaire contenant les variances proportions des différents éléments de la séquence.
+
+    Args:
+        sequence : The ARNm or codons sequence (type : string)
+        sampler : The list of elements to sample (ARMm nucleotides or Amino-acids) (type : list)
+
+    Returns:
+        dico_proportions : Dictionnaire associant les variances des proportions aux éléments de la séquence
+    '''
+    dicos = [proportions(sequence, sampler) for sequence in sequences]
+    resultat = {}
+
+    for element in sampler:
+        liste = [dico[element] for dico in dicos]
+        resultat[element] = variance(liste)
+
+    return resultat
+
+
+def ecart_type_proportions(sequences, sampler):
+    '''Retourne un dictionaire contenant les écarts types des proportions des différents éléments de la séquence.
+
+    Args:
+        sequence : The ARNm or codons sequence (type : string)
+        sampler : The list of elements to sample (ARMm nucleotides or Amino-acids) (type : list)
+
+    Returns:
+        dico_proportions : Dictionnaire associant les écarts types des proportions aux éléments de la séquence
+    '''
+    dicos = [proportions(sequence, sampler) for sequence in sequences]
+    resultat = {}
+
+    for element in sampler:
+        liste = [dico[element] for dico in dicos]
+        resultat[element] = ecart_type(liste)
+
+    return resultat
 
 
 #####################################
