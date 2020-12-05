@@ -67,9 +67,56 @@ def test_ecart_type():
     assert ecart_type([1, 2, 3, 4, 5]) == math.sqrt(np.var([1, 2, 3, 4, 5]))
 
 
+def test_call_stat_on_echantillon():
+    assert call_stat_on_echantillon(moyenne, {'A': [1, 3, 2], 'U': [1, 0, 2], 'G': [0, 0, 1], 'C': [1, 0, 2]}) == {
+        'A': np.mean([1, 3, 2]),'U': np.mean([1, 0, 2]),'G': np.mean([0, 0, 1]), 'C': np.mean([1, 0, 2])}
+
+    assert call_stat_on_echantillon(moyenne, {'A': [0, 0, 0], 'U': [0, 0, 0], 'G': [0, 0, 0], 'C': [0, 0, 0]}) == {
+        'A': 0, 'U': 0, 'G': 0, 'C': 0}
+
+    assert call_stat_on_echantillon(mediane, {'A': [1, 3, 2], 'U': [1, 0, 2], 'G': [0, 0, 1], 'C': [1, 0, 2]}) == {
+        'A': np.median([1, 3, 2]),'U': np.median([1, 0, 2]), 'G': np.median([0, 0, 1]), 'C': np.median([1, 0, 2])}
+
+    assert call_stat_on_echantillon(mediane, {'A': [0, 0, 0], 'U': [0, 0, 0], 'G': [0, 0, 0],'C': [0, 0, 0]}) == {
+        'A': 0, 'U': 0, 'G': 0, 'C': 0}
+
+    assert call_stat_on_echantillon(variance, {'A': [0, 0, 0], 'U': [0, 0, 0], 'G': [0, 0, 0], 'C': [0, 0, 0]}) == {
+        'A': 0, 'U': 0, 'G': 0, 'C': 0}
+
+    assert call_stat_on_echantillon(variance, {'A': [2, 2, 2], 'U': [0, 0, 0], 'G': [1, 1, 1], 'C': [8, 8, 8]}) == {
+        'A': 0, 'U': 0, 'G': 0, 'C': 0}
+
+    assert call_stat_on_echantillon(variance, {'A': [5, 2, 8], 'U': [0, 4, 0], 'G': [1, 17, 1], 'C': [817, 14, 8]}) == {
+        'A': np.var([5, 2, 8]), 'U': np.var([0, 4, 0]), 'G': np.var([1, 17, 1]), 'C': np.var([817, 14, 8])}
+
+    assert call_stat_on_echantillon(ecart_type, {'A': [5, 2, 8], 'U': [0, 4, 0], 'G': [1, 17, 1], 'C': [817, 14, 8]}) == {
+        'A': np.sqrt(np.var([5, 2, 8])), 'U': np.sqrt(np.var([0, 4, 0])), 'G': np.sqrt(np.var([1, 17, 1])), 'C': np.sqrt(np.var([817, 14, 8]))}
+
+    assert call_stat_on_echantillon(ecart_type, {'A': [2, 2, 2], 'U': [0, 0, 0], 'G': [1, 1, 1], 'C': [8, 8, 8]}) == {
+        'A': 0, 'U': 0, 'G': 0, 'C': 0}
+
+    assert call_stat_on_echantillon(quartile, {'A': [4, 5, 6], 'U': [8, 4, 15], 'G': [1, 1, 1], 'C': [18, 8, 156]}, 1) == {
+                'A': np.quantile([4, 5, 6], 0.25, interpolation="lower"),
+                'U': np.quantile([8, 4, 15], 0.25, interpolation="lower"),
+                'G': np.quantile([1, 1, 1], 0.25, interpolation="lower"),
+                'C': np.quantile([18, 8, 156], 0.25, interpolation="lower")
+                }
+
+    assert call_stat_on_echantillon(quartile, {'A': [4, 5, 6], 'U': [8, 4, 15], 'G': [1, 1, 1], 'C': [18, 8, 156]}, 3) == {
+                'A': np.quantile([4, 5, 6], 0.75, interpolation="higher"),
+                'U': np.quantile([8, 4, 15], 0.75, interpolation="higher"),
+                'G': np.quantile([1, 1, 1], 0.75, interpolation="higher"),
+                'C': np.quantile([18, 8, 156], 0.75, interpolation="higher")
+                }
+
+    assert call_stat_on_echantillon(intervalle_interquartile, {'A': [4, 5, 6], 'U': [8, 4, 15], 'G': [1, 1, 1], 'C': [18, 8, 156]}) == {
+                'A': intervalle_interquartile([4, 5, 6]),
+                'U': intervalle_interquartile([8, 4, 15]),
+                'G': intervalle_interquartile([1, 1, 1]),
+                'C': intervalle_interquartile([18, 8, 156])
+                }
+
 
 def test_mediane_nucleotide():
     # print(mediane_nucleotide(fasta_to_genome("./genome/dix_sequences.fasta")))
     pass
-
-
