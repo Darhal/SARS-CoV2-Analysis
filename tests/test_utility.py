@@ -8,7 +8,7 @@ def test_total_elements():
     assert total_elements('ACU') == 3
     assert total_elements('ACUCU') == 5
     assert total_elements([]) == 0
-    assert total_elements('ATTAAAGGTTTATACCTTCCCAGGTAACAAACCAAC') == len('ATTAAAGGTTTATACCTTCCCAGGTAACAAACCAAC')
+    assert total_elements('AUUAAAGGTTTATACCTTCCCAGGTAACAAACCAAC') == len('AUUAAAGGTTTATACCTTCCCAGGTAACAAACCAAC')
 
 
 def test_taille_ensemble():
