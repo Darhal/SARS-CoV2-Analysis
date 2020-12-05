@@ -179,11 +179,11 @@ def call_stat(stat_func, sequences, sampler, *args):
 
 
 def call_stat_on_echantillon(stat_func, nb_elm_ech, *args):
-    '''Fonction general qui appelle les autres fonctions statistiques
+    '''Fonction generale qui appelle les autres fonctions statistiques
 
     Args:
         stat_func:  fonction statistique à appeler
-        nb_elm_ech: nombre elements echantillon d'une séquence donées
+        nb_elm_ech: nombre elements echantillon d'une séquence donée
         *args:      arguments supplémentaires optionelle
     
     Returns: 
