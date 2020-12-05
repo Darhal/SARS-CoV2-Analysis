@@ -20,7 +20,6 @@ def test_taille_ensemble():
 def test_nombre_elements():
     assert nombre_elements('ACU', NUCLEOTIDES) == {'A': 1, 'U': 1, 'G': 0, 'C': 1}
     assert nombre_elements('AAA', NUCLEOTIDES) == {'A': 3, 'U': 0, 'G': 0, 'C': 0}
-    assert nombre_elements('ACU', NUCLEOTIDES) == {'A': 1, 'U': 1, 'G': 0, 'C': 1}
     assert nombre_elements('ACUGACU', NUCLEOTIDES) == {'A': 2, 'U': 2, 'G': 1, 'C': 2}
 
     assert nombre_elements('FLIQ', AMINO_ACIDS) == {'A': 0, 'R': 0, 'N': 0, 'D': 0, 'C': 0, 'Q': 1,
@@ -44,3 +43,18 @@ def test_nombre_elements():
                                                       'Y': 0, 'V': 1, 'B': 0, 'Z': 0, 'X': 0, 'J': 0, '*': 0}
 
 
+def test_nombre_element_echantillon():
+    assert nombre_element_echantillon(['ACU','AAA','ACUGACU'], NUCLEOTIDES) == {'A': [1, 3, 2], 'U': [1, 0, 2],
+                                                                                'G': [0, 0, 1], 'C': [1, 0, 2]}
+    assert nombre_element_echantillon([], NUCLEOTIDES) == {}
+
+    assert nombre_element_echantillon(['FLIQ', 'ACCSACV', 'ACV', 'AAA'], AMINO_ACIDS) == {'A': [0, 2, 1, 3], 'R': [0, 0, 0, 0],
+                                                    'N': [0, 0, 0, 0], 'D': [0, 0, 0, 0], 'C': [0, 3, 1, 0], 'Q': [1, 0, 0, 0],
+                                                    'E': [0, 0, 0, 0], 'G': [0, 0, 0, 0], 'H': [0, 0, 0, 0], 'I': [1, 0, 0, 0],
+                                                    'L': [1, 0, 0, 0], 'K': [0, 0, 0, 0], 'M': [0, 0, 0, 0], 'F': [1, 0, 0, 0],
+                                                    'P': [0, 0, 0, 0], 'O': [0, 0, 0, 0], 'S': [0, 1, 0, 0], 'U': [0, 0, 0, 0],
+                                                    'T': [0, 0, 0, 0], 'W': [0, 0, 0, 0], 'Y': [0, 0, 0, 0], 'V': [0, 1, 1, 0],
+                                                    'B': [0, 0, 0, 0], 'Z': [0, 0, 0, 0], 'X': [0, 0, 0, 0], 'J': [0, 0, 0, 0],
+                                                    '*': [0, 0, 0, 0]}
+
+    assert nombre_element_echantillon([], AMINO_ACIDS) == {}
