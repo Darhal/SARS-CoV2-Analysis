@@ -155,7 +155,7 @@ def proportions(sequence, sampler):
 #####################################
 
 def call_stat_taille_genome(stat_func, tab, *args):
-    '''Fonction general qui appelle les autres fonctions statistiques sur les tailles de genomes
+    '''Fonction generale qui appelle les autres fonctions statistiques sur les tailles de genomes
 
     Args:
         stat_func:  fonction statistique à appeler
