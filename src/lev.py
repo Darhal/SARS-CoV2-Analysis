@@ -3,14 +3,13 @@ def lev(str1, str2):
     '''Function that return the Levenshtein distance between two given strings str1 and str2
     
     Args:
-        str1: first string
-        str2: second string
+        str1: first string also known as source string
+        str2: second string also known as target string
     
     Returns:
         Levenshtein distance
     '''
-    len_str1 = len(str1)
-    len_str2 = len(str2)
+    len_str1, len_str2 = len(str1), len(str2)
     if len_str1 == 0:
         return len_str2
 
@@ -33,8 +32,8 @@ def lev_dp(str1, str2):
     '''Function that return the Levenshtein distance between two given strings str1 and str2, but uses Dynamic Programming
 
         Args:
-            str1: first string
-            str2: second string
+            str1: first string also known as source string
+            str2: second string also known as target string
 
         Returns:
             Levenshtein distance
@@ -46,15 +45,14 @@ def lev_dp(str1, str2):
         '''Function that return the Levenshtein distance between two given strings str1 and str2, but uses Dynamic Programming
         
         Args:
-            str1: first string
-            str2: second string
+            str1: first string also known as source string
+            str2: second string also known as target string
             dp: two dimensional array of length m by m (where m is the max length)
         
         Returns:
             Levenshtein distance
         '''
-        len_str1 = len(str1)
-        len_str2 = len(str2)
+        len_str1, len_str2 = len(str1), len(str2)
 
         if dp[len_str1][len_str2] != -1:
             return dp[len_str1][len_str2]
