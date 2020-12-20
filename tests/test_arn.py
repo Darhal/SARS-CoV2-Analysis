@@ -11,12 +11,14 @@ TEST_FASTA = [
 
 def test_codon():
     for s in TEST_CASES:
-        mul3 = len(s) # (len(s) - len(s)%3)
+        # mul3 = len(s)
+        mul3 = (len(s) - len(s)%3)          # This is used to avoid an annoying warning in BioSeq library
         assert codons(s[:mul3]) == str(Seq.Seq(s[:mul3]).translate())
     
     for f in TEST_FASTA:
         arn = fasta_to_genome(f)
         # arn = arn[:(len(arn) - len(arn)%3)]
+        arn = arn[:(len(arn) - len(arn)%3)] # This is used to avoid an annoying warning in BioSeq library
         assert codons(arn) == str(Seq.Seq(arn).translate()) 
 
 
