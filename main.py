@@ -101,8 +101,8 @@ from src.lev import *
 
 
 genomes = fasta_to_genome("./genome/dix_sequences.fasta")
-codons1, codons2 = codons(genomes[0]), codons(genomes[1])
+codons1, codons2 = codons(genomes[0])[2:], codons(genomes[1])
 print(lev_itr(codons1, codons2))
 
-print(lev_itr("Sunday", "Saturday"))
+# print(lev_itr("Sunday", "Saturday"))
 
