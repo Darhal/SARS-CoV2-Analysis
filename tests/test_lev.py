@@ -45,4 +45,4 @@ def test_dp():
 
 def test_dp_rec():
     for t in TEST_CASES:
-        assert lev(t[0], t[1]) == lev_dp(t[0], t[1])
+        assert lev(t[0], t[1]) == lev_dp(t[0], t[1]) == lev_itr(t[0], t[1]) == t[2]
