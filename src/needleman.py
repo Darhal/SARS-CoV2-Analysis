@@ -26,13 +26,43 @@ def needleman(seq1, seq2, mat):
                 diag_val +=  mismatch
             alignement_mat[j][i] = max(max(left_val, up_val), diag_val)
 
-    # return alignement_mat
-
     # Trace back:
     coord = (len_seq2, len_seq1)
-    # TODO: Continue with trace back
+    output_seq1 = ""
+    output_seq2 = ""
+    while (coord != (0, 0)):
+        if seq2[coord[0] - 1] == seq1[coord[1] - 1]:
+            coord = (coord[0] - 1, coord[1] - 1)
+            if alignement_mat[coord[0] + 1][coord[1] + 1] > alignement_mat[coord[0]][coord[1]]:
+                output_seq1 = seq1[coord[1]] + output_seq1
+                output_seq2 = seq2[coord[0]] + output_seq2
+            else:
+                output_seq1 = seq1[coord[1]] + output_seq1
+                output_seq2 = seq2[coord[0]] + output_seq2
+        else:
+            highest_neighbour = (0, 0)
+            neighbours = [ (coord[0], coord[1] - 1), (coord[0] - 1, coord[1] - 1), (coord[0] - 1, coord[1]) ]
+            highest_neighbour = [c for c in neighbours if alignement_mat[c[0]][c[1]] == max(alignement_mat[c1[0]][c1[1]] for c1 in neighbours)][0]
+            
+            if highest_neighbour == neighbours[1]:
+                if alignement_mat[coord[0]][coord[1]] > alignement_mat[highest_neighbour[0] + 1][highest_neighbour[1] + 1]:
+                    output_seq1 = seq1[coord[1] - 1] + output_seq1
+                    output_seq2 = seq2[coord[0] - 1] + output_seq2
+                else:
+                    output_seq1 = seq1[coord[1] - 1] + output_seq1
+                    output_seq2 = seq2[coord[0] - 1] + output_seq2
+            elif highest_neighbour == neighbours[0]:
+                output_seq1 = seq1[coord[1] - 1] + output_seq1
+                output_seq2 = '-' + output_seq2
+            else:
+                output_seq1 = '-' + output_seq1
+                output_seq2 = seq2[coord[0] - 1] + output_seq2
+            coord = highest_neighbour
+    return [ output_seq1, output_seq2 ]
 
-m = needleman("GAATTCAGTTA", "GGATCGA",  [1, 0, 0])
+
+
+m = needleman("GCATGCU", "GATTACA",  [1, -1, -1])
 for l in m:
     print(l) 
 
