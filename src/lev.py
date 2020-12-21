@@ -1,94 +1,94 @@
 
-def lev(str1, str2):
-    '''Function that return the Levenshtein distance between two given strings str1 and str2
+def lev(seq1, seq2):
+    '''Function that return the Levenshtein distance between two given strings seq1 and seq2
     
     Args:
-        str1: first string also known as source string
-        str2: second string also known as target string
+        seq1: first string also known as source string
+        seq2: second string also known as target string
     
     Returns:
         Levenshtein distance
     '''
-    len_str1, len_str2 = len(str1), len(str2)
-    if len_str1 == 0:
-        return len_str2
+    len_seq1, len_seq2 = len(seq1), len(seq2)
+    if len_seq1 == 0:
+        return len_seq2
 
-    if len_str2 == 0:
-        return len_str1
+    if len_seq2 == 0:
+        return len_seq1
 
-    if str1[0] == str2[0]:
-        return lev(str1[1:], str2[1:])
+    if seq1[0] == seq2[0]:
+        return lev(seq1[1:], seq2[1:])
     
     return 1 + min(
         min(
-            lev(str1[1:], str2), 
-            lev(str1, str2[1:])
+            lev(seq1[1:], seq2), 
+            lev(seq1, seq2[1:])
         ),
-        lev(str1[1:], str2[1:])
+        lev(seq1[1:], seq2[1:])
     )
 
 
-def lev_dp(str1, str2):
-    '''Function that return the Levenshtein distance between two given strings str1 and str2, but uses Dynamic Programming
-
+def lev_dp(seq1, seq2):
+    '''Function that return the Levenshtein distance between two given strings seq1 and seq2, but uses Dynamic Programming
+        
         Args:
-            str1: first string also known as source string
-            str2: second string also known as target string
+            seq1: first string also known as source string
+            seq2: second string also known as target string
 
         Returns:
             Levenshtein distance
     '''
-    dp = [[ -1 for _ in range(len(str2) + 1) ] for _ in range(len(str1) + 1)]
+    dp = [[ -1 for _ in range(len(seq2) + 1) ] for _ in range(len(seq1) + 1)]
 
-    def lambda_lev_dp(str1, str2, dp):
-        '''Function that return the Levenshtein distance between two given strings str1 and str2, but uses Dynamic Programming
+    def lambda_lev_dp(seq1, seq2, dp):
+        '''Function that return the Levenshtein distance between two given strings seq1 and seq2, but uses Dynamic Programming
         
         Args:
-            str1: first string also known as source string
-            str2: second string also known as target string
+            seq1: first string also known as source string
+            seq2: second string also known as target string
             dp: two dimensional array of length m by m (where m is the max length)
         
         Returns:
             Levenshtein distance
         '''
-        len_str1, len_str2 = len(str1), len(str2)
+        len_seq1, len_seq2 = len(seq1), len(seq2)
         
-        if dp[len_str1][len_str2] != -1:
-            return dp[len_str1][len_str2]
+        if dp[len_seq1][len_seq2] != -1:
+            return dp[len_seq1][len_seq2]
 
-        if len_str1 == 0:
-            dp[len_str1][len_str2] = len_str2
-            return dp[len_str1][len_str2]
+        if len_seq1 == 0:
+            dp[len_seq1][len_seq2] = len_seq2
+            return dp[len_seq1][len_seq2]
         
-        if len_str2 == 0:
-            dp[len_str1][len_str2] = len_str1
-            return dp[len_str1][len_str2]
+        if len_seq2 == 0:
+            dp[len_seq1][len_seq2] = len_seq1
+            return dp[len_seq1][len_seq2]
         
-        if str1[0] == str2[0]:
-            dp[len_str1][len_str2] = lambda_lev_dp(str1[1:], str2[1:], dp)
-            return dp[len_str1][len_str2]
+        if seq1[0] == seq2[0]:
+            dp[len_seq1][len_seq2] = lambda_lev_dp(seq1[1:], seq2[1:], dp)
+            return dp[len_seq1][len_seq2]
                 
-        dp[len_str1][len_str2] = 1 + min(
-                min(lambda_lev_dp(str1[1:], str2, dp), lambda_lev_dp(str1, str2[1:], dp)),
-                lambda_lev_dp(str1[1:], str2[1:], dp)
+        dp[len_seq1][len_seq2] = 1 + min(
+                min(lambda_lev_dp(seq1[1:], seq2, dp), lambda_lev_dp(seq1, seq2[1:], dp)),
+                lambda_lev_dp(seq1[1:], seq2[1:], dp)
             )
-        return dp[len_str1][len_str2]
+        return dp[len_seq1][len_seq2]
 
-    return lambda_lev_dp(str1, str2, dp)
+    return lambda_lev_dp(seq1, seq2, dp)
 
-def lev_itr(str1, str2):
-    dp = [[ -1 for _ in range(len(str2) + 1) ] for _ in range(len(str1) + 1)]
-    len_str1, len_str2 = len(str1), len(str2)
+def lev_itr(seq1, seq2):
+    dp = [[ -1 for _ in range(len(seq2) + 1) ] for _ in range(len(seq1) + 1)]
+    len_seq1, len_seq2 = len(seq1), len(seq2)
 
-    for i in range(len_str1 + 1):
-        for j in range(len_str2 + 1):
+    for i in range(len_seq1 + 1):
+        for j in range(len_seq2 + 1):
             if i == 0:
                 dp[i][j] = j
             elif j == 0:
                 dp[i][j] = i
-            elif str1[i - 1] == str2[j - 1]:
+            elif seq1[i - 1] == seq2[j - 1]:
                 dp[i][j] = dp[i - 1][j - 1]
             else:
                 dp[i][j] = 1 + min(min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1])
     
-    return dp[len_str1][len_str2]
+    return dp[len_seq1][len_seq2]
