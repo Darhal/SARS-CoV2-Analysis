@@ -23,7 +23,7 @@ TEST_CASES = [
     ["Two", "To", 1],
     ["Two", "Too", 1],
     ["There", "Their", 2],
-    ["buy", "bye", 2],
+    ["Buy", "Bye", 2],
     ["Compliment", "Complement", 1],
     ["Brake", "Break", 2],
     ["Coarse", "Course", 1],
