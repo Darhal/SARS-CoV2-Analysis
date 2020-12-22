@@ -87,9 +87,6 @@ def needleman_exprimental(seq1, seq2, mat):
                 diag_val +=  mismatch
             alignement_mat[j][i] = max(max(left_val, up_val), diag_val)
 
-    for l in alignement_mat:
-        print(l) 
-
     # Trace back:
     coord_stack = [ (len_seq2, len_seq1) ]
     path_stack = [ ["", "", 0] ]
@@ -98,15 +95,15 @@ def needleman_exprimental(seq1, seq2, mat):
     while len(coord_stack):
         coord = coord_stack[0]
         path = path_stack[0]
-        print("-- START OF PATH --")
+        # print("-- START OF PATH --")
 
         while (1):
-            print(f"Coord: {coord} - Path: {path}")
+            # print(f"Coord: {coord} - Path: {path}")
             if coord == (0, 0):
                 output_pool.append(path)
                 path_stack.pop(0)
                 coord_stack.pop(0)
-                print("-- END OF PATH --")
+                # print("-- END OF PATH --")
                 break
 
             highest_neighbour = (-1, -1)
@@ -115,12 +112,27 @@ def needleman_exprimental(seq1, seq2, mat):
 
             if seq2[coord[0] - 1] == seq1[coord[1] - 1]:
                 highest_neighbour = (coord[0] - 1, coord[1] - 1)
-                if alignement_mat[highest_neighbour[0] + 1][highest_neighbour[1] + 1] > alignement_mat[highest_neighbour[0]][highest_neighbour[1]]:
+                if alignement_mat[coord[0]][coord[1]] > alignement_mat[highest_neighbour[0]][highest_neighbour[1]]:
                     path[2] += match
                 else:
                     path[2] += mismatch
                 path[0] = seq1[highest_neighbour[1]] + path[0]
                 path[1] = seq2[highest_neighbour[0]] + path[1]
+
+                other_neighbours = [ (coord[0], coord[1] - 1), (coord[0] - 1, coord[1]) ]
+                for n in other_neighbours:
+                    alt_path = old_path[:] 
+                    if alignement_mat[n[0]][n[1]] + gap == alignement_mat[coord[0]][coord[1]]:
+                        # Take it into consideration
+                        if n ==  other_neighbours[0]:
+                            alt_path[0] = seq1[highest_neighbour[1]] + alt_path[0]
+                            alt_path[1] = '-' + alt_path[1]
+                        else:
+                            alt_path[0] = '-' + alt_path[0]
+                            alt_path[1] = seq2[highest_neighbour[0]] + alt_path[1]
+                        alt_path[2] += gap
+                        path_stack.append(alt_path)
+                        coord_stack.append(n)
             else:
                 highest_neighbours = [c for c in neighbours if alignement_mat[c[0]][c[1]] == max(alignement_mat[c1[0]][c1[1]] for c1 in neighbours)]
                 
@@ -129,9 +141,17 @@ def needleman_exprimental(seq1, seq2, mat):
                         continue
                     if highest_neighbour != (-1, -1):
                         # Copy the last seen path and coordinates to stack for further processing later
-                        path_stack.append(old_path)
+                        alt_path = old_path[:] 
+                        if hn ==  neighbours[1]:
+                            alt_path[0] = seq1[hn[1]] + alt_path[0]
+                            alt_path[1] = '-' + alt_path[1]
+                        else:
+                            alt_path[0] = '-' + alt_path[0]
+                            alt_path[1] = seq2[hn[0]] + alt_path[1]
+                        alt_path[2] += gap
+                        path_stack.append(alt_path)
                         coord_stack.append(hn)
-                        print(f"\tAnother possible solution is found {hn} {path_stack[-1]}")
+                        # print(f"\tAnother possible solution is found {hn} {path_stack[-1]}")
                         continue
                     if hn == neighbours[0]: # Either a match or mismatch
                         if alignement_mat[coord[0]][coord[1]] > alignement_mat[hn[0]][hn[1]]:
@@ -164,6 +184,10 @@ def needleman_exprimental(seq1, seq2, mat):
 # for l in m:
 #     print(l) 
 
-m = needleman_exprimental("GCATGCU", "GATTACA",  [1, -1, -1])
-for l in m:
-    print(l) 
+# m = needleman_exprimental("GCATGCU", "GATTACA",  [1, -1, -1])
+# for l in m:
+#     print(l)
+##
+# m = needleman_exprimental("ATCGGAG", "ATGGCAA",  [1, -1, -1])
+# for l in m:
+#     print(l) 
