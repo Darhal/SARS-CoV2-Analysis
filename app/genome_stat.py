@@ -1,7 +1,7 @@
 from src.stats import *
 from src.lev import *
 
-arns = fasta_to_genome("../genome/dix_sequences.fasta")
+arns = fasta_to_genome("genome/dix_sequences.fasta")
 stats = perform_all_stats(arns, NUCLEOTIDES)
 
 print(f"Moyenne: {stats['moy']}")
@@ -92,5 +92,5 @@ print(f"Quart 1: {quart1}")
 print(f"Quart 3: {quart3}")
 print(f"Inter Quart 3: {int_quart}")
 
-print(perform_all_stats(fasta_to_genome("../genome/dix_minisequences.fasta"), NUCLEOTIDES))
-print(call_stat(moyenne, fasta_to_genome("../genome/dix_sequences.fasta"), NUCLEOTIDES))
+print(perform_all_stats(fasta_to_genome("genome/dix_minisequences.fasta"), NUCLEOTIDES))
+print(call_stat(moyenne, fasta_to_genome("genome/dix_sequences.fasta"), NUCLEOTIDES))
