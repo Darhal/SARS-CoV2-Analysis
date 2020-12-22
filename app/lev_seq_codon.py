@@ -1,6 +1,6 @@
-from utility import *
-from lev import *
-from codon import *
+from src.utility import *
+from src.lev import *
+from src.codon import *
 
 sequences10 = fasta_to_genome("../genome/dix_sequences.fasta")
 print(lev_itr(codons(sequences10[0]), codons(sequences10[2])))
