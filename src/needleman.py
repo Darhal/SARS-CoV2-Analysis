@@ -54,6 +54,103 @@ def needleman(seq1, seq2, mat):
 
 def needleman_all(seq1, seq2, mat):
     '''
+    
+    '''
+    len_seq1, len_seq2 = len(seq1), len(seq2)
+    match, mismatch, gap = mat[0], mat[1], mat[2]
+    alignement_mat = [ [ 0 for _ in range(len_seq1 + 1) ] for _ in range(len_seq2 + 1) ]
+
+    # Init step:
+    for i in range(1, len_seq1+1):
+        alignement_mat[0][i] = alignement_mat[0][i - 1] + gap
+
+    for j in range(1, len_seq2+1):
+        alignement_mat[j][0] = alignement_mat[j - 1][0] + gap
+
+    # Matrix that contain directions coded with 3 binary digits for all the possibles combinations of diections
+    # xyz: z is the digonal bit, y is the left bit, x is the upward bit
+    # x y z
+    # | | |
+    # U L D (U:Up / D:Diag / L: Left)
+    mat_dir = [ [0 for _ in range(len_seq1 + 1) ] for _ in range(len_seq2 + 1) ]
+
+    # Filling:
+    for j in range(1, len_seq2+1):
+        for i in range(1, len_seq1+1):
+            left_val = alignement_mat[j][i - 1] + gap
+            up_val = alignement_mat[j - 1][i] + gap
+            diag_val = alignement_mat[j - 1][i - 1]
+            if seq1[i - 1] == seq2[j - 1]:
+                diag_val += match
+            else:
+                diag_val +=  mismatch
+            alignement_mat[j][i] = max(max(left_val, up_val), diag_val)
+            if diag_val == alignement_mat[j][i]:
+                mat_dir[j][i] |= 1
+            if left_val == alignement_mat[j][i]:
+                mat_dir[j][i] |= (1 << 1)
+            if up_val == alignement_mat[j][i]:
+                mat_dir[j][i] |= (1 << 2)
+    
+    # Trace back:
+    coord = (len_seq2, len_seq1)
+    output = []
+    coord_fifo = [ (len_seq2, len_seq1) ]
+    path_fifo = [ [ "", "", alignement_mat[len_seq2][len_seq1] ] ]
+
+    while len(coord_fifo):
+        coord = coord_fifo[0]
+        path = path_fifo[0]
+
+        while 1:
+            if coord == (0, 0):
+                output.append(path)
+                path_fifo.pop(0)
+                coord_fifo.pop(0)
+                break
+
+            taken = False
+            coord_tmp = coord
+            nc = coord # new coord that will be our path in this loop
+            org_path = path[:]
+
+            if mat_dir[coord[0]][coord[1]] & 1:         # Diag
+                coord_tmp = (coord[0] - 1, coord[1] - 1)
+                nc = coord_tmp
+                path[0] = seq1[coord_tmp[1]] + path[0]
+                path[1] = seq2[coord_tmp[0]] + path[1]
+                taken = True
+            if mat_dir[coord[0]][coord[1]] & (1 << 1):  # Left
+                coord_tmp = (coord[0], coord[1] - 1)
+                if not taken:
+                    nc = coord_tmp
+                    taken = True
+                    path[0] = seq1[coord_tmp[1]] + path[0]
+                    path[1] = '-' + path[1]
+                else:
+                    path_fifo.append(org_path)
+                    coord_fifo.append(coord_tmp)
+                    path_fifo[-1][0] = seq1[coord_tmp[1]] + path_fifo[-1][0]
+                    path_fifo[-1][1] = '-' + path_fifo[-1][1]
+            if mat_dir[coord[0]][coord[1]] & (1 << 2):  # Up
+                coord_tmp = (coord[0] - 1, coord[1])
+                if not taken:
+                    nc = coord_tmp
+                    taken = True
+                    path[0] = '-' + path[0]
+                    path[1] = seq1[coord_tmp[0]] + path[1]
+                else:
+                    path_fifo.append(org_path)
+                    coord_fifo.append(coord_tmp)
+                    path_fifo[-1][0] = '-' + path_fifo[-1][0]
+                    path_fifo[-1][1] = seq1[coord_tmp[0]] + path_fifo[-1][1]
+                taken = True
+            coord = nc
+    
+    return output
+
+def needleman_all_v2(seq1, seq2, mat):
+    '''
 
     '''
     len_seq1, len_seq2 = len(seq1), len(seq2)
@@ -166,104 +263,10 @@ def needleman_all(seq1, seq2, mat):
 
     return output_pool
 
-
-def needleman_all_v2(seq1, seq2, mat):
-    '''
-    
-    '''
-    len_seq1, len_seq2 = len(seq1), len(seq2)
-    match, mismatch, gap = mat[0], mat[1], mat[2]
-    alignement_mat = [ [ 0 for _ in range(len_seq1 + 1) ] for _ in range(len_seq2 + 1) ]
-
-    # Init step:
-    for i in range(1, len_seq1+1):
-        alignement_mat[0][i] = alignement_mat[0][i - 1] + gap
-
-    for j in range(1, len_seq2+1):
-        alignement_mat[j][0] = alignement_mat[j - 1][0] + gap
-
-    # Matrix that contain directions coded with 3 binary digits for all the possibles combinations of diections
-    # xyz: z is the digonal bit, y is the left bit, x is the upward bit
-    # x y z
-    # | | |
-    # U L D (U:Up / D:Diag / L: Left)
-    mat_dir = [ [0 for _ in range(len_seq1 + 1) ] for _ in range(len_seq2 + 1) ]
-
-    # Filling:
-    for j in range(1, len_seq2+1):
-        for i in range(1, len_seq1+1):
-            left_val = alignement_mat[j][i - 1] + gap
-            up_val = alignement_mat[j - 1][i] + gap
-            diag_val = alignement_mat[j - 1][i - 1]
-            if seq1[i - 1] == seq2[j - 1]:
-                diag_val += match
-            else:
-                diag_val +=  mismatch
-            alignement_mat[j][i] = max(max(left_val, up_val), diag_val)
-            if diag_val == alignement_mat[j][i]:
-                mat_dir[j][i] |= 1
-            if left_val == alignement_mat[j][i]:
-                mat_dir[j][i] |= (1 << 1)
-            if up_val == alignement_mat[j][i]:
-                mat_dir[j][i] |= (1 << 2)
-    
-    # Trace back:
-    coord = (len_seq2, len_seq1)
-    output = []
-    coord_fifo = [ (len_seq2, len_seq1) ]
-    path_fifo = [ [ "", "", alignement_mat[len_seq2][len_seq1] ] ]
-
-    while len(coord_fifo):
-        coord = coord_fifo[0]
-        path = path_fifo[0]
-
-        while 1:
-            if coord == (0, 0):
-                output.append(path)
-                path_fifo.pop(0)
-                coord_fifo.pop(0)
-                break
-
-            taken = False
-            coord_tmp = coord
-            nc = coord # new coord that will be our path in this loop
-            org_path = path[:]
-            
-            if mat_dir[coord[0]][coord[1]] & 1:         # Diag
-                coord_tmp = (coord[0] - 1, coord[1] - 1)
-                nc = coord_tmp
-                path[0] = seq1[coord_tmp[1]] + path[0]
-                path[1] = seq2[coord_tmp[0]] + path[1]
-                taken = True
-            if mat_dir[coord[0]][coord[1]] & (1 << 1):  # Left
-                coord_tmp = (coord[0], coord[1] - 1)
-                if not taken:
-                    nc = coord_tmp
-                    taken = True
-                    path[0] = seq1[coord_tmp[1]] + path[0]
-                    path[1] = '-' + path[1]
-                else:
-                    path_fifo.append(org_path)
-                    coord_fifo.append(coord_tmp)
-                    path_fifo[-1][0] = seq1[coord_tmp[1]] + path_fifo[-1][0]
-                    path_fifo[-1][1] = '-' + path_fifo[-1][1]
-            if mat_dir[coord[0]][coord[1]] & (1 << 2):  # Up
-                coord_tmp = (coord[0] - 1, coord[1])
-                if not taken:
-                    nc = coord_tmp
-                    taken = True
-                    path[0] = '-' + path[0]
-                    path[1] = seq1[coord_tmp[0]] + path[1]
-                else:
-                    path_fifo.append(org_path)
-                    coord_fifo.append(coord_tmp)
-                    path_fifo[-1][0] = '-' + path_fifo[-1][0]
-                    path_fifo[-1][1] = seq1[coord_tmp[0]] + path_fifo[-1][1]
-                taken = True
-            coord = nc
-    
-    return output
-
-m = needleman_all_v2("GCATGCU", "GATTACA", [1, -1, -1])
+m = needleman_all("GCATGCU", "GATTACA", [1, -1, -1])
 for l in m:
-    print(l)
+    print (l)
+print("------")
+m2 = needleman_all_v2("GCATGCU", "GATTACA", [1, -1, -1])
+for l in m:
+    print (l)
