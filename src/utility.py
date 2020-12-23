@@ -1,5 +1,50 @@
 from Bio import SeqIO
 
+
+def bank_sequences(n):
+    S = fasta_to_genome("./genome/20000_sequences.fasta")
+    echantillon = []
+    k = 0
+    if not S:
+        print(k)
+        return echantillon
+
+    for i in S:
+        test = False
+        if k == n:
+            break
+
+        for j in 'RYSWKMBDHVN':
+            if j in i:
+                test = True
+                break
+        if test:
+            continue
+        else:
+            echantillon.append(i)
+            k += 1
+
+    return echantillon
+
+
+def bank_sequences_rec(n):
+    def recursion(S, echantillon, k):
+        if k == n:
+            return echantillon
+
+        elif not S:
+            print(k)
+            return echantillon
+
+        else:
+            for i in 'RYSWKMBDHVN':
+                if i in S[0]:
+                    return recursion(S[1:], echantillon, k)
+            return recursion(S[1:], echantillon+[S[0]], k+1)
+
+    return recursion(fasta_to_genome("./genome/20000_sequences.fasta"), [], 0)
+
+
 def transcription_complementaire(ADNc):
     '''Function qui remplace la séquence de ADNc (ADN complémentaire) en ARNm
     
