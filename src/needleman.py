@@ -28,10 +28,10 @@ def needleman(seq1, seq2, cost_table = None, cost_mat = None, key = None):
         print("Error: cost_table must be of length 3 and contain the match, mismatch and the gap respectively ")
         return
     
-    if not cost_table and ((not cost_table and key) or (cost_table and not key)):
+    if not cost_table and ((not cost_mat and key) or (cost_mat and not key)):
         print("Error: cost_mat and key must be defined togther")
         return
-    
+
     if cost_mat and key and len(cost_mat) != len(key) ** 2 + 1:
         print("Error: cost_mat must have the same length of the suqare of the length of key + 1 (the last number is the gap)")
         return
@@ -130,11 +130,11 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
         print("Error: cost_mat and key are mutually exlusive with cost_table, please use the one or the other")
         return
     
-    if len(cost_table) != 3:
+    if cost_table and len(cost_table) != 3:
         print("Error: cost_table must be of length 3 and contain the match, mismatch and the gap respectively ")
         return
     
-    if not cost_table and ((not cost_table and key) or (cost_table and not key)):
+    if not cost_table and ((not cost_mat and key) or (cost_mat and not key)):
         print("Error: cost_mat and key must be defined togther")
         return
 
@@ -246,8 +246,6 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
                     coord_fifo.append(coord_tmp)
                     path_fifo[-1][0] = '-' + path_fifo[-1][0]
                     path_fifo[-1][1] = seq2[coord[0]] + path_fifo[-1][1]
-            
-            # print(f"({coord[0]}, {coord[1]})")
             coord = nc
     
     return output
