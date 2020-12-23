@@ -117,11 +117,6 @@ def test_call_stat_on_echantillon():
                 }
 
 
-def test_mediane_nucleotide():
-    # print(mediane_nucleotide(fasta_to_genome("./genome/dix_sequences.fasta")))
-    pass
-
-
 def test_proportions():
     assert proportions('AUGC', ['A', 'U', 'G', 'C']) == {'A': 0.25, 'U': 0.25, 'G': 0.25, 'C': 0.25}
     assert proportions('', ['A', 'U', 'G', 'C']) == {'A': 0, 'U': 0, 'G': 0, 'C': 0}
@@ -129,19 +124,35 @@ def test_proportions():
     assert proportions('AAAAAAA', ['U', 'G', 'C']) == {'U': 0, 'G': 0, 'C': 0}
     assert proportions('UGCC', ['A', 'U', 'G', 'C']) == {'A' : 0, 'U': 0.25, 'G': 0.25, 'C': 0.5}
 
-def test_taille_ensemble():
-    assert taille_ensemble([]) == []
-    assert taille_ensemble(['']) == [0]
-    assert taille_ensemble([[]]) == [0]
-    assert taille_ensemble(['', []]) == [0, 0]
-    assert taille_ensemble(['123', '', '02587', 'azerty', 'QWERTY', ' ', '.']) == [3, 0, 5, 6, 6, 1, 1]
-    assert taille_ensemble(['UAAAGGUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGU',
- 'UUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUA',
- 'UAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUAAA',
- 'AAGGUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUC',
- 'GGUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUC',
- 'UACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUAAACG',
- 'GUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCU',
- 'CAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUAAACGAACUUUAAAAUCUGU',
- 'AGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUAAACGAACUUUAAA',
- 'AAGGUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUC']) == [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
+
+def test_call_stat_taille_genome():
+    pass
+
+
+def test_perform_all_stats_taille():
+    pass
+
+
+def test_call_stat():
+    assert call_stat(mediane, fasta_to_genome("./genome/dix_sequences.fasta"),NUCLEOTIDES) == {'A': 8951.0, 'U': 9601.0, 'G': 5857.5, 'C': 5485.5}
+    assert call_stat(moyenne, fasta_to_genome("./genome/dix_minisequences.fasta"), NUCLEOTIDES) == {'A': 17.3, 'U': 19.4, 'G': 7.1, 'C': 16.2}
+    assert call_stat(mediane, fasta_to_genome("./genome/dix_minisequences.fasta"), NUCLEOTIDES) == {'A': 17.0, 'U': 19.0, 'G': 7.0, 'C': 16.5}
+    assert call_stat(variance, fasta_to_genome("./genome/dix_minisequences.fasta"), NUCLEOTIDES) == {'A': 3.01, 'U': 1.0399999999999998, 'G': 0.69, 'C': 1.36}
+    assert call_stat(ecart_type, fasta_to_genome("./genome/dix_minisequences.fasta"), NUCLEOTIDES) == {'A': 1.7349351572897471, 'U': 1.0198039027185568, 'G': 0.8306623862918074, 'C': 1.1661903789690602}
+    assert call_stat(quartile, fasta_to_genome("./genome/dix_minisequences.fasta"), NUCLEOTIDES, 1) == {'A': 16, 'U': 19, 'G': 6, 'C': 15}
+    assert call_stat(quartile, fasta_to_genome("./genome/dix_minisequences.fasta"), NUCLEOTIDES, 3) == {'A': 18, 'U': 20, 'G': 8, 'C': 17}
+    assert call_stat(intervalle_interquartile, fasta_to_genome("./genome/dix_minisequences.fasta"), NUCLEOTIDES) == {'A': 2, 'U': 1, 'G': 2, 'C': 2}
+
+
+def test_call_stat_prop():
+    pass
+
+
+def test_perform_all_stats():
+    assert perform_all_stats(fasta_to_genome("./genome/dix_minisequences.fasta"), NUCLEOTIDES) == {'moy': {'A': 17.3, 'U': 19.4, 'G': 7.1, 'C': 16.2},
+                                                                                                   'med': {'A': 17.0, 'U': 19.0, 'G': 7.0, 'C': 16.5},
+                                                                                                   'ecartt': {'A': 1.7349351572897471, 'U': 1.0198039027185568, 'G': 0.8306623862918074, 'C': 1.1661903789690602},
+                                                                                                   'var': {'A': 3.01, 'U': 1.0399999999999998, 'G': 0.69, 'C': 1.36},
+                                                                                                   'quart1': {'A': 16, 'U': 19, 'G': 6, 'C': 15},
+                                                                                                   'quart3': {'A': 18, 'U': 20, 'G': 8, 'C': 17},
+                                                                                                   'int_quart': {'A': 2, 'U': 1, 'G': 2, 'C': 2}}
