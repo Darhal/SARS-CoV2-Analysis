@@ -41,5 +41,4 @@ def test_needlman_generic():
 def test_needlman_all():
     for t in TEST_CASES_V2:
         m1 = needleman_all(t[0][0], t[0][1], t[0][2])
-        m2 = needleman_all_v2(t[0][0], t[0][1], t[0][2])
-        assert sorted(m1) == sorted(m2) == sorted(t[1])
+        assert sorted(m1) == sorted(t[1])

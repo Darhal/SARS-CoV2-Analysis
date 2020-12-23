@@ -109,3 +109,6 @@ def nombre_element_echantillon(tab, sampler):
                 d[element].append(nbr[element])
 
     return (d)
+
+def in_box(x, y, maxx, maxy, minx = 0, miny = 0):
+    return (x >= minx and x < maxx) and (y >= miny and y < maxy)
