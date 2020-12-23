@@ -4,6 +4,29 @@ from src.utility import *
 from src.globals import *
 
 
+def test_transcription_complementaire():
+    assert transcription_complementaire('') == ''
+    assert transcription_complementaire('TCGAT') == 'UCGAU'
+    assert transcription_complementaire('T') == 'U'
+    assert transcription_complementaire('U') == 'U'
+    assert transcription_complementaire('TAAAGGTTTATACCTTCCCAGGTAACAAACCAACCAACTTTCGATCTCTTGTAGATCTGT') == 'UAAAGGUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGU'
+    assert transcription_complementaire('TTTATACCTTCCCAGGTAACAAACCAACCAACTTTCGATCTCTTGTAGATCTGTTCTCTA') == 'UUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUA'
+    assert transcription_complementaire('TATACCTTCCCAGGTAACAAACCAACCAACTTTCGATCTCTTGTAGATCTGTTCTCTAAA') == 'UAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUAAA'
+
+
+def test_fasta_to_genome():
+    assert fasta_to_genome("./genome/dix_minisequences.fasta") == ['UAAAGGUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGU',
+                                                                  'UUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUA',
+                                                                  'UAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUAAA',
+                                                                  'AAGGUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUC',
+                                                                  'GGUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUC',
+                                                                  'UACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUAAACG',
+                                                                  'GUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCU',
+                                                                  'CAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUAAACGAACUUUAAAAUCUGU',
+                                                                  'AGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUAAACGAACUUUAAA',
+                                                                  'AAGGUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUC']
+
+
 def test_total_elements():
     assert total_elements('ACU') == 3
     assert total_elements('ACUCU') == 5
@@ -15,6 +38,20 @@ def test_taille_ensemble():
     assert taille_ensemble([[1, 2, 3, 4, 5], [4, 5, 6, 5, 6, 8, 0, 'a'], ['a', 'b1', 123, 147, 000], [], [''], [1]]) == [5, 8, 5, 0, 1, 1]
     assert taille_ensemble([]) == []
     assert taille_ensemble([[]]) == [0]
+    assert taille_ensemble(['']) == [0]
+    assert taille_ensemble(['', []]) == [0, 0]
+    assert taille_ensemble(['123', '', '02587', 'azerty', 'QWERTY', ' ', '.']) == [3, 0, 5, 6, 6, 1, 1]
+    assert taille_ensemble(['UAAAGGUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGU',
+                            'UUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUA',
+                            'UAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUAAA',
+                            'AAGGUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUC',
+                            'GGUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUC',
+                            'UACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUAAACG',
+                            'GUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCU',
+                            'CAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUAAACGAACUUUAAAAUCUGU',
+                            'AGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUAAACGAACUUUAAA',
+                            'AAGGUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUC']) == [60, 60, 60, 60, 60, 60,
+                                                                                                 60, 60, 60, 60]
 
 
 def test_nombre_elements():
@@ -58,3 +95,7 @@ def test_nombre_element_echantillon():
                                                     '*': [0, 0, 0, 0]}
 
     assert nombre_element_echantillon([], AMINO_ACIDS) == {}
+    assert nombre_element_echantillon(fasta_to_genome("./genome/dix_minisequences.fasta"), NUCLEOTIDES) == {'A': [18, 16, 18, 17, 15, 17, 15, 19, 21, 17],
+                                                                                                        'U': [19, 21, 19, 19, 20, 18, 21, 20, 18, 19],
+                                                                                                        'G': [8, 6, 6, 8, 8, 7, 7, 6, 7, 8],
+                                                                                                        'C': [15, 17, 17, 16, 17, 18, 17, 15, 14, 16]}
