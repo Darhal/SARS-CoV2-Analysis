@@ -74,7 +74,7 @@ def needleman(seq1, seq2, cost_table = None, cost_mat = None, key = None):
     coord = (len_seq2, len_seq1)
     output_seq1 = ""
     output_seq2 = ""
-    while (coord != (0, 0)):
+    while coord != (0, 0):
         if seq2[coord[0] - 1] == seq1[coord[1] - 1]:
             coord = (coord[0] - 1, coord[1] - 1)
             output_seq1 = seq1[coord[1]] + output_seq1

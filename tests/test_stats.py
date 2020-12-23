@@ -126,11 +126,17 @@ def test_proportions():
 
 
 def test_call_stat_taille_genome():
-    pass
+    assert call_stat(mediane, fasta_to_genome("./genome/dix_sequences.fasta"),NUCLEOTIDES) == {'A': 8951.0, 'U': 9601.0, 'G': 5857.5, 'C': 5485.5}
 
 
 def test_perform_all_stats_taille():
-    pass
+    assert perform_all_stats_taille(fasta_to_genome("./genome/dix_sequences.fasta")) == {'moy': 29892.9,
+                                                                                         'med': 29895.5,
+                                                                                         'ecartt': 7.608547824650905,
+                                                                                         'var': 57.89000000000001,
+                                                                                         'quart1': 29891,
+                                                                                         'quart3': 29899,
+                                                                                         'int_quart': 8}
 
 
 def test_call_stat():
