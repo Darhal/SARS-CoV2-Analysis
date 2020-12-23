@@ -1,5 +1,5 @@
 # Introduction
-A statistical and genomic study of the SARS-CoV-2 virus.\
+A statistical and genomic study of the SARS-CoV-2 virus.
 The project contains implementation wide range of statisitical functions as well as different genomic analysis algorithms like Levenshtein distance algorithm, Needleman-Wunsch for global alignement...
 
 ## Group Members:
