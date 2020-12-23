@@ -3,15 +3,15 @@ A statistical and genomic study of the SARS-CoV-2 virus.
 Implementation of different algorithms like Levenshtein distance algorithm, Needleman-Wunsch for global alignement...
 
 # How to run the code?
-Run `python setup.py develop` to install src as a package.
+Run `python setup.py develop` to install `src` as a package.
 This package will be used by `app` folder to apply some of the functions on genome sequences and amino acids.
 
 # Project Structure
 |Folder |Content|
 |----:|:-------|
 |src|Containts all the source files and functions used to analyse the genome. This acts like a library used by app.|
-|tests|Test cases of the functions written in 'src'.|
-|app|Uses the functions and utilities defined in 'src' to apply them to genomes and amino acids sequences|
+|tests|Test cases of the functions written in `src`.|
+|app|Uses the functions and utilities defined in `src` to apply them to genomes and amino acids sequences|
 |genome|Containts the genomic data downloded from the internet.|
 |rapport|Contains the files used in the report. (Latex files, notices, etc)|
 
