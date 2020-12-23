@@ -246,8 +246,6 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
                     coord_fifo.append(coord_tmp)
                     path_fifo[-1][0] = '-' + path_fifo[-1][0]
                     path_fifo[-1][1] = seq2[coord[0]] + path_fifo[-1][1]
-            
-            # print(f"({coord[0]}, {coord[1]})")
             coord = nc
     
     return output
