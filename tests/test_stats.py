@@ -151,7 +151,14 @@ def test_call_stat():
 
 
 def test_call_stat_prop():
-    pass
+    #Inutile de tester par rapport au résultat (fait ailleurs) mais par rapport au bon fonctionnement de la fonction.
+    assert call_stat_prop(moyenne, ['AU','GC','ACUG'], ['A','U','G','C']) == {'A': 0.25, 'U': 0.25, 'G': 0.25, 'C': 0.25}
+    assert call_stat_prop(mediane, ['AU','GC','ACUG'], ['A','U','G','C']) == {'A': 0.25, 'U': 0.25, 'G': 0.25, 'C': 0.25}
+    assert call_stat_prop(quartile, ['AU','GC','ACUG'], ['A','U','G','C'], 1) == {'A': 0.0, 'U': 0.0, 'G': 0.0, 'C': 0.0}
+    assert call_stat_prop(quartile, ['AU','GC','ACUG'], ['A','U','G','C'], 3) == {'A': 0.5, 'U': 0.5, 'G': 0.5, 'C': 0.5}
+    assert call_stat_prop(intervalle_interquartile, ['AU','GC','ACUG'], ['A','U','G','C']) == {'A': 0.5, 'U': 0.5, 'G': 0.5, 'C': 0.5}
+    assert call_stat_prop(variance, ['AGUC','ACUG'], ['A','U','G','C']) == {'A': 0.0, 'U': 0.0, 'G': 0.0, 'C': 0.0}
+    assert call_stat_prop(ecart_type, ['AGUC','ACUG'], ['A','U','G','C']) == {'A': 0.0, 'U': 0.0, 'G': 0.0, 'C': 0.0}
 
 
 def test_perform_all_stats():
