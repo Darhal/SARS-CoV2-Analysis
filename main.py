@@ -100,12 +100,13 @@ from src.lev import *
 # print(call_stat(moyenne, fasta_to_genome("./genome/dix_sequences.fasta"), NUCLEOTIDES))
 
 
-genomes = fasta_to_genome("./genome/deux_sequences_china_13012020_usa_18122020.fasta")
-codons1, codons2 = codons(genomes[0]), codons(genomes[1])
-print(lev_itr(codons1, codons2))
+# genomes = fasta_to_genome("./genome/deux_sequences_china_13012020_usa_18122020.fasta")
+# codons1, codons2 = codons(genomes[0]), codons(genomes[1])
+# print(lev_itr(codons1, codons2))
 
 # 555 pour le fichier "deux_sequences_china_13012020_usa_18122020.fasta"
 # 544 pour le fichier "deux_sequences_usa_18122020.fasta"
 
 # print(lev_itr("Sunday", "Saturday"))
 
+print(perform_all_stats_taille(fasta_to_genome("./genome/10000_sequences.fasta")))
