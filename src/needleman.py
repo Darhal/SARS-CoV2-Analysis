@@ -138,13 +138,12 @@ def needleman_all(seq1, seq2, mat):
                     nc = coord_tmp
                     taken = True
                     path[0] = '-' + path[0]
-                    path[1] = seq1[coord_tmp[0]] + path[1]
+                    path[1] = seq2[coord_tmp[0]] + path[1]
                 else:
                     path_fifo.append(org_path)
                     coord_fifo.append(coord_tmp)
                     path_fifo[-1][0] = '-' + path_fifo[-1][0]
-                    path_fifo[-1][1] = seq1[coord_tmp[0]] + path_fifo[-1][1]
-                taken = True
+                    path_fifo[-1][1] = seq2[coord_tmp[0]] + path_fifo[-1][1]
             coord = nc
     
     return output
@@ -268,5 +267,9 @@ for l in m:
     print (l)
 print("------")
 m2 = needleman_all_v2("GCATGCU", "GATTACA", [1, -1, -1])
-for l in m:
+for l in m2:
+    print (l)
+print("------")
+m3 = needleman_all("ATCGGAG", "ATGGCAA", [1, -1, -1])
+for l in m3:
     print (l)

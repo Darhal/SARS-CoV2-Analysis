@@ -1,3 +1,6 @@
+# How to run the code?
+Run `python setup.py develop` to install src as a package
+This package will be used by `app` folder to apply some of the functions on genome sequences and amino acids
 # Project Managment
 We use trello as our project managment tool
 The link to the board is: https://trello.com/b/N92bj53G/
