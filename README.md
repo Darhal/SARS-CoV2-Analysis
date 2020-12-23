@@ -1,9 +1,17 @@
 # Introduction
-A statistical and genomic study of the SARS-CoV-2 virus. 
-Implementation of different algorithms like Levenshtein distance algorithm, Needleman-Wunsch for global alignement...
+A statistical and genomic study of the SARS-CoV-2 virus.\
+The project contains implementation wide range of statisitical functions as well as different genomic analysis algorithms like Levenshtein distance algorithm, Needleman-Wunsch for global alignement...
+
+## Group Members:
+Groupe Number 13.\
+Group members:
+* Omar CHIDA
+* Mathis DUMAS
+* Chaima TOUNSI OMEZZINE
+* Céline ZHANG
 
 # How to run the code?
-Run `python setup.py develop` to install `src` as a package.
+Run `python setup.py develop` to install `src` as a package.\
 This package will be used by `app` folder to apply some of the functions on genome sequences and amino acids.
 
 # Project Structure
@@ -20,7 +28,7 @@ We use trello as our project managment tool
 The link to the board is: https://trello.com/b/N92bj53G/
 
 # Our python coding style
-## Why ?:
+## Why ?
 It's mandatory to stick to this coding style, to have a clear and coherent code base.
 ## Comments
 Try to keep inline comments short in length (max 72 character)
