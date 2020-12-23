@@ -36,6 +36,7 @@ print(lev_itr(codons(seqUSATunisia[0]), codons(seqUSATunisia[1])))
 # le résultat de 8458 (vérifié), est très grande.
 
 
+
 ######################### MEME PERIODE MEME LIEU ##########################
 
 seqUSA = fasta_to_genome("genome/deux_sequences_usa_18122020.fasta")
