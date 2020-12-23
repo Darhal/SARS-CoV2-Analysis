@@ -1,10 +1,58 @@
 
-def needleman(seq1, seq2, mat):
-    '''
+def needleman(seq1, seq2, cost_table = None, cost_mat = None, key = None):
+    '''Function that calculates the global alignement of two sequences
     
+    Args:
+        seq1: first sequence
+        seq2: second sequence
+        cost_table: contains the match, mismatch and the gap cost in this order (mutual exlusive with cost_mat)
+        cost_mat: contains the cost matrix and the gap at the end (mutual exlusive with cost_table and used with key)
+        key: the order of the letters in the cost matrix (mutual exlusive with cost_table)
+            E.g: [  1, 2, 3, 1, 2, 3, 1, 2, 3, 4  ] key = "ABC"
+                    |  |  |  |  |  |  |  |  |  |
+                    A  A  A  B  B  B  C  C  C gap
+                    A  B  C  A  B  C  A  B  C  
+    
+    Returns:
+        An array contains one possible alignements with its score 
+        E.g: [seq1 alignement, seq2 alignement, score]
     '''
+    # Some sanity checks:
+    if cost_table and cost_mat and key:
+        print("Error: cost_mat and key are mutually exlusive with cost_table, please use the one or the other")
+        return
+    
+    if cost_table and len(cost_table) != 3:
+        print("Error: cost_table must be of length 3 and contain the match, mismatch and the gap respectively ")
+        return
+    
+    if not cost_table and ((not cost_table and key) or (cost_table and not key)):
+        print("Error: cost_mat and key must be defined togther")
+        return
+    
+    if cost_mat and key and len(cost_mat) != len(key) ** 2 + 1:
+        print("Error: cost_mat must have the same length of the suqare of the length of key + 1 (the last number is the gap)")
+        return
+    
+    letter_dict = {}
+    gap = 0
+
+    if key and cost_mat:
+        letter_dict = { key[i]: i for i in range(len(key)) }
+        gap = cost_mat[len(key)]
+    else:
+        gap = cost_table[2]
+
+    def get_cost(letter1, letter2):
+        if key and cost_mat:
+            return cost_mat[letter_dict[letter1] * len(key) + letter_dict[letter2]]
+        else:
+            if letter1 == letter2:
+                return cost_table[0]
+            else:
+                return cost_table[1]
+
     len_seq1, len_seq2 = len(seq1), len(seq2)
-    match, mismatch, gap = mat[0], mat[1], mat[2]
     alignement_mat = [ [ 0 for _ in range(len_seq1 + 1) ] for _ in range(len_seq2 + 1) ]
 
     # Init step:
@@ -19,11 +67,7 @@ def needleman(seq1, seq2, mat):
         for i in range(1, len_seq1+1):
             left_val = alignement_mat[j][i - 1] + gap
             up_val = alignement_mat[j - 1][i] + gap
-            diag_val = alignement_mat[j - 1][i - 1]
-            if seq1[i - 1] == seq2[j - 1]:
-                diag_val += match
-            else:
-                diag_val +=  mismatch
+            diag_val = alignement_mat[j - 1][i - 1] + get_cost(seq1[i - 1], seq2[j - 1])
             alignement_mat[j][i] = max(max(left_val, up_val), diag_val)
 
     # Trace back:
@@ -52,12 +96,60 @@ def needleman(seq1, seq2, mat):
     return [ output_seq1, output_seq2, alignement_mat[len_seq2][len_seq1] ]
 
 
-def needleman_all(seq1, seq2, mat):
-    '''
+def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
+    '''Function that calculates the global alignement of two sequences
     
+    Args:
+        seq1: first sequence
+        seq2: second sequence
+        cost_table: contains the match, mismatch and the gap cost in this order (mutual exlusive with cost_mat)
+        cost_mat: contains the cost matrix and the gap at the end (mutual exlusive with cost_table and used with key)
+        key: the order of the letters in the cost matrix (mutual exlusive with cost_table)
+            E.g: [  1, 2, 3, 1, 2, 3, 1, 2, 3, 4  ] key = "ABC"
+                    |  |  |  |  |  |  |  |  |  |
+                    A  A  A  B  B  B  C  C  C gap
+                    A  B  C  A  B  C  A  B  C  
+    
+    Returns:
+        An array contains all possible alignements with their respective scores
+        E.g: [ [seq1 alignement 1, seq2 alignement 1, score 1], [seq1 alignement 2, seq2 alignement 2, score 2] ]
     '''
+    # Some sanity checks:
+    if cost_table and cost_mat and key:
+        print("Error: cost_mat and key are mutually exlusive with cost_table, please use the one or the other")
+        return
+    
+    if len(cost_table) != 3:
+        print("Error: cost_table must be of length 3 and contain the match, mismatch and the gap respectively ")
+        return
+    
+    if not cost_table and ((not cost_table and key) or (cost_table and not key)):
+        print("Error: cost_mat and key must be defined togther")
+        return
+
+    if cost_mat and key and len(cost_mat) != len(key) ** 2 + 1:
+        print("Error: cost_mat must have the same length of the suqare of the length of key + 1 (the last number is the gap)")
+        return
+
+    letter_dict = {}
+    gap = 0
+
+    if key and cost_mat:
+        letter_dict = { key[i]: i for i in range(len(key)) }
+        gap = cost_mat[len(key)]
+    else:
+        gap = cost_table[2]
+
+    def get_cost(letter1, letter2):
+        if key and cost_mat:
+            return cost_mat[letter_dict[letter1] * len(key) + letter_dict[letter2]]
+        else:
+            if letter1 == letter2:
+                return cost_table[0]
+            else:
+                return cost_table[1]
+
     len_seq1, len_seq2 = len(seq1), len(seq2)
-    match, mismatch, gap = mat[0], mat[1], mat[2]
     alignement_mat = [ [ 0 for _ in range(len_seq1 + 1) ] for _ in range(len_seq2 + 1) ]
 
     # Init step:
@@ -79,11 +171,7 @@ def needleman_all(seq1, seq2, mat):
         for i in range(1, len_seq1+1):
             left_val = alignement_mat[j][i - 1] + gap
             up_val = alignement_mat[j - 1][i] + gap
-            diag_val = alignement_mat[j - 1][i - 1]
-            if seq1[i - 1] == seq2[j - 1]:
-                diag_val += match
-            else:
-                diag_val +=  mismatch
+            diag_val = alignement_mat[j - 1][i - 1] + get_cost(seq1[i - 1], seq2[j - 1])
             alignement_mat[j][i] = max(max(left_val, up_val), diag_val)
             if diag_val == alignement_mat[j][i]:
                 mat_dir[j][i] |= 1
@@ -148,12 +236,60 @@ def needleman_all(seq1, seq2, mat):
     
     return output
 
-def needleman_all_v2(seq1, seq2, mat):
+def needleman_all_v2(seq1, seq2, cost_table = None, cost_mat = None, key = None):
+    '''Function that calculates the global alignement of two sequences
+    
+    Args:
+        seq1: first sequence
+        seq2: second sequence
+        cost_table: contains the match, mismatch and the gap cost in this order (mutual exlusive with cost_mat)
+        cost_mat: contains the cost matrix and the gap at the end (mutual exlusive with cost_table and used with key)
+        key: the order of the letters in the cost matrix (mutual exlusive with cost_table)
+            E.g: [  1, 2, 3, 1, 2, 3, 1, 2, 3, 4  ] key = "ABC"
+                    |  |  |  |  |  |  |  |  |  |
+                    A  A  A  B  B  B  C  C  C gap
+                    A  B  C  A  B  C  A  B  C  
+    
+    Returns:
+        An array contains all possible alignements with their respective scores
+        E.g: [ [seq1 alignement 1, seq2 alignement 1, score 1], [seq1 alignement 2, seq2 alignement 2, score 2] ]
     '''
+    # Some sanity checks:
+    if cost_table and cost_mat and key:
+        print("Error: cost_mat and key are mutually exlusive with cost_table, please use the one or the other")
+        return
+    
+    if len(cost_table) != 3:
+        print("Error: cost_table must be of length 3 and contain the match, mismatch and the gap respectively ")
+        return
+    
+    if not cost_table and ((not cost_table and key) or (cost_table and not key)):
+        print("Error: cost_mat and key must be defined togther")
+        return
+    
+    if cost_mat and key and len(cost_mat) != len(key) ** 2 + 1:
+        print("Error: cost_mat must have the same length of the suqare of the length of key + 1 (the last number is the gap)")
+        return
 
-    '''
+    letter_dict = {}
+    gap = 0
+
+    if key and cost_mat:
+        letter_dict = { key[i]: i for i in range(len(key)) }
+        gap = cost_mat[len(key)]
+    else:
+        gap = cost_table[2]
+
+    def get_cost(letter1, letter2):
+        if key and cost_mat:
+            return cost_mat[letter_dict[letter1] * len(key) + letter_dict[letter2]]
+        else:
+            if letter1 == letter2:
+                return cost_table[0]
+            else:
+                return cost_table[1]
+
     len_seq1, len_seq2 = len(seq1), len(seq2)
-    match, mismatch, gap = mat[0], mat[1], mat[2]
     alignement_mat = [ [ 0 for _ in range(len_seq1 + 1) ] for _ in range(len_seq2 + 1) ]
 
     # Init step:
@@ -168,29 +304,25 @@ def needleman_all_v2(seq1, seq2, mat):
         for i in range(1, len_seq1+1):
             left_val = alignement_mat[j][i - 1] + gap
             up_val = alignement_mat[j - 1][i] + gap
-            diag_val = alignement_mat[j - 1][i - 1]
-            if seq1[i - 1] == seq2[j - 1]:
-                diag_val += match
-            else:
-                diag_val +=  mismatch
+            diag_val = alignement_mat[j - 1][i - 1] + get_cost(seq1[i - 1], seq2[j - 1])
             alignement_mat[j][i] = max(max(left_val, up_val), diag_val)
 
     # Trace back:
-    coord_stack = [ (len_seq2, len_seq1) ]
-    path_stack = [ ["", "", 0] ]
+    coord_fifo = [ (len_seq2, len_seq1) ]
+    path_fifo = [ ["", "", alignement_mat[len_seq2][len_seq1]] ]
     output_pool = [  ]
     
-    while len(coord_stack):
-        coord = coord_stack[0]
-        path = path_stack[0]
+    while len(coord_fifo):
+        coord = coord_fifo[0]
+        path = path_fifo[0]
         # print("-- START OF PATH --")
 
         while (1):
             # print(f"Coord: {coord} - Path: {path}")
             if coord == (0, 0):
                 output_pool.append(path)
-                path_stack.pop(0)
-                coord_stack.pop(0)
+                path_fifo.pop(0)
+                coord_fifo.pop(0)
                 # print("-- END OF PATH --")
                 break
             
@@ -200,10 +332,6 @@ def needleman_all_v2(seq1, seq2, mat):
             
             if seq2[coord[0] - 1] == seq1[coord[1] - 1]:
                 highest_neighbour = (coord[0] - 1, coord[1] - 1)
-                if alignement_mat[coord[0]][coord[1]] > alignement_mat[highest_neighbour[0]][highest_neighbour[1]]:
-                    path[2] += match
-                else:
-                    path[2] += mismatch
                 path[0] = seq1[highest_neighbour[1]] + path[0]
                 path[1] = seq2[highest_neighbour[0]] + path[1]
                 
@@ -218,9 +346,8 @@ def needleman_all_v2(seq1, seq2, mat):
                         else:
                             alt_path[0] = '-' + alt_path[0]
                             alt_path[1] = seq2[highest_neighbour[0]] + alt_path[1]
-                        alt_path[2] += gap
-                        path_stack.append(alt_path)
-                        coord_stack.append(n)
+                        path_fifo.append(alt_path)
+                        coord_fifo.append(n)
             else:
                 highest_neighbours = [c for c in neighbours if alignement_mat[c[0]][c[1]] == max(alignement_mat[c1[0]][c1[1]] for c1 in neighbours)]
                 
@@ -234,42 +361,23 @@ def needleman_all_v2(seq1, seq2, mat):
                         else:
                             alt_path[0] = '-' + alt_path[0]
                             alt_path[1] = seq2[hn[0]] + alt_path[1]
-                        alt_path[2] += gap
-                        path_stack.append(alt_path)
-                        coord_stack.append(hn)
-                        # print(f"\tAnother possible solution is found {hn} {path_stack[-1]}")
+                        path_fifo.append(alt_path)
+                        coord_fifo.append(hn)
+                        # print(f"\tAnother possible solution is found {hn} {path_fifo[-1]}")
                         continue
                     if hn == neighbours[0]: # Either a match or mismatch
-                        if alignement_mat[coord[0]][coord[1]] > alignement_mat[hn[0]][hn[1]]:
-                            path[2] += match
-                        else:
-                            path[2] += mismatch
                         path[0] = seq1[hn[1]] + path[0]
                         path[1] = seq2[hn[0]] + path[1]
                         highest_neighbour= hn
                     elif hn == neighbours[1]: # Its a gap
                         path[0] = seq1[hn[1]] + path[0]
                         path[1] = '-' + path[1]
-                        path[2] += gap
                         highest_neighbour= hn
                     else:
                         path[0] = '-' + path[0]
                         path[1] = seq2[hn[0]] + path[1]
-                        path[2] += gap
                         highest_neighbour= hn
             
             coord = highest_neighbour
 
     return output_pool
-
-m = needleman_all("GCATGCU", "GATTACA", [1, -1, -1])
-for l in m:
-    print (l)
-print("------")
-m2 = needleman_all_v2("GCATGCU", "GATTACA", [1, -1, -1])
-for l in m2:
-    print (l)
-print("------")
-m3 = needleman_all("ATCGGAG", "ATGGCAA", [1, -1, -1])
-for l in m3:
-    print (l)
