@@ -1,1 +1,0 @@
-# tout ce qui concerne le rapport Latex

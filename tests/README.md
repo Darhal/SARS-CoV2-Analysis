@@ -1,1 +1,0 @@
-# Ce dossier contient des fichiers tests (pytest)
