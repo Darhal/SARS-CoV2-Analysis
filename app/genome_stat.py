@@ -94,3 +94,7 @@ print(f"Inter Quart 3: {int_quart}")
 
 print(perform_all_stats(fasta_to_genome("../genome/dix_minisequences.fasta"), NUCLEOTIDES))
 print(call_stat(moyenne, fasta_to_genome("../genome/dix_sequences.fasta"), NUCLEOTIDES))
+
+###################### TAILLE DU ARNm SARS-COV2 ####################
+print(perform_all_stats_taille(fasta_to_genome("./genome/10000_sequences.fasta")))
+

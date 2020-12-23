@@ -169,6 +169,29 @@ def call_stat_taille_genome(stat_func, tab, *args):
     return stat_func(tailles, *args)
 
 
+def perform_all_stats_taille(sequences):
+    '''Fonction general qui fait tout l'analyse statistique
+
+    Args:
+        stat_func:  fonction statistique à appeler
+        sampler:    les valeurs à prendre comme des echantillons
+
+    Returns:
+        Dictionnaire qui contients les stats
+    '''
+    # Optimise this function by calling nombre_element_echantillion outside
+    # nbr_elm_ech = nombre_element_echantillon(sequences, sampler)
+    stats = {}
+    stats["moy"] = call_stat_taille_genome(moyenne, sequences)
+    stats["med"] = call_stat_taille_genome(mediane, sequences)
+    stats["ecartt"] = call_stat_taille_genome(ecart_type, sequences)
+    stats["var"] = call_stat_taille_genome(variance, sequences)
+    stats["quart1"] = call_stat_taille_genome(quartile, sequences, 1)
+    stats["quart3"] = call_stat_taille_genome(quartile, sequences, 3)
+    stats["int_quart"] = call_stat_taille_genome(intervalle_interquartile, sequences)
+    return stats
+
+
 def call_stat(stat_func, sequences, sampler, *args):
     '''Fonction general qui appelle les autres fonctions statistiques
 
