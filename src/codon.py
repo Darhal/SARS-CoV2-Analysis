@@ -42,27 +42,3 @@ def codons_echantillon(liste):
     return sortie
 
 
-def start_to_stop(ARNm):
-    """
-
-    """
-    length = len(ARNm)
-    l = []
-    i = 0
-
-    while i < length-2 :
-
-        if ARNm[i:i+3] == 'AUG':
-            j = i
-
-            while (ARNm[j:j+3] not in ['UAG', 'UAA', 'UAR']) or (j == length-3) :
-                j += 1
-
-            if ARNm[j:j+3] in ['UAG', 'UAA', 'UAR']:
-                l.append(ARNm[i : j-1])
-                i = j+3
-
-            if j == length-3 :
-                break
-
-    return l
