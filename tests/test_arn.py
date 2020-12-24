@@ -24,6 +24,13 @@ def test_codon_v2():
         assert codons_v2(arn) == str(Seq.Seq(arn).translate())
 
 
+def test_codons():
+    assert codons('UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG') == []
+    assert codons('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG') == ['MSSSSYY']
+    assert codons('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAUGUGUUGCUGAUAG') == ['MSSSSYY','MCC']
+
+
+
 def test_transcription():
     for s in TEST_CASES:
         assert transcription_complementaire(s) == str(Seq.Seq(s).transcribe())
@@ -71,3 +78,4 @@ def test_start_to_stop():
     assert start_to_stop('UAG') == []
     assert start_to_stop('UAGGFDAUG') == []
     assert start_to_stop('AUGGDHDTHAUGDJHYUAR') == ['AUGGDHDTHAUGDJHY']
+    assert start_to_stop('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAUGUGUUGCUGAUAG') == ['AUGUCUUCCUCAUCGUAUUAC', 'AUGUGUUGC']
