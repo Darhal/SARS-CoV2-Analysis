@@ -1,0 +1,2 @@
+print(perform_all_stats_taille(fasta_to_genome("./genome/10000_sequences_janvier_aout_2020.fasta")))
+{'moy': 29803.0851, 'med': 29849.0, 'ecartt': 127.84136598921998, 'var': 16343.41485798969, 'quart1': 29794, 'quart3': 29868, 'int_quart': 74}

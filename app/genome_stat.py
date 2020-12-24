@@ -74,6 +74,7 @@ print(f"Inter Quart 3: {int_quart}")
 # print(f"Quart 3: {stats['quart3']}")
 # print(f"Inter Quart 3: {stats['int_quart']}")
 
+
 ###################### ACIDES AMINES #######################
 acids = codons_echantillon(arns)
 moy = call_stat(moyenne, acids, AMINO_ACIDS)
@@ -97,5 +98,28 @@ print(perform_all_stats(fasta_to_genome("../genome/dix_minisequences.fasta"), NU
 print(call_stat(moyenne, fasta_to_genome("../genome/dix_sequences.fasta"), NUCLEOTIDES))
 
 
-###################### TAILLE DU ARNm SARS-COV2 ####################
-print(perform_all_stats_taille(fasta_to_genome("./genome/10000_sequences.fasta")))
+###################### STATS TAILLE DU ARNm SARS-COV2 ######################
+print(perform_all_stats_taille(fasta_to_genome("../genome/dix_sequences.fasta")))
+print(perform_all_stats_taille(fasta_to_genome("../genome/200_sequences.fasta")))
+print(perform_all_stats_taille(fasta_to_genome("../genome/1000_sequences.fasta")))
+print(perform_all_stats_taille(fasta_to_genome("../genome/1000_sequences_janvier_avril_2020.fasta")))
+# print(perform_all_stats_taille(fasta_to_genome("./genome/10000_sequences.fasta")))
+# print(perform_all_stats_taille(fasta_to_genome("./genome/10000_sequences_janvier_aout_2020.fasta")))
+
+
+###################### STATS NUCLEOTIDES DU ARNm SARS-COV2 ######################
+print(perform_all_stats(fasta_to_genome("../genome/dix_sequences.fasta"), NUCLEOTIDES))
+print(perform_all_stats(fasta_to_genome("../genome/200_sequences.fasta"), NUCLEOTIDES))
+print(perform_all_stats(fasta_to_genome("../genome/1000_sequences.fasta"), NUCLEOTIDES))
+print(perform_all_stats(fasta_to_genome("../genome/1000_sequences_janvier_avril_2020.fasta"), NUCLEOTIDES))
+# print(perform_all_stats(fasta_to_genome("../genome/10000_sequences.fasta"), NUCLEOTIDES))
+# print(perform_all_stats(fasta_to_genome("../genome/10000_sequences_janvier_aout_2020.fasta"), NUCLEOTIDES))
+
+
+###################### STATS CODONS DU ARNm SARS-COV2 ######################
+print(perform_all_stats(fasta_to_genome("../genome/dix_sequences.fasta"), AMINO_ACIDS))
+print(perform_all_stats(fasta_to_genome("../genome/200_sequences.fasta"), AMINO_ACIDS))
+print(perform_all_stats(fasta_to_genome("../genome/1000_sequences.fasta"), AMINO_ACIDS))
+print(perform_all_stats(fasta_to_genome("../genome/1000_sequences_janvier_avril_2020.fasta"), AMINO_ACIDS))
+# print(perform_all_stats(fasta_to_genome("../genome/10000_sequences.fasta"), AMINO_ACIDS))
+# print(perform_all_stats(fasta_to_genome("../genome/10000_sequences_janvier_aout_2020.fasta"), AMINO_ACIDS))
