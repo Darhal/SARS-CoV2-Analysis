@@ -43,8 +43,13 @@ def codons_echantillon(liste):
 
 
 def start_to_stop(ARNm):
-    """
+    """Function that returns sequences of an ARNm from start to stop codons
 
+    Args:
+        ARNm: ARN sequence string
+
+    Returns:
+        List of valid sequences
     """
     length = len(ARNm)
     l = []
@@ -53,19 +58,19 @@ def start_to_stop(ARNm):
     while (i < (length-4)) :
 
         if ARNm[i:i+3] == 'AUG':
-            j = i+3
+            j = i + 3
 
             while (ARNm[j:j+3] not in ['UAG', 'UAA', 'UAR']) and (j < length-3):
                 j += 1
 
             if ARNm[j:j+3] in ['UAG', 'UAA', 'UAR']:
                 l.append(ARNm[i:j])
-                i = j+3
+                i = j + 3
 
-            if j >= length-3 :
+            if j >= length-3:
                 break
 
         else:
-            i+=1
+            i += 1
 
     return l
