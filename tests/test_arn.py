@@ -1,5 +1,6 @@
 from Bio import Seq
 from src.stats import *
+from src.codon import *
 
 TEST_CASES = [
     "UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUGGCUUCUCCUACUGCCUCCCCCACCGCAUCACCAACAGCGUCGCCGACGGAUUAUCAUAAUGACUACCACAACGAAUAACAAAAAGAGUAGCAGAAGGGUUGUCGUAGUGGCUGCCGCAGCGGAUGACGAAGAGGGUGGCGGAGGG",
@@ -8,6 +9,7 @@ TEST_CASES = [
 TEST_FASTA = [
     "./genome/sequences.fasta"
 ]
+
 
 def test_codon():
     for s in TEST_CASES:
@@ -30,6 +32,7 @@ def test_transcription():
         arn = fasta_to_genome(f)
         assert transcription_complementaire(arn) == str(Seq.Seq(arn).transcribe()) 
 
+
 def test_nb_nucl():
     for s in TEST_CASES:
         dict = nombre_elements(s, NUCLEOTIDES)
@@ -47,3 +50,24 @@ def test_nb_nucl():
         assert dict["U"] == seq.count("U")
         assert dict["G"] == seq.count("G")
         assert dict["C"] == seq.count("C")
+
+
+def test_start_to_stop():
+    assert start_to_stop('SDFAUGUAG') == ['AUG']
+    assert start_to_stop('SDFAUGUAA') == ['AUG']
+    assert start_to_stop('SDFAUGUAR') == ['AUG']
+    assert start_to_stop('SDFAUGFRGHUAG') == ['AUGFRGH']
+    assert start_to_stop('SDFAUGGHYUAA') == ['AUGGHY']
+    assert start_to_stop('SDFAUGLOLPUAR') == ['AUGLOLP']
+    assert start_to_stop('AUGUAG') == ['AUG']
+    assert start_to_stop('AUGUAA') == ['AUG']
+    assert start_to_stop('AUGUAR') == ['AUG']
+    assert start_to_stop('SDFAUGUAGAUG') == ['AUG']
+    assert start_to_stop('SDFAUGUAAAUG') == ['AUG']
+    assert start_to_stop('SDFAUGUARAUG') == ['AUG']
+    assert start_to_stop('SDFAUGUAGGHFYTFAUGJHGFHGFHFUAA') == ['AUG', 'AUGJHGFHGFHF']
+    assert start_to_stop('SDFAUGUAAHGHJFHGFAUGJHKGUAR') == ['AUG', 'AUGJHKG']
+    assert start_to_stop('SDFAUGUARHGFRRDDAUGKUUHJBUAR') == ['AUG', 'AUGKUUHJB']
+    assert start_to_stop('UAG') == []
+    assert start_to_stop('UAGGFDAUG') == []
+    assert start_to_stop('AUGGDHDTHAUGDJHYUAR') == ['AUGGDHDTHAUGDJHY']
