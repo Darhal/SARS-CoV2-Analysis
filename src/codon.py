@@ -3,7 +3,7 @@ from .utility import *
 from .globals import *
 
 
-def codons(ARNm):
+def codons_v2(ARNm):
     '''Function that return the amino acids coded by the ARNm sequence
     
     Args:
@@ -72,5 +72,33 @@ def start_to_stop(ARNm):
 
         else:
             i += 1
+
+    return l
+
+
+def codons(ARNm):
+    '''Function that return the amino acids coded by the ARNm sequence
+
+       Args:
+           ARNm: ARN sequence
+
+       Returns:
+           List of the amino acids
+       '''
+    amino_acids = []
+    seq = start_to_stop(ARNm)
+    l = []
+
+    for i in range(len(seq)):
+        length = len(seq[i])
+        length = length - length % 3
+
+        for j in range(0, length - 2, 3):
+            codons = "".join([ARNm[j], ARNm[j + 1], ARNm[j + 2]])  # Constructing a codon
+            amino_acid = CODONS_TO_AMINO_ACIDS[codons]
+            amino_acids.append(amino_acid)
+
+        amino_seq = "".join(amino_acids)
+        l.append(amino_seq)
 
     return l
