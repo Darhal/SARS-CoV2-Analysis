@@ -60,10 +60,10 @@ def start_to_stop(ARNm):
         if ARNm[i:i+3] == 'AUG':
             j = i + 3
 
-            while (ARNm[j:j+3] not in ['UAG', 'UAA', 'UAR']) and (j < length-3):
+            while (ARNm[j:j+3] not in ['UGA', 'UAG', 'UAA', 'UAR']) and (j < length-3):
                 j += 1
 
-            if ARNm[j:j+3] in ['UAG', 'UAA', 'UAR']:
+            if ARNm[j:j+3] in ['UGA', 'UAG', 'UAA', 'UAR']:
                 l.append(ARNm[i:j])
                 i = j + 3
 
@@ -85,16 +85,16 @@ def codons(ARNm):
        Returns:
            List of the amino acids
        '''
-    amino_acids = []
     seq = start_to_stop(ARNm)
     l = []
 
     for i in range(len(seq)):
+        amino_acids = []
         length = len(seq[i])
-        length = length - length % 3
+       # length = length - length % 3
 
         for j in range(0, length - 2, 3):
-            codons = "".join([ARNm[j], ARNm[j + 1], ARNm[j + 2]])  # Constructing a codon
+            codons = "".join([seq[i][j], seq[i][j + 1], seq[i][j + 2]])  # Constructing a codon
             amino_acid = CODONS_TO_AMINO_ACIDS[codons]
             amino_acids.append(amino_acid)
 
