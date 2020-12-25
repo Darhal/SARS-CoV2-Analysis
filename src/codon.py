@@ -1,6 +1,6 @@
 from Bio import SeqIO
-from .utility import *
-from .globals import *
+from utility import *
+from globals import *
 
 
 def codons_v2(ARNm):
@@ -91,7 +91,6 @@ def codons(ARNm):
     for i in range(len(seq)):
         amino_acids = []
         length = len(seq[i])
-       # length = length - length % 3
 
         for j in range(0, length - 2, 3):
             codons = "".join([seq[i][j], seq[i][j + 1], seq[i][j + 2]])  # Constructing a codon
