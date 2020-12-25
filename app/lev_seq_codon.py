@@ -1,5 +1,5 @@
 from src.utility import *
-from src.lev import *
+from src.levenshtein import *
 from src.codon import *
 
 # sequences10 = fasta_to_genome("../genome/dix_sequences.fasta")
@@ -90,7 +90,7 @@ seqUSAChina = fasta_to_genome("../genome/deux_sequences_china_13012020_usa_18122
 
 seq_acides_USAChina1 = codons(seqUSAChina[0])
 seq_acides_USAChina2 = codons(seqUSAChina[1])
-
+print(lev_itr(seq_acides_USAChina1, seq_acides_USAChina2))
 l = []
 
 for i in range(min(len(seq_acides_USAChina1), len(seq_acides_USAChina2))):
@@ -121,7 +121,7 @@ seqUSABrazil = fasta_to_genome("../genome/deux_sequences_usa_california_21122020
 
 seq_acides_USABrazil1 = codons(seqUSABrazil[0])
 seq_acides_USABrazil2 = codons(seqUSABrazil[1])
-
+print(lev_itr(seq_acides_USABrazil1,seq_acides_USABrazil2))
 l = []
 
 for i in range(min(len(seq_acides_USABrazil1), len(seq_acides_USABrazil2))):
@@ -145,4 +145,3 @@ le résultat est:
  0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0]
 """
-

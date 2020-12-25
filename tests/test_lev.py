@@ -1,5 +1,5 @@
 import pytest
-from src.lev import *
+from src.levenshtein import *
 
 TEST_CASES = [
     ["Book", "Back", 2],

@@ -249,3 +249,5 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
             coord = nc
     
     return output
+
+print(needleman_all("ABC", "ABC", cost_mat=[1, 2, 3, 1, 2, 3, 1, 2, 3, 4], key="ABC"))
