@@ -3,45 +3,6 @@ from utility import *
 from globals import *
 
 
-def codons_v2(ARNm):
-    '''Function that return the amino acids coded by the ARNm sequence
-    
-    Args:
-        ARNm: ARN sequence
-    
-    Returns:
-        List of the amino acids
-    '''
-    amino_acids = []
-    length = len(ARNm)
-    length = length - length % 3
-
-    for i in range(0, length - 2, 3):
-        codons = "".join([ARNm[i], ARNm[i + 1], ARNm[i + 2]])   # Constructing a codon
-        amino_acid = CODONS_TO_AMINO_ACIDS[codons]
-        amino_acids.append(amino_acid)
-    
-    return ''.join(amino_acids)
-
-
-def codons_echantillon(liste):
-    '''Function that return the amino acids sequences coded by the ARNm sequence list
-
-    Args:
-        ARNm: ARN sequence list
-
-    Returns:
-        List of the amino acid sequences
-    '''
-    sortie = []
-
-    for sequence in liste:
-        traduction = codons(sequence)
-        sortie.append(traduction)
-
-    return sortie
-
-
 def start_to_stop(ARNm):
     """Function that returns sequences of an ARNm from start to stop codons
 
@@ -101,3 +62,47 @@ def codons(ARNm):
         l.append(amino_seq)
 
     return l
+
+
+def codons_v2(ARNm):
+    '''Function that return the amino acids coded by the ARNm sequence
+    
+    Args:
+        ARNm: ARN sequence
+    
+    Returns:
+        List of the amino acids
+    '''
+    amino_acids = []
+    length = len(ARNm)
+    length = length - length % 3
+
+    for i in range(0, length - 2, 3):
+        codons = "".join([ARNm[i], ARNm[i + 1], ARNm[i + 2]])   # Constructing a codon
+        amino_acid = CODONS_TO_AMINO_ACIDS[codons]
+        amino_acids.append(amino_acid)
+    
+    return ''.join(amino_acids)
+
+
+def codons_echantillon(liste):
+    '''Function that return the amino acids sequences coded by the ARNm sequence list
+
+    Args:
+        ARNm: ARN sequence list
+
+    Returns:
+        List of the amino acid sequences
+    '''
+    sortie = []
+
+    for sequence in liste:
+        traduction = codons_v2(sequence)
+        sortie.append(traduction)
+
+    return sortie
+
+
+
+
+
