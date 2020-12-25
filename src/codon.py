@@ -61,7 +61,7 @@ def codons(ARNm):
         amino_seq = "".join(amino_acids)
         l.append(amino_seq)
 
-    return ''.join(l)
+    return l
 
 
 def codons_v2(ARNm):
