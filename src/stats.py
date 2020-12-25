@@ -1,8 +1,8 @@
 import math
 
 from os import stat
-from .utility import *
-from .codon import *
+from src.utility import *
+from src.codon import *
 
 #####################################
 # FONCTION STATS DE BASE            #
