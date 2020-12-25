@@ -1,6 +1,6 @@
 from Bio import SeqIO
-from utility import *
-from globals import *
+from .utility import *
+from .globals import *
 
 
 def start_to_stop(ARNm):
