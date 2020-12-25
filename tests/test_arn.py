@@ -30,7 +30,6 @@ def test_codons():
     assert codons('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAUGUGUUGCUGAUAG') == ['MSSSSYY','MCC']
 
 
-
 def test_transcription():
     for s in TEST_CASES:
         assert transcription_complementaire(s) == str(Seq.Seq(s).transcribe())
