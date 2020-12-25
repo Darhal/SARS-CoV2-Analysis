@@ -1,5 +1,5 @@
 from src.utility import *
-from src.lev import *
+from src.levenshtein import *
 from src.codon import *
 
 # sequences10 = fasta_to_genome("../genome/dix_sequences.fasta")

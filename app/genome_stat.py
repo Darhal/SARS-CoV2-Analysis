@@ -1,5 +1,5 @@
 from src.stats import *
-from src.lev import *
+from src.levenshtein import *
 
 arns = fasta_to_genome("genome/dix_sequences.fasta")
 stats = perform_all_stats(arns, NUCLEOTIDES)
