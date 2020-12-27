@@ -63,6 +63,22 @@ def bank_sequences_rec(n):
     return recursion(fasta_to_genome("./genome/20000_sequences.fasta"), [], 0)
 
 
+def test_AUGC(L):
+    '''Fonction test si dans la chaîne il y a que les nucléotides A, U, G, C
+    et pas d'autres lettres (K, N, Y, etc.) qui conduit à une indétermination
+
+    Args:
+        L : une chaîne de caractère ou liste
+
+    Returns:
+        Booléen : True (si le test est passé) ou False (si y a un caractère indéterminé [K, N, Y, etc.])
+    '''
+    for i in 'RYSWKMBDHVN':
+        if i in L:
+            return False
+    return True
+
+
 def transcription_complementaire(ADNc):
     '''Function qui remplace la séquence de ADNc (ADN complémentaire) en ARNm
     
