@@ -45,7 +45,7 @@ def codons(ARNm):
 
        Returns:
            List of the amino acids
-       '''
+    '''
     seq = start_to_stop(ARNm)
     l = []
 
