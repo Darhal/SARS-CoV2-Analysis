@@ -2,6 +2,15 @@ from Bio import SeqIO
 
 
 def bank_sequences(n):
+    '''Fonction qui donne un échantillon (une liste) de séquence de taille n qu'il récupère
+    dans la banque de séquence de taille 20000 dans le fichier .fasta sans les problèmes d'ambiguité (Y, N, K etc.)
+
+    Args:
+        n : la taille de l'échantillon qu'on veut
+
+    Returns:
+        echantillon : la liste de séquence
+    '''
     S = fasta_to_genome("./genome/20000_sequences.fasta")
     echantillon = []
     k = 0
@@ -28,6 +37,15 @@ def bank_sequences(n):
 
 
 def bank_sequences_rec(n):
+    '''Fonction qui donne un échantillon (une liste) de séquence de taille n qu'il récupère
+        dans la banque de séquence de taille 20000 dans le fichier .fasta sans les problèmes d'ambiguité (Y, N, K etc.)
+
+        Args:
+            n : la taille de l'échantillon qu'on veut
+
+        Returns:
+            echantillon : la liste de séquence
+    '''
     def recursion(S, echantillon, k):
         if k == n:
             return echantillon
@@ -153,7 +171,28 @@ def nombre_element_echantillon(tab, sampler):
             else:
                 d[element].append(nbr[element])
 
-    return (d)
+    return d
 
-def in_box(x, y, maxx, maxy, minx = 0, miny = 0):
-    return (x >= minx and x < maxx) and (y >= miny and y < maxy)
+
+def meme_taille(l1, l2):
+    '''Fonction qui prend en paramètre deux listes et qui rajoute des mots vides à l'une des deux liste pour avoir la meme taille
+
+        Args:
+            l1, l2 : deux liste de chaine de caractère
+
+        Returns:
+            deux liste de la meme taille
+    '''
+    length1, length2 = len(l1), len(l2)
+
+    if length1 < length2:
+        diff = length2 - length1
+        ext = [''] * diff
+        l1 = l1 + ext
+
+    elif length1 > length2:
+        diff = length1 - length2
+        ext = [''] * diff
+        l2 = l2 + ext
+
+    return l1, l2

@@ -24,6 +24,12 @@ def test_codon_v2():
         assert codons_v2(arn) == str(Seq.Seq(arn).translate())
 
 
+def test_codons_v3():
+    assert codons_v3(list('UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG')) == []
+    assert codons_v3(list('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG')) == list('MSSSSYY')
+    assert codons_v3(list('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAUGUGUUGCUGAUAG')) == list('MSSSSYY') + ['*'] + list('MCC')
+
+
 def test_codons():
     assert codons('UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG') == []
     assert codons('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG') == ['MSSSSYY']
