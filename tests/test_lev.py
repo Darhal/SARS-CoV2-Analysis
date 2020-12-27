@@ -37,7 +37,7 @@ TEST_CASES = [
 
 def test_rec():
     for t in TEST_CASES:
-        assert lev(t[0], t[1]) == t[2]
+        assert lev_rec(t[0], t[1]) == t[2]
 
 def test_dp():
     for t in TEST_CASES:
@@ -45,4 +45,4 @@ def test_dp():
 
 def test_dp_rec_itr():
     for t in TEST_CASES:
-        assert lev(t[0], t[1]) == lev_dp(t[0], t[1]) == lev_itr(t[0], t[1]) == t[2]
+        assert lev(t[0], t[1]) == lev_dp(t[0], t[1]) == lev_rec(t[0], t[1]) == t[2]
