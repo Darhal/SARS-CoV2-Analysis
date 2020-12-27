@@ -1,6 +1,3 @@
-def is_positive(x, y, minx = 0, miny = 0):
-    return x >= minx  and y >= miny
-
 def needleman(seq1, seq2, cost_table = None, cost_mat = None, key = None):
     '''Function that calculates the global alignement of two sequences
     
@@ -41,7 +38,7 @@ def needleman(seq1, seq2, cost_table = None, cost_mat = None, key = None):
 
     if key and cost_mat:
         letter_dict = { key[i]: i for i in range(len(key)) }
-        gap = cost_mat[len(key)]
+        gap = cost_mat[len(key) ** 2]
     else:
         gap = cost_table[2]
 
@@ -76,6 +73,7 @@ def needleman(seq1, seq2, cost_table = None, cost_mat = None, key = None):
     coord = (len_seq2, len_seq1)
     output_seq1 = ""
     output_seq2 = ""
+
     while coord != (0, 0):
         if coord[0] == 0:
             coord = (coord[0], coord[1] - 1)
@@ -104,7 +102,6 @@ def needleman(seq1, seq2, cost_table = None, cost_mat = None, key = None):
                 output_seq2 = seq2[highest_neighbour[0]] + output_seq2
             coord = highest_neighbour
     return [ output_seq1, output_seq2, alignement_mat[len_seq2][len_seq1] ]
-
 
 
 def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
@@ -147,7 +144,7 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
 
     if key and cost_mat:
         letter_dict = { key[i]: i for i in range(len(key)) }
-        gap = cost_mat[len(key)]
+        gap = cost_mat[len(key) ** 2]
     else:
         gap = cost_table[2]
 
@@ -250,16 +247,48 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
     
     return output
 
+from Bio import pairwise2
+
 # m = needleman_all("GAAT", "GGAT", [1, 0, 0])
 # for l in m:
 #     print(l)
+
 # print("--------------")
 
 # # https://biopython.org/docs/1.75/api/Bio.pairwise2.html
-# from Bio import pairwise2
-# alignments = pairwise2.align.globalms("GAAT", "GGAT", 1, 0, 0, 0)
+
+# alignments = pairwise2.align.globalms("GAAT", "GGAT", 1, 0, 0, 0, force_generic=True)
 # formated_alignments = [ [ a[0], a[1], int(a[2]) ] for a in alignments ]
 # for l in formated_alignments:
 #     print(l)
-
 # print(sorted(m) == sorted(formated_alignments))
+
+
+#GAATTCAGTTA
+#GGATCGA
+# 1, 0, 0
+
+# matrix = {}
+# mat = [1, 2, 3, 1, 2, 3, 1, 2, 3, 0]
+# cle = "ABC"
+
+# m = needleman_all("ABC", "ABC", cost_mat=mat, key=cle)
+# for l in m:
+#     print(l)
+
+# print("------------------")
+
+# print(needleman("ABC", "ABC", cost_mat=mat, key=cle))
+
+# print("------------------")
+# letter_dict = { cle[i]: i for i in range(len(cle)) }
+
+# for i in range(0, len(cle)):
+#     for j in range(0, len(cle)):
+#         matrix[(cle[i], cle[j])] = mat[i * len(cle) + j]
+# print(matrix)
+
+# alignments = pairwise2.align.globaldx("ABC", "ABC", matrix)
+# formated_alignments = [ [ a[0], a[1], int(a[2]) ] for a in alignments ]
+# for l in formated_alignments:
+#     print(l)
