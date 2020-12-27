@@ -83,8 +83,8 @@ print(lev_itr(codons_v2(seqUSA_california_diffperiode[0]), codons_v2(seqUSA_cali
 ############################## REAPPLICATION AVEC LA NOUVELLE VERSION DE CODONS #####################################
 #####################################################################################################################
 
-def affiche_res(l1, l2):
-    meme_taille(l1, l2)
+def affiche_res(L1, L2):
+    l1, l2 = meme_taille(L1[:], L2[:])
     l = []
 
     for i in range(len(l1)):

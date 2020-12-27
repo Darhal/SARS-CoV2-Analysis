@@ -188,9 +188,11 @@ def meme_taille(l1, l2):
     if length1 < length2 :
         diff = length2 - length1
         ext = [''] * diff
-        l1 += ext
+        l1 = l1 + ext
 
     elif length1 > length2 :
         diff = length1 - length2
         ext = [''] * diff
-        l2 += ext
+        l2 = l2 + ext
+
+    return l1, l2
