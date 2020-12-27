@@ -7,7 +7,7 @@ from src.codon import *
 # On compare la séquence originelle du génome provenant
 # donne le résultat de 8375, vérifié par un calculateur en ligne.
 
-
+"""
 ##################### DIFFERENTE PERIODE DIFFERENT LIEU ########################
 seqUSAChina = fasta_to_genome("../genome/deux_sequences_china_13012020_usa_18122020.fasta")
 print(lev_itr(codons_v2(seqUSAChina[0]), codons_v2(seqUSAChina[1])))
@@ -77,7 +77,7 @@ seqUSA_california_diffperiode = fasta_to_genome("../genome/deux_sequences_usa_ca
 print(lev_itr(codons_v2(seqUSA_california_diffperiode[0]), codons_v2(seqUSA_california_diffperiode[1])))
 # Deux séquence de même lieu (USA Californie), mais de période différente.
 # le résultat est de 21 (vérifié), distance très petite.
-
+"""
 
 #####################################################################################################################
 ############################## REAPPLICATION AVEC LA NOUVELLE VERSION DE CODONS #####################################
@@ -88,7 +88,7 @@ def affiche_res(l1, l2):
     l = []
 
     for i in range(len(l1)):
-        l.append(l1[i], l2[i]))
+        l.append(lev(l1[i], l2[i]))
 
     print(l)
 
@@ -124,12 +124,8 @@ seqUSABrazil = fasta_to_genome("../genome/deux_sequences_usa_california_21122020
 
 seq_acides_USABrazil1 = codons(seqUSABrazil[0])
 seq_acides_USABrazil2 = codons(seqUSABrazil[1])
-print(lev_itr(seq_acides_USABrazil1,seq_acides_USABrazil2))
-l = []
 
-for i in range(min(len(seq_acides_USABrazil1), len(seq_acides_USABrazil2))):
-        l.append(lev_itr(seq_acides_USABrazil1[i], seq_acides_USABrazil2[i]))
-print (l)
+affiche_res(seq_acides_USABrazil1,seq_acides_USABrazil2)
 
 """
 Deux séquences de USA décembre 2020 et Brésil mars 2020
