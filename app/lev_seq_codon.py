@@ -83,6 +83,14 @@ print(lev_itr(codons_v2(seqUSA_california_diffperiode[0]), codons_v2(seqUSA_cali
 ############################## REAPPLICATION AVEC LA NOUVELLE VERSION DE CODONS #####################################
 #####################################################################################################################
 
+def affiche_res(l1, l2):
+    meme_taille(l1, l2)
+    l = []
+
+    for i in range(len(l1)):
+        l.append(l1[i], l2[i]))
+
+    print(l)
 
 ##################### DIFFERENTE PERIODE DIFFERENT LIEU ########################
 
@@ -90,13 +98,8 @@ seqUSAChina = fasta_to_genome("../genome/deux_sequences_china_13012020_usa_18122
 
 seq_acides_USAChina1 = codons(seqUSAChina[0])
 seq_acides_USAChina2 = codons(seqUSAChina[1])
-print(lev_itr(seq_acides_USAChina1, seq_acides_USAChina2))
-l = []
 
-for i in range(min(len(seq_acides_USAChina1), len(seq_acides_USAChina2))):
-        l.append(lev_itr(seq_acides_USAChina1[i], seq_acides_USAChina2[i]))
-print (l)
-
+affiche_res(seq_acides_USAChina1,seq_acides_USAChina2)
 """
 On compare deux séquences l'une de Chine la séquence 'originelle' de Wuhan de janvier 2020
 et l'autre de USA de décembre 2020,

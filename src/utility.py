@@ -179,3 +179,13 @@ def meme_taille(l1, l2):
         diff = length1 - length2
         for i in range(diff):
             l2.append('')
+
+
+def affiche_res(l1, l2):
+    meme_taille(l1, l2)
+    l = []
+
+    for i in range(len(l1)):
+        l.append(l1[i], l2[i]))
+
+    print(l)
