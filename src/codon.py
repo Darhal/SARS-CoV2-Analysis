@@ -97,7 +97,7 @@ def codons_echantillon(liste):
     sortie = []
 
     for sequence in liste:
-        traduction = codons_v2(sequence)
+        traduction = codons(sequence)
         sortie.append(traduction)
 
     return sortie
