@@ -55,8 +55,11 @@ def codons(ARNm):
 
         for j in range(0, length - 2, 3):
             codons = "".join([seq[i][j], seq[i][j + 1], seq[i][j + 2]])  # Constructing a codon
-            amino_acid = CODONS_TO_AMINO_ACIDS[codons]
-            amino_acids.append(amino_acid)
+            if test_AUGC(codons):
+                amino_acid = CODONS_TO_AMINO_ACIDS[codons]
+                amino_acids.append(amino_acid)
+            else:
+                continue
 
         amino_seq = "".join(amino_acids)
         l.append(amino_seq)
@@ -122,11 +125,14 @@ def codons_v3(ARNm):
 
         for j in range(0, length - 2, 3):
             codons = "".join([seq[i][j], seq[i][j + 1], seq[i][j + 2]])  # Constructing a codon
-            amino_acid = CODONS_TO_AMINO_ACIDS[codons]
-            amino_acids.append(amino_acid)
+            if test_AUGC(codons):
+                amino_acid = CODONS_TO_AMINO_ACIDS[codons]
+                amino_acids.append(amino_acid)
+            else:
+                continue
 
         amino_seq = "".join(amino_acids)
         l.append(amino_seq)
 
     res = "".join(l)
-    return list(res)
+    return res
