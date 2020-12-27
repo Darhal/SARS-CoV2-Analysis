@@ -103,6 +103,30 @@ def codons_echantillon(liste):
     return sortie
 
 
+def codons_v3(ARNm):
+    '''Function that returns the amino acids coded by the ARNm sequence
 
+        Args:
+            ARNm: a list of ARN sequence
 
+        Returns:
+            List of the amino acids
+        '''
+    ARNm_ch = ''.join(ARNm)
+    seq = start_to_stop(ARNm_ch)
+    l = []
 
+    for i in range(len(seq)):
+        amino_acids = []
+        length = len(seq[i])
+
+        for j in range(0, length - 2, 3):
+            codons = "".join([seq[i][j], seq[i][j + 1], seq[i][j + 2]])  # Constructing a codon
+            amino_acid = CODONS_TO_AMINO_ACIDS[codons]
+            amino_acids.append(amino_acid)
+
+        amino_seq = "".join(amino_acids)
+        l.append(amino_seq)
+
+    res = "*".join(l)
+    return list(res)
