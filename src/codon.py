@@ -128,5 +128,5 @@ def codons_v3(ARNm):
         amino_seq = "".join(amino_acids)
         l.append(amino_seq)
 
-    res = "*".join(l)
+    res = "".join(l)
     return list(res)
