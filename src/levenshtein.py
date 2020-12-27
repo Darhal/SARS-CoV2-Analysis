@@ -1,5 +1,5 @@
 
-def lev(seq1, seq2):
+def lev_rec(seq1, seq2):
     '''Function that return the Levenshtein distance between two given strings seq1 and seq2
     
     Args:
@@ -76,7 +76,7 @@ def lev_dp(seq1, seq2):
 
     return lambda_lev_dp(seq1, seq2, dp)
 
-def lev_itr(seq1, seq2):
+def lev(seq1, seq2):
     '''Function that return the Levenshtein distance between two given strings seq1 and seq2
 
         Args:

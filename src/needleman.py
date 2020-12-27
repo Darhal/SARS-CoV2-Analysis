@@ -166,7 +166,7 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
     # xyz: z is the digonal bit, y is the left bit, x is the upward bit
     # x y z
     # | | |
-    # U L D (U:Up / D:Diag / L: Left)
+    # U L D (U:Up / L: Left / D:Diag )
     mat_dir = [ [0 for _ in range(len_seq1 + 1) ] for _ in range(len_seq2 + 1) ]
 
     # Init step:
@@ -216,13 +216,13 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
             nc = coord # new coord that will be our path in this loop
             org_path = path[:]
 
-            if is_positive(coord[0] - 1, coord[1] - 1) and (mat_dir[coord[0]][coord[1]] & 1): # Diag
+            if mat_dir[coord[0]][coord[1]] & 1: # Diag
                 coord_tmp = (coord[0] - 1, coord[1] - 1)
                 nc = coord_tmp
                 path[0] = seq1[coord[1]] + path[0]
                 path[1] = seq2[coord[0]] + path[1]
                 taken = True
-            if is_positive(coord[0], coord[1] - 1) and mat_dir[coord[0]][coord[1]] & (1 << 1):  # Left
+            if mat_dir[coord[0]][coord[1]] & (1 << 1):  # Left
                 coord_tmp = (coord[0], coord[1] - 1)
                 if not taken:
                     nc = coord_tmp
@@ -230,11 +230,11 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
                     path[0] = seq1[coord[1]] + path[0]
                     path[1] = '-' + path[1]
                 else:
-                    path_fifo.append(org_path)
+                    path_fifo.append(org_path[:])
                     coord_fifo.append(coord_tmp)
                     path_fifo[-1][0] = seq1[coord[1]] + path_fifo[-1][0]
                     path_fifo[-1][1] = '-' + path_fifo[-1][1]
-            if is_positive(coord[0] - 1, coord[1]) and mat_dir[coord[0]][coord[1]] & (1 << 2):  # Up
+            if mat_dir[coord[0]][coord[1]] & (1 << 2):  # Up
                 coord_tmp = (coord[0] - 1, coord[1])
                 if not taken:
                     nc = coord_tmp
@@ -242,7 +242,7 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
                     path[0] = '-' + path[0]
                     path[1] = seq2[coord[0]] + path[1]
                 else:
-                    path_fifo.append(org_path)
+                    path_fifo.append(org_path[:])
                     coord_fifo.append(coord_tmp)
                     path_fifo[-1][0] = '-' + path_fifo[-1][0]
                     path_fifo[-1][1] = seq2[coord[0]] + path_fifo[-1][1]
@@ -250,4 +250,16 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
     
     return output
 
-print(needleman_all("ABC", "ABC", cost_mat=[1, 2, 3, 1, 2, 3, 1, 2, 3, 4], key="ABC"))
+# m = needleman_all("GAAT", "GGAT", [1, 0, 0])
+# for l in m:
+#     print(l)
+# print("--------------")
+
+# # https://biopython.org/docs/1.75/api/Bio.pairwise2.html
+# from Bio import pairwise2
+# alignments = pairwise2.align.globalms("GAAT", "GGAT", 1, 0, 0, 0)
+# formated_alignments = [ [ a[0], a[1], int(a[2]) ] for a in alignments ]
+# for l in formated_alignments:
+#     print(l)
+
+# print(sorted(m) == sorted(formated_alignments))
