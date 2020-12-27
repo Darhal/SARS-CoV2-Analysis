@@ -37,6 +37,15 @@ def bank_sequences(n):
 
 
 def bank_sequences_rec(n):
+    '''Fonction qui donne un échantillon (une liste) de séquence de taille n qu'il récupère
+        dans la banque de séquence de taille 20000 dans le fichier .fasta sans les problèmes d'ambiguité (Y, N, K etc.)
+
+        Args:
+            n : la taille de l'échantillon qu'on veut
+
+        Returns:
+            echantillon : la liste de séquence
+    '''
     def recursion(S, echantillon, k):
         if k == n:
             return echantillon
