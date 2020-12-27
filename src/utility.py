@@ -153,7 +153,29 @@ def nombre_element_echantillon(tab, sampler):
             else:
                 d[element].append(nbr[element])
 
-    return (d)
+    return d
 
 def in_box(x, y, maxx, maxy, minx = 0, miny = 0):
     return (x >= minx and x < maxx) and (y >= miny and y < maxy)
+
+
+def meme_taille(l1, l2):
+    '''Fonction qui prend en paramètre deux listes et qui rajoute des mots vides à l'une des deux liste pour avoir la meme taille
+
+           Args:
+               l1, l2 : deux liste de chaine de caractère
+
+           Returns:
+               deux liste de la meme taille
+        '''
+    length1, length2 = len(l1), len(l2)
+
+    if length1 < length2 :
+        diff = length2 - length1
+        for i in range(diff):
+            l1.append('')
+
+    elif length1 > length2 :
+        diff = length1 - length2
+        for i in range(diff):
+            l2.append('')
