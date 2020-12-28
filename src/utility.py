@@ -62,7 +62,7 @@ def bank_sequences_rec(n):
     return recursion(fasta_to_genome("./genome/20000_sequences.fasta"), [], 0)
 
 
-def test_AUGC(L):
+def try_AUGC(L):
     '''Fonction test si dans la chaîne il y a que les nucléotides A, U, G, C
     et pas d'autres lettres (K, N, Y, etc.) qui conduit à une indétermination
 
