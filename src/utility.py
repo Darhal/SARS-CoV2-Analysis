@@ -1,6 +1,5 @@
 from Bio import SeqIO
 
-
 def bank_sequences(n):
     '''Fonction qui donne un échantillon (une liste) de séquence de taille n qu'il récupère
     dans la banque de séquence de taille 20000 dans le fichier .fasta sans les problèmes d'ambiguité (Y, N, K etc.)
