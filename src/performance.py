@@ -30,7 +30,7 @@ def func_performance(func, args_arr, sizes, figure=True, sort_by=0):
         plt.show()
     return performance
 
-def funcs_performance(funcs, args_arr, sizes, figure=True, title="Functions Performance Comparison"):
+def funcs_performance(funcs, args_arr, sizes, figure=True, title="Function Performance Comparison"):
     performance = [ [] for _ in range(len(funcs))]
     for i in range(len(funcs)):
         for args in args_arr:
