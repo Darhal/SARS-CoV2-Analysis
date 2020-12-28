@@ -247,7 +247,8 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
     
     return output
 
-from Bio import pairwise2
+
+# from Bio import pairwise2
 
 # m = needleman_all("GAAT", "GGAT", [1, 0, 0])
 # for l in m:
