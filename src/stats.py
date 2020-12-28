@@ -159,7 +159,7 @@ def call_stat_taille_genome(stat_func, tab, *args):
 
     Args:
         stat_func:  fonction statistique à appeler
-        tab:        tableau des sequances ARN, Acides aminés
+        tab:        tableau des sequances ARN ou Acides aminés
         *args:      arguments supplémentaires optionelle
     
     Returns: 
@@ -197,7 +197,7 @@ def call_stat(stat_func, sequences, sampler, *args):
 
     Args:
         stat_func:  fonction statistique à appeler
-        sequences:  tableau des sequances ARN, Acides aminés
+        sequences:  tableau des sequences ARN, Acides aminés
         sampler:    les valeurs à prendre comme des echantillons
         *args:      arguments supplémentaires optionelle
 
