@@ -77,7 +77,7 @@ def lev_dp(seq1, seq2):
     return lambda_lev_dp(seq1, seq2, dp)
 
 def lev(seq1, seq2):
-    '''Function that return the Levenshtein distance between two given strings seq1 and seq2
+    '''Function that return the Levenshtein distance between two given strings seq1 and seq2, uses DP
 
         Args:
             seq1: first string also known as source string

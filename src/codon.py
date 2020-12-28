@@ -17,7 +17,6 @@ def start_to_stop(ARNm):
     i = 0
 
     while (i < (length-4)) :
-
         if ARNm[i:i+3] == 'AUG':
             j = i + 3
 
@@ -30,7 +29,6 @@ def start_to_stop(ARNm):
 
             if j >= length-3:
                 break
-
         else:
             i += 1
 

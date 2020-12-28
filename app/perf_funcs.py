@@ -9,10 +9,16 @@ from src.levenshtein import *
 from src.needleman import *
 from src.performance import *
 
+stat_args = [ 
+    [ int(''.join(random.choices(string.digits, k=N))), int(''.join(random.choices(string.digits, k=N))) ]
+    for N in range(0, 1001)
+]
+
 lev_args = [ 
     [ ''.join(random.choices(string.ascii_lowercase + string.digits, k=N)), ''.join(random.choices(string.ascii_lowercase + string.digits, k=N)) ]
     for N in range(0, 101)
 ]
+
 nw_args = [ 
     [ 
         ''.join(random.choices(string.ascii_lowercase + string.digits, k=N)), 
@@ -22,8 +28,9 @@ nw_args = [
     for N in range(0, 50)
 ]
 
+func_performance(moyenne, args_arr=stat_args, sort_by=1)
 
-# func_performance(lev, args_arr=lev_args, sizes=[0], sort_by=1)
-# funcs_performance([lev_rec, lev_dp, lev], args_arr=lev_args, sizes=[0])
+func_performance(lev, args_arr=lev_args, sizes=[0], sort_by=1)
+funcs_performance([lev_rec, lev_dp, lev], args_arr=lev_args, sizes=[0])
 
 funcs_performance([needleman_all], args_arr=nw_args, sizes=[0])
