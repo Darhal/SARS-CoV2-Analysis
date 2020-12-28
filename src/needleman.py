@@ -247,6 +247,21 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
     
     return output
 
+from Bio.Align import PairwiseAligner
+
+def nw_bio(seq1, seq2, cost_table):
+    aligner = PairwiseAligner()
+    aligner.match_score = cost_table[0]
+    aligner.mismatch_score = cost_table[1]
+    aligner.gap_score = cost_table[2]
+    alignments = aligner.align(seq1, seq2)
+    formated_alignments = []
+
+    for i in range(len(alignments)):
+        als = str(alignments[i]).split("\n")
+        formated_alignments.append([als[0], als[2], int(alignments[i].score)])
+
+    return formated_alignments
 
 # from Bio import pairwise2
 

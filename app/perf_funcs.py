@@ -22,7 +22,8 @@ nw_args = [
     for N in range(0, 50)
 ]
 
-# func_performance(lev, args_arr=args, sizes=[0], sort_by=1)
+
+# func_performance(lev, args_arr=lev_args, sizes=[0], sort_by=1)
 # funcs_performance([lev_rec, lev_dp, lev], args_arr=lev_args, sizes=[0])
 
 funcs_performance([needleman_all], args_arr=nw_args, sizes=[0])

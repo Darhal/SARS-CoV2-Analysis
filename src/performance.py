@@ -27,6 +27,8 @@ def func_performance(func, args_arr, sizes, figure=True, sort_by=0):
         ax.set_xlabel('Argument (s) Size')                  # Add an x-label to the axes.
         ax.set_ylabel('Time (ms)')                          # Add a y-label to the axes.
         ax.set_title(f"'{func.__name__}' Performance")      # Add a title to the axes.
+        if len(args_arr) > 70:
+            plt.xticks(fontsize=(9/len(args_arr))*100, rotation=90)
         plt.show()
     return performance
 
