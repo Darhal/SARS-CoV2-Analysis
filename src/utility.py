@@ -1,4 +1,5 @@
 from Bio import SeqIO
+from src.globals import *
 
 def bank_sequences(n):
     '''Fonction qui donne un échantillon (une liste) de séquence de taille n qu'il récupère
