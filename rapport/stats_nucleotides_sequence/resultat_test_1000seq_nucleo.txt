@@ -47,3 +47,6 @@ Out[99]:
  'quart1': {'A': 8901, 'U': 9585, 'G': 5849, 'C': 5475},
  'quart3': {'A': 8911, 'U': 9591, 'G': 5854, 'C': 5483},
  'int_quart': {'A': 10, 'U': 6, 'G': 5, 'C': 8}}
+
+Les deux dernières applications sont le résultat de l'utilisation de la fonction bank_sequences (l'une récursive et l'autre non) 
+cette dernière donne directement un échantillon de 1000 séquences d'une banque de nucléotides sans problème d'indétermination lié aux codes (K, N, Y, etc.)
