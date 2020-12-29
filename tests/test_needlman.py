@@ -60,7 +60,7 @@ def test_needlman_generic_mat_cout():
         for i in range(len(cle)):
             for j in range(0, len(cle)):
                 matrix[(cle[i], cle[j])] = mat[i * len(cle) + j]
-        alignments = pairwise2.align.globaldx(t[0], t[1], matrix)
+        alignments = pairwise2.align.globalds(t[0], t[1], matrix, t[2][len(cle)**2], t[2][len(cle)**2])
         formated_alignments = [ [ a[0], a[1], int(a[2]) ] for a in alignments ]
         #------------------ Test ------------------
         assert m in formated_alignments
@@ -76,7 +76,7 @@ def test_needlman_all_mat_cout():
         for i in range(len(cle)):
             for j in range(0, len(cle)):
                 matrix[(cle[i], cle[j])] = mat[i * len(cle) + j]
-        alignments = pairwise2.align.globaldx(t[0], t[1], matrix)
+        alignments = pairwise2.align.globalds(t[0], t[1], matrix, t[2][len(cle)**2], t[2][len(cle)**2])
         formated_alignments = [ [ a[0], a[1], int(a[2]) ] for a in alignments ]
         #------------------ Test ------------------
         assert sorted(m1) == sorted(formated_alignments)
