@@ -2,7 +2,6 @@ from Bio import SeqIO
 from src.utility import *
 from src.globals import *
 
-
 def start_to_stop(ARNm):
     """Function that returns sequences of an ARNm from start to stop codons
 
@@ -21,7 +20,7 @@ def start_to_stop(ARNm):
             j = i + 3
 
             while (ARNm[j:j+3] not in ['UGA', 'UAG', 'UAA', 'UAR']) and (j < length-3):
-                j += 1
+                j += 3
 
             if ARNm[j:j+3] in ['UGA', 'UAG', 'UAA', 'UAR']:
                 l.append(ARNm[i:j])
@@ -46,6 +45,7 @@ def codons(ARNm):
     '''
     seq = start_to_stop(ARNm)
     l = []
+    print(seq)
 
     for i in range(len(seq)):
         amino_acids = []
@@ -134,3 +134,4 @@ def codons_v3(ARNm):
 
     res = "".join(l)
     return res
+

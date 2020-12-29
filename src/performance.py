@@ -3,6 +3,43 @@ import numpy as np
 import matplotlib.pyplot as plt
 from timeit import default_timer as timer
 from src.levenshtein import *
+import random
+import string
+
+STRINGS = 1
+NUMBERS = 1 << 1
+
+def arg_generator(N=10, stride=1, type=STRINGS, variant_arg_pos=[0], static_args=None):
+    args = []
+    total_nb_args = len(variant_arg_pos)
+
+    if static_args != None:
+        total_nb_args += len(static_args)
+
+    for i in range(0, N+1, stride):
+        arg = [None for _ in range(0, total_nb_args)]
+
+        for k in variant_arg_pos:
+            gen_arg = None
+            if type == (STRINGS | NUMBERS):
+                gen_arg = ''.join(random.choices(string.ascii_lowercase + string.digits, k=i))
+            elif type & STRINGS:
+                gen_arg = ''.join(random.choices(string.ascii_lowercase, k=i))
+            elif type & NUMBERS:
+                gen_arg = [ random.randint(0, 100) for _ in range(0, i) ]
+            arg[k] = gen_arg
+
+        if static_args != None:
+            static_arg_itr = 0
+            for j in range(0, total_nb_args):
+                if arg[j] == None:
+                    arg[j] = static_args[static_arg_itr]
+                    static_arg_itr += 1
+
+        args.append(arg)
+
+    return args
+
 
 def func_performance(func, args_arr, sizes, figure=True, sort_by=0):
     performance = []

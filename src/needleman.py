@@ -247,6 +247,8 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
     
     return output
 
+
+
 from Bio.Align import PairwiseAligner
 
 def nw_bio(seq1, seq2, cost_table):
@@ -263,48 +265,5 @@ def nw_bio(seq1, seq2, cost_table):
 
     return formated_alignments
 
-# from Bio import pairwise2
-
-# m = needleman_all("GAAT", "GGAT", [1, 0, 0])
-# for l in m:
-#     print(l)
-
-# print("--------------")
-
-# # https://biopython.org/docs/1.75/api/Bio.pairwise2.html
-
-# alignments = pairwise2.align.globalms("GAAT", "GGAT", 1, 0, 0, 0, force_generic=True)
-# formated_alignments = [ [ a[0], a[1], int(a[2]) ] for a in alignments ]
-# for l in formated_alignments:
-#     print(l)
-# print(sorted(m) == sorted(formated_alignments))
-
-
-#GAATTCAGTTA
-#GGATCGA
-# 1, 0, 0
-
-# matrix = {}
-# mat = [1, 2, 3, 1, 2, 3, 1, 2, 3, 0]
-# cle = "ABC"
-
-# m = needleman_all("ABC", "ABC", cost_mat=mat, key=cle)
-# for l in m:
-#     print(l)
-
-# print("------------------")
-
-# print(needleman("ABC", "ABC", cost_mat=mat, key=cle))
-
-# print("------------------")
-# letter_dict = { cle[i]: i for i in range(len(cle)) }
-
-# for i in range(0, len(cle)):
-#     for j in range(0, len(cle)):
-#         matrix[(cle[i], cle[j])] = mat[i * len(cle) + j]
-# print(matrix)
-
-# alignments = pairwise2.align.globaldx("ABC", "ABC", matrix)
-# formated_alignments = [ [ a[0], a[1], int(a[2]) ] for a in alignments ]
-# for l in formated_alignments:
-#     print(l)
+def needleman_all_mt():
+    pass
