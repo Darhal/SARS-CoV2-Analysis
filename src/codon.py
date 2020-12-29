@@ -112,7 +112,7 @@ def codons_v3(ARNm):
 
         Returns:
             List of the amino acids
-        '''
+    '''
     ARNm_ch = ''.join(ARNm)
     seq = start_to_stop(ARNm_ch)
     l = []

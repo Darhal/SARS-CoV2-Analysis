@@ -4,46 +4,14 @@ from src.codon import *
 
 TEST_CASES = [
     "UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUGGCUUCUCCUACUGCCUCCCCCACCGCAUCACCAACAGCGUCGCCGACGGAUUAUCAUAAUGACUACCACAACGAAUAACAAAAAGAGUAGCAGAAGGGUUGUCGUAGUGGCUGCCGCAGCGGAUGACGAAGAGGGUGGCGGAGGG",
+    "UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG",
+    "UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG",
+    "UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAUGUGUUGCUGAUAG",
 ]
 
 TEST_FASTA = [
     "./genome/sequences.fasta"
 ]
-
-
-def test_codon_v2():
-    for s in TEST_CASES:
-        # mul3 = len(s)
-        mul3 = (len(s) - len(s)%3)          # This is used to avoid an annoying warning in BioSeq library
-        assert codons_v2(s[:mul3]) == str(Seq.Seq(s[:mul3]).translate())
-    
-    for f in TEST_FASTA:
-        arn = fasta_to_genome(f)
-        # arn = arn[:(len(arn) - len(arn)%3)]
-        arn = arn[:(len(arn) - len(arn)%3)] # This is used to avoid an annoying warning in BioSeq library
-        assert codons_v2(arn) == str(Seq.Seq(arn).translate())
-
-
-def test_codons_v3():
-    assert codons_v3('UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG') == ''
-    assert codons_v3('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG') == 'MSSSSYY'
-    assert codons_v3('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAUGUGUUGCUGAUAG') == 'MSSSSYY' + 'MCC'
-
-
-def test_codons():
-    assert codons('UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG') == []
-    assert codons('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG') == ['MSSSSYY']
-    assert codons('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAUGUGUUGCUGAUAG') == ['MSSSSYY','MCC']
-
-
-def test_transcription():
-    for s in TEST_CASES:
-        assert transcription_complementaire(s) == str(Seq.Seq(s).transcribe())
-    
-    for f in TEST_FASTA:
-        arn = fasta_to_genome(f)
-        assert transcription_complementaire(arn) == str(Seq.Seq(arn).transcribe()) 
-
 
 def test_nb_nucl():
     for s in TEST_CASES:
@@ -62,6 +30,64 @@ def test_nb_nucl():
         assert dict["U"] == seq.count("U")
         assert dict["G"] == seq.count("G")
         assert dict["C"] == seq.count("C")
+
+def test_codon_v2():
+    for s in TEST_CASES:
+        # mul3 = len(s)
+        mul3 = (len(s) - len(s)%3)          # This is used to avoid an annoying warning in BioSeq library
+        assert codons_v2(s[:mul3]) == str(Seq.Seq(s[:mul3]).translate())
+    
+    for f in TEST_FASTA:
+        arn = fasta_to_genome(f)
+        # arn = arn[:(len(arn) - len(arn)%3)]
+        arn = arn[:(len(arn) - len(arn)%3)] # This is used to avoid an annoying warning in BioSeq library
+        assert codons_v2(arn) == str(Seq.Seq(arn).translate())
+
+def test_transcription():
+    for s in TEST_CASES:
+        assert transcription_complementaire(s) == str(Seq.Seq(s).transcribe())
+    
+    for f in TEST_FASTA:
+        arn = fasta_to_genome(f)
+        assert transcription_complementaire(arn) == str(Seq.Seq(arn).transcribe()) 
+
+def test_codons_v3_bio_seq():
+    for s in TEST_CASES:
+        fragments = s.split("AUG")[1:]
+        amino_acids = [ str(Seq.Seq("AUG"+f).translate(to_stop=True)) for f in fragments ]
+        ac = '*'.join(amino_acids)
+        assert codons_v3(s) == ac
+    
+    for f in TEST_FASTA:
+        arn = fasta_to_genome(f)
+        fragments = arn.split("AUG")[1:]
+        amino_acids = [ str(Seq.Seq("AUG"+f).translate(to_stop=True)) for f in fragments ]
+        ac = '*'.join(amino_acids)
+        assert codons_v3(arn) == ac
+
+def test_codons_bio_seq():
+    for s in TEST_CASES:
+        fragments = s.split("AUG")[1:]
+        amino_acids = [ str(Seq.Seq("AUG"+f).translate(to_stop=True)) for f in fragments ]
+        assert codons(s) == amino_acids
+    
+    for f in TEST_FASTA:
+        arn = fasta_to_genome(f)
+        fragments = arn.split("AUG")[1:]
+        amino_acids = [ str(Seq.Seq("AUG"+f).translate(to_stop=True)) for f in fragments ]
+        assert codons(arn) == amino_acids
+
+
+def test_codons_v3():
+    assert codons_v3('UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG') == ''
+    assert codons_v3('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG') == 'MSSSSYY'
+    assert codons_v3('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAUGUGUUGCUGAUAG') == 'MSSSSYY' + 'MCC'
+
+
+def test_codons():
+    assert codons('UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG') == []
+    assert codons('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG') == ['MSSSSYY']
+    assert codons('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAUGUGUUGCUGAUAG') == ['MSSSSYY','MCC']
 
 
 def test_start_to_stop():
