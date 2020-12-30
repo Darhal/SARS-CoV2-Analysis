@@ -45,7 +45,6 @@ def codons(ARNm):
     '''
     seq = start_to_stop(ARNm)
     l = []
-    print(seq)
 
     for i in range(len(seq)):
         amino_acids = []
