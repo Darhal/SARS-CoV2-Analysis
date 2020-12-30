@@ -6,11 +6,12 @@ def start_to_stop(ARNm):
     """Function that returns sequences of an ARNm from start to stop codons
 
     Args:
-        ARNm: ARN sequence string
+        ARNm: ARN sequence string or list
 
     Returns:
         List of valid sequences
     """
+    ARNm = ''.join(ARNm)
     length = len(ARNm)
     l = []
     i = 0
@@ -30,7 +31,6 @@ def start_to_stop(ARNm):
                 break
         else:
             i += 1
-
     return l
 
 
@@ -38,7 +38,7 @@ def codons(ARNm):
     '''Function that return the amino acids coded by the ARNm sequence
 
        Args:
-           ARNm: ARN sequence
+           ARNm: ARN sequence list or string
 
        Returns:
            List of the amino acids

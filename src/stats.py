@@ -61,12 +61,12 @@ def quartile(list, n):  # quartile(2,list) est la médiane
         return None
     if n not in [1, 2, 3]:
         return None
+    if n == 2:  # la médiane
+        return mediane(list)
 
     L = sorted(list)
     t = len(list)
 
-    if n == 2:  # la médiane
-        return mediane(list)
     if t % 4 == 0:
         if n == 1:
             return L[t//4 - 1]
