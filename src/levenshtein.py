@@ -17,14 +17,14 @@ def lev_rec(seq1, seq2):
         return len_seq1
 
     if seq1[0] == seq2[0]:
-        return lev(seq1[1:], seq2[1:])
+        return lev_rec(seq1[1:], seq2[1:])
     
     return 1 + min(
         min(
-            lev(seq1[1:], seq2), 
-            lev(seq1, seq2[1:])
+            lev_rec(seq1[1:], seq2), 
+            lev_rec(seq1, seq2[1:])
         ),
-        lev(seq1[1:], seq2[1:])
+        lev_rec(seq1[1:], seq2[1:])
     )
 
 
