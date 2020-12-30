@@ -88,6 +88,8 @@ def intervalle_interquartile(list):
     Returns:
         la valeur de l'invertalle interquartile (Q3-Q1) de la liste d'entrée
     '''
+    if not list:
+        return None
     return quartile(list, 3) - quartile(list, 1)
 
 
@@ -120,6 +122,8 @@ def ecart_type(list):
     Returns :
         l'écart-type' de la liste
     '''
+    if not list:
+        return None
     return math.sqrt(variance(list))
 
 #####################################
