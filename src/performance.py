@@ -94,7 +94,6 @@ def funcs_performance(funcs, args_arr, sizes, figure=True, tick_spacing=1, title
         for i in range(len(funcs)):
             ax.plot([ str(t[0]) for t in performance[i] ], [ t[1] for t in performance[i] ], label=f'{funcs[i].__name__} performance')
 
-        
         ax.set_xlabel('Argument (s) Size')                  # Add an x-label to the axes.
         ax.set_ylabel('Time (ms)')                          # Add a y-label to the axes.
         ax.set_title(title)                                 # Add a title to the axes.
@@ -105,3 +104,18 @@ def funcs_performance(funcs, args_arr, sizes, figure=True, tick_spacing=1, title
             plt.xticks(fontsize=9, rotation=90)
         plt.show()
     return performance
+
+def plot_multi_graph(graphs, legends, tick_spacing=1, title="Function Performance Comparison"):
+    plt.style.use('seaborn-whitegrid')
+    fig, ax = plt.subplots()
+    
+    for i in range(len(graphs)):
+        ax.plot([ str(t[0]) for t in graphs[i] ], [ t[1] for t in graphs[i] ], label=legends[i])
+    
+    ax.set_xlabel('Argument (s) Size')                  # Add an x-label to the axes.
+    ax.set_ylabel('Time (ms)')                          # Add a y-label to the axes.
+    ax.set_title(title)                                 # Add a title to the axes.
+    ax.xaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))
+    ax.legend()
+    plt.xticks(fontsize=9, rotation=90)
+    plt.show()

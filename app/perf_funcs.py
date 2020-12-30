@@ -27,13 +27,19 @@ nw_args = [
     for N in range(0, 50)
 ]
 
-nw_args = arg_generator(N=500, stride=5, type=STRINGS, samples=NUCLEOTIDES, variant_arg_pos=[0, 1], static_args=[[1, -1, -1]])
-average_args = arg_generator(N=1000, stride=5, type=NUMBERS, lower=3000, upper=10000, variant_arg_pos=[0])
-lev_args = arg_generator(N=100, stride=5, type=STRINGS, samples=NUCLEOTIDES, variant_arg_pos=[0, 1])
+# nw_args = arg_generator(N=500, stride=5, type=STRINGS, samples=NUCLEOTIDES, variant_arg_pos=[0, 1], static_args=[[1, -1, -1]])
+# average_args = arg_generator(N=1000, stride=5, type=NUMBERS, lower=3000, upper=10000, variant_arg_pos=[0])
+# lev_args = arg_generator(N=100, stride=5, type=STRINGS, samples=NUCLEOTIDES, variant_arg_pos=[0, 1])
 
-func_performance(needleman, args_arr=nw_args, sizes=[0], tick_spacing=10)
-func_performance(moyenne, args_arr=average_args, sizes=[0], sort_by=0, tick_spacing=10)
-funcs_performance([ lev_rec, lev_dp, lev ], args_arr=lev_args, sizes=[0])
+# func_performance(needleman, args_arr=nw_args, sizes=[0], tick_spacing=10)
+# func_performance(moyenne, args_arr=average_args, sizes=[0], sort_by=0, tick_spacing=10)
+# funcs_performance([ lev_rec, lev_dp, lev ], args_arr=lev_args, sizes=[0])
 
-# func_performance(lev, args_arr=lev_args, sizes=[0], sort_by=1)
-# funcs_performance([needleman_all], args_arr=nw_args, sizes=[0])
+
+perf_graph = []
+quart_args = arg_generator(N=100000, stride=100, type=NUMBERS, lower=3000, upper=10000, variant_arg_pos=[0], static_args=[1])
+perf_graph.append(func_performance(quartile, args_arr=quart_args, sizes=[0], sort_by=0, figure=False))
+for arg in quart_args:
+    arg[1] = 3 # n de quartile
+perf_graph.append(func_performance(quartile, args_arr=quart_args, sizes=[0], sort_by=0, figure=False))
+plot_multi_graph(perf_graph, ["quart1", "quart3"], tick_spacing=20)
