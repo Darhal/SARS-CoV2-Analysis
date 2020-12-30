@@ -29,10 +29,10 @@ nw_args = [
 
 nw_args = arg_generator(N=500, stride=5, type=STRINGS, samples=NUCLEOTIDES, variant_arg_pos=[0, 1], static_args=[[1, -1, -1]])
 average_args = arg_generator(N=1000, stride=5, type=NUMBERS, lower=3000, upper=10000, variant_arg_pos=[0])
-lev_args = arg_generator(N=500, stride=5, type=STRINGS, samples=NUCLEOTIDES, variant_arg_pos=[0, 1])
+lev_args = arg_generator(N=100, stride=5, type=STRINGS, samples=NUCLEOTIDES, variant_arg_pos=[0, 1])
 
-func_performance(needleman, args_arr=nw_args, sizes=[0])
-func_performance(moyenne, args_arr=average_args, sizes=[0], sort_by=0)
+func_performance(needleman, args_arr=nw_args, sizes=[0], tick_spacing=10)
+func_performance(moyenne, args_arr=average_args, sizes=[0], sort_by=0, tick_spacing=10)
 funcs_performance([ lev_rec, lev_dp, lev ], args_arr=lev_args, sizes=[0])
 
 # func_performance(lev, args_arr=lev_args, sizes=[0], sort_by=1)

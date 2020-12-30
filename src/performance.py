@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from timeit import default_timer as timer
 from src.levenshtein import *
+import matplotlib.ticker as ticker
 import random
 import string
 
@@ -41,7 +42,7 @@ def arg_generator(N=10, stride=1, type=STRINGS, variant_arg_pos=[0], static_args
     return args
 
 
-def func_performance(func, args_arr, sizes, figure=True, sort_by=0):
+def func_performance(func, args_arr, sizes, figure=True, sort_by=0, tick_spacing=1):
     performance = []
 
     for args in args_arr:
@@ -64,12 +65,13 @@ def func_performance(func, args_arr, sizes, figure=True, sort_by=0):
         ax.set_xlabel('Argument (s) Size')                  # Add an x-label to the axes.
         ax.set_ylabel('Time (ms)')                          # Add a y-label to the axes.
         ax.set_title(f"'{func.__name__}' Performance")      # Add a title to the axes.
+        ax.xaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))
         if len(args_arr) > 70:
-            plt.xticks(fontsize=(9/len(args_arr))*100, rotation=90)
+            plt.xticks(fontsize=9, rotation=90)
         plt.show()
     return performance
 
-def funcs_performance(funcs, args_arr, sizes, figure=True, title="Function Performance Comparison"):
+def funcs_performance(funcs, args_arr, sizes, figure=True, tick_spacing=1, title="Function Performance Comparison"):
     performance = [ [] for _ in range(len(funcs))]
     for i in range(len(funcs)):
         for args in args_arr:
@@ -92,11 +94,14 @@ def funcs_performance(funcs, args_arr, sizes, figure=True, title="Function Perfo
         for i in range(len(funcs)):
             ax.plot([ str(t[0]) for t in performance[i] ], [ t[1] for t in performance[i] ], label=f'{funcs[i].__name__} performance')
 
+        
         ax.set_xlabel('Argument (s) Size')                  # Add an x-label to the axes.
         ax.set_ylabel('Time (ms)')                          # Add a y-label to the axes.
         ax.set_title(title)                                 # Add a title to the axes.
+        ax.xaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))
         ax.legend()
+
         if len(args_arr) > 70:
-            plt.xticks(fontsize=(9/len(args_arr))*100, rotation=90)
+            plt.xticks(fontsize=9, rotation=90)
         plt.show()
     return performance
