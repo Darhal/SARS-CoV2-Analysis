@@ -1,4 +1,5 @@
 from Bio import SeqIO
+from src.globals import *
 
 def bank_sequences(n):
     '''Fonction qui donne un échantillon (une liste) de séquence de taille n qu'il récupère
@@ -48,11 +49,9 @@ def bank_sequences_rec(n):
     def recursion(S, echantillon, k):
         if k == n:
             return echantillon
-
         elif not S:
             print(k)
             return echantillon
-
         else:
             for i in 'RYSWKMBDHVN':
                 if i in S[0]:
@@ -204,7 +203,6 @@ def meme_taille(l1, l2):
         diff = length2 - length1
         ext = [''] * diff
         l1 = l1 + ext
-
     elif length1 > length2:
         diff = length1 - length2
         ext = [''] * diff

@@ -27,10 +27,12 @@ def func_performance(func, args_arr, sizes, figure=True, sort_by=0):
         ax.set_xlabel('Argument (s) Size')                  # Add an x-label to the axes.
         ax.set_ylabel('Time (ms)')                          # Add a y-label to the axes.
         ax.set_title(f"'{func.__name__}' Performance")      # Add a title to the axes.
+        if len(args_arr) > 70:
+            plt.xticks(fontsize=(9/len(args_arr))*100, rotation=90)
         plt.show()
     return performance
 
-def funcs_performance(funcs, args_arr, sizes, figure=True, title="Functions Performance Comparison"):
+def funcs_performance(funcs, args_arr, sizes, figure=True, title="Function Performance Comparison"):
     performance = [ [] for _ in range(len(funcs))]
     for i in range(len(funcs)):
         for args in args_arr:
