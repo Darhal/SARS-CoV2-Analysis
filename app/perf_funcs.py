@@ -27,7 +27,11 @@ nw_args = [
     for N in range(0, 50)
 ]
 
-func_performance(moyenne, args_arr=moyenne_args, sizes=[0], sort_by=0)
+nw_args = arg_generator(N=30, stride=1, type=STRINGS, variant_arg_pos=[0, 1], static_args=[[1, -1, -1], "ABC"])
+func_performance(needleman, args_arr=nw_args, sizes=[0])
+
+
+# func_performance(moyenne, args_arr=moyenne_args, sizes=[0], sort_by=0)
 
 # func_performance(lev, args_arr=lev_args, sizes=[0], sort_by=1)
 # funcs_performance([lev_rec, lev_dp, lev], args_arr=lev_args, sizes=[0])

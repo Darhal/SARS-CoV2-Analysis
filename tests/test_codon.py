@@ -11,6 +11,25 @@ TEST_FASTA = [
 ]
 
 
+def test_nb_nucl():
+    for s in TEST_CASES:
+        dict = nombre_elements(s, NUCLEOTIDES)
+        seq = Seq.Seq(s)
+        assert dict["A"] == seq.count("A")
+        assert dict["U"] == seq.count("U")
+        assert dict["G"] == seq.count("G")
+        assert dict["C"] == seq.count("C")
+    
+    for f in TEST_FASTA:
+        arn = fasta_to_genome(f)
+        dict = nombre_elements(arn, NUCLEOTIDES)
+        seq = Seq.Seq(arn)
+        assert dict["A"] == seq.count("A")
+        assert dict["U"] == seq.count("U")
+        assert dict["G"] == seq.count("G")
+        assert dict["C"] == seq.count("C")
+
+
 def test_codon_v2():
     for s in TEST_CASES:
         # mul3 = len(s)
@@ -45,23 +64,31 @@ def test_transcription():
         assert transcription_complementaire(arn) == str(Seq.Seq(arn).transcribe()) 
 
 
-def test_nb_nucl():
+def test_codons_v3_bio_seq():
     for s in TEST_CASES:
-        dict = nombre_elements(s, NUCLEOTIDES)
-        seq = Seq.Seq(s)
-        assert dict["A"] == seq.count("A")
-        assert dict["U"] == seq.count("U")
-        assert dict["G"] == seq.count("G")
-        assert dict["C"] == seq.count("C")
+        fragments = s.split("AUG")[1:]
+        amino_acids = [ str(Seq.Seq("AUG"+f).translate(to_stop=True)) for f in fragments ]
+        ac = '*'.join(amino_acids)
+        assert codons_v3(s) == ac
     
     for f in TEST_FASTA:
         arn = fasta_to_genome(f)
-        dict = nombre_elements(arn, NUCLEOTIDES)
-        seq = Seq.Seq(arn)
-        assert dict["A"] == seq.count("A")
-        assert dict["U"] == seq.count("U")
-        assert dict["G"] == seq.count("G")
-        assert dict["C"] == seq.count("C")
+        fragments = arn.split("AUG")[1:]
+        amino_acids = [ str(Seq.Seq("AUG"+f).translate(to_stop=True)) for f in fragments ]
+        ac = '*'.join(amino_acids)
+        assert codons_v3(arn) == ac
+
+def test_codons_bio_seq():
+    for s in TEST_CASES:
+        fragments = s.split("AUG")[1:]
+        amino_acids = [ str(Seq.Seq("AUG"+f).translate(to_stop=True)) for f in fragments ]
+        assert codons(s) == amino_acids
+    
+    for f in TEST_FASTA:
+        arn = fasta_to_genome(f)
+        fragments = arn.split("AUG")[1:]
+        amino_acids = [ str(Seq.Seq("AUG"+f).translate(to_stop=True)) for f in fragments ]
+        assert codons(arn) == amino_acids
 
 
 def test_start_to_stop():
