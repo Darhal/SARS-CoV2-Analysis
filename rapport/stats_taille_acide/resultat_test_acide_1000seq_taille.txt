@@ -1,0 +1,2 @@
+perform_all_stats_taille(codons_echantillon(fasta_to_genome("./genome/1000_sequences.fasta")))
+{'moy': 9612.965, 'med': 9617.0, 'ecartt': 11.420673141282043, 'var': 130.43177500000104, 'quart1': 9615, 'quart3': 9617, 'int_quart': 2}
