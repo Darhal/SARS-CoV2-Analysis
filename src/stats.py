@@ -120,7 +120,7 @@ def ecart_type(list):
         list : liste de valeurs
 
     Returns :
-        l'écart-type' de la liste
+        l'écart-type de la liste
     '''
     if not list:
         return None
