@@ -27,8 +27,11 @@ nw_args = [
     for N in range(0, 50)
 ]
 
-nw_args = arg_generator(N=30, stride=1, type=STRINGS, variant_arg_pos=[0, 1], static_args=[[1, -1, -1], "ABC"])
-func_performance(needleman, args_arr=nw_args, sizes=[0])
+nw_args = arg_generator(N=3, stride=1, type=STRINGS, samples=NUCLEOTIDES, variant_arg_pos=[0, 1], static_args=[[1, -1, -1]])
+print(nw_args)
+average_args = arg_generator(N=3, stride=1, type=NUMBERS, lower=0, upper=100, variant_arg_pos=[0])
+print(average_args)
+#func_performance(needleman, args_arr=nw_args, sizes=[0])
 
 
 # func_performance(moyenne, args_arr=moyenne_args, sizes=[0], sort_by=0)
