@@ -5,7 +5,7 @@ from src.levenshtein import *
 arns = fasta_to_genome("genome/200_sequences.fasta")
 
 
-####################### TAILLE #######################
+####################### TAILLE DE L'ARNm #######################
 stats_taille = perform_all_stats_taille(fasta_to_genome("./genome/200_sequences.fasta"))
 
 print(f"Moyenne: {stats_taille['moy']}")
@@ -86,3 +86,12 @@ print(perform_all_stats(codons_echantillon(fasta_to_genome("./genome/dix_sequenc
 # print(perform_all_stats(codons_echantillon(fasta_to_genome("./genome/1000_sequences_janvier_avril_2020.fasta")), AMINO_ACIDS))
 # print(perform_all_stats(codons_echantillon(fasta_to_genome("./genome/10000_sequences.fasta")), AMINO_ACIDS))
 # print(perform_all_stats(codons_echantillon(fasta_to_genome("./genome/10000_sequences_janvier_aout_2020.fasta")), AMINO_ACIDS))
+
+
+###################### STATS TAILLE DE CODONS SARS-COV2 ######################
+print(perform_all_stats_taille(codons_echantillon(fasta_to_genome("./genome/dix_sequences.fasta"))))
+# print(perform_all_stats_taille(fasta_to_genome("./genome/200_sequences.fasta")))
+# print(perform_all_stats_taille(fasta_to_genome("./genome/1000_sequences.fasta")))
+# print(perform_all_stats_taille(fasta_to_genome("./genome/1000_sequences_janvier_avril_2020.fasta")))
+# print(perform_all_stats_taille(fasta_to_genome("./genome/10000_sequences.fasta")))
+# print(perform_all_stats_taille(fasta_to_genome("./genome/10000_sequences_janvier_aout_2020.fasta")))
