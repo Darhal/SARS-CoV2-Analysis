@@ -1,3 +1,5 @@
+# Answer to question Q8, animated execution of needleman and the construction of the alignement
+
 import os
 from time import sleep
 from src.needleman import *
