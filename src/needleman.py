@@ -255,7 +255,6 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
     return output
 
 
-
 from Bio.Align import PairwiseAligner
 
 def nw_bio(seq1, seq2, cost_table):
