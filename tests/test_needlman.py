@@ -2,6 +2,7 @@ import pytest
 from src.needleman import *
 from collections import * 
 from Bio import pairwise2
+from src.globals import *
 
 # Test cases for needleman (Q7)
 TEST_CASES_V1 = [
@@ -10,8 +11,8 @@ TEST_CASES_V1 = [
     [ "ATCGGAG", "ATGGCAA",  [1, -1, -1] ],
     [ "AUUGGAAUUCCCG", "UUGGUUCCG",  [1, -1, 0] ],
     [ "NNKKYYYRNYYKGAA", "NNAKYYRNYYKGA",  [2, -5, -10] ],
-    [ "31415", "31017",  [1, 0, 0] ],
-    [ "HOTDOG", "HOTCAT",  [0, 0, 0] ],
+    #[ "31415", "31017",  [1, 0, 0] ],
+    #[ "HOTDOG", "HOTCAT",  [0, 0, 0] ],
 ]
 
 # Test cases for needleman all (both versions) (Q9/Q7)
@@ -22,15 +23,16 @@ TEST_CASES_V2 = [
     [ "GAAT", "GGAT", [1, 0, 0] ],
     ["AUUGGAAUUCCCG", "UUGGUUCCG", [1, -1, 0]],
     ["NNKKYYYRNYYKGAA", "NNAKYYRNYYKGA", [2, -5, -10]],
-    ["31415", "31017", [1, 0, 0]],
-    ["HOTDOG", "HOTCAT", [0, 0, 0]],
+    # ["31415", "31017", [1, 0, 0]],
+    # ["HOTDOG", "HOTCAT", [0, 0, 0]],
 ]
 
 TEST_CASES_V3 = [
     [ "ABC", "ABC", [1, 2, 3, 1, 2, 3, 1, 2, 3, 0], "ABC" ],
-    ["AUUGGAAUUCCCG", "UUGGUUCCG", [5, 4, 3, 2, 2, 3, 4, 5, 9, 8, 7, 6, 6, 7, 8, 9, 10], NUCLEOTIDES],
-    ["NNKKYYYRNYYKGAA", "NNAKYYRNYYKGA", [5, 4, 3, 2, 2, 3, 4, 5, 9, 8, 7, 6, 6, 7, 8, 9, 5, 4, 3, 2, 2, 3, 4, 5, 9, 8, 7, 6, 6, 7, 8, 9, 0, 0, 0, 0, "AGKNRY"],
-    ["31415", "31017", [5, 4, 3, 2, 2, 3, 4, 5, 9, 8, 7, 6, 6, 7, 8, 9, 4, 5, 6, 7, 7, 6, 5, 4, 0, 5, 7, 10, 20, 1, 2, 4, 2, 3, 8, 9,-1], "013457"],
+    # ["NGNYGG", "NNYGG", [1, 2, 3, 2, 0, 3, 0, 0, 0, -2], "NYG"],
+    # ["AUUGGAAUUCCCG", "UUGGUUCCG", [5, 4, 3, 2, 2, 3, 4, 5, 9, 8, 7, 6, 6, 7, 8, 9, -10], NUCLEOTIDES],
+    # ["NNKKYYYRNYYKGAA", "NNAKYYRNYYKGA", [5, 4, 3, 2, 2, 3, 4, 5, 9, 8, 7, 6, 6, 7, 8, 9, 5, 4, 3, 2, 2, 3, 4, 5, 9, 8, 7, 6, 6, 7, 8, 9, 0, 0, 0, 0, -1], "AGKNRY"],
+    # ["31415", "31017", [5, 4, 3, 2, 2, 3, 4, 5, 9, 8, 7, 6, 6, 7, 8, 9, 4, 5, 6, 7, 7, 6, 5, 4, 0, 5, 7, 10, 20, 1, 2, 4, 2, 3, 8, 9,-1], "013457"],
 ]
 
 def test_needlman():

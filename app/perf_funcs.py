@@ -41,12 +41,12 @@ nw_args = [
 # funcs_performance([ lev_rec, lev_dp, lev ], args_arr=lev_args, sizes=[0])
 
 ###################### MOYENNE ######################
-average_args = arg_generator(N=100000, stride=150, type=NUMBERS, lower=1000, upper=100000, variant_arg_pos=[0])
+average_args = arg_generator(N=100000, stride=150, type=NUMBERS, lower=1000, upper=100000, variant_arg_pos=[0])[1:]
 func_performance(moyenne, args_arr=average_args, sizes=[0], tick_spacing=100)
 
 
 ###################### MEDIANE ######################
-median_args = arg_generator(N=100000, stride=100, type=NUMBERS, lower=1000, upper=100000, variant_arg_pos=[0])
+median_args = arg_generator(N=100000, stride=100, type=NUMBERS, lower=1000, upper=100000, variant_arg_pos=[0])[1:]
 func_performance(mediane, args_arr=median_args, sizes=[0], tick_spacing=25)
 
 
@@ -61,20 +61,29 @@ plot_multi_graph(perf_graph, ["quart1", "quart3"], tick_spacing=20)
 
 
 ###################### PROPORTION ######################
-prop_args = arg_generator(N=100000, stride=100, type=STRINGS, samples=NUCLEOTIDES, variant_arg_pos=[0], static_args=[NUCLEOTIDES])
+prop_args = arg_generator(N=100000, stride=100, type=STRINGS, samples=NUCLEOTIDES, variant_arg_pos=[0], static_args=[NUCLEOTIDES])[1:]
 func_performance(proportions, args_arr=prop_args, sizes=[0], tick_spacing=25)
 
 
 ###################### VARIANCE ######################
-variance_args = arg_generator(N=100000, stride=100, type=NUMBERS, lower=1000, upper=100000, variant_arg_pos=[0])
+variance_args = arg_generator(N=100000, stride=100, type=NUMBERS, lower=1000, upper=100000, variant_arg_pos=[0])[1:]
 func_performance(variance, args_arr=variance_args, sizes=[0], tick_spacing=25)
 
 
 ###################### ECART-TYPE ######################
-ecatt_args = arg_generator(N=100000, stride=100, type=NUMBERS, lower=1000, upper=100000, variant_arg_pos=[0])
+ecatt_args = arg_generator(N=100000, stride=100, type=NUMBERS, lower=1000, upper=100000, variant_arg_pos=[0])[1:]
 func_performance(ecart_type, args_arr=ecatt_args, sizes=[0], tick_spacing=25)
 
 
-###################### ECART-TYPE ######################
-interquart_args = arg_generator(N=100000, stride=100, type=NUMBERS, lower=1000, upper=100000, variant_arg_pos=[0])
+###################### INTERQUARTILE ######################
+interquart_args = arg_generator(N=100000, stride=100, type=NUMBERS, lower=1000, upper=100000, variant_arg_pos=[0])[1:]
 func_performance(intervalle_interquartile, args_arr=interquart_args, sizes=[0], tick_spacing=25)
+
+
+###################### CODONS ######################
+
+
+###################### LEVENSHTEIN ######################
+
+
+###################### NEEDLEMAN ######################
