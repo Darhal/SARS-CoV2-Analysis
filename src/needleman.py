@@ -264,6 +264,3 @@ def nw_bio(seq1, seq2, cost_table):
         formated_alignments.append([als[0], als[2], int(alignments[i].score)])
 
     return formated_alignments
-
-def needleman_all_mt():
-    pass
