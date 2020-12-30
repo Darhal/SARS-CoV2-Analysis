@@ -142,14 +142,14 @@ def proportions(sequence, sampler):
     '''
 
     dico_nombre_elements = nombre_elements(sequence, sampler)
-    nombre_total_elements = total_elements(sequence)
-    if nombre_total_elements == 0:
+    taille = len(sequence)
+    if taille == 0:
         return {s: 0 for s in sampler}
     
     dico_proportions = {}
     
     for element in dico_nombre_elements:
-        dico_proportions[element] = dico_nombre_elements[element] / nombre_total_elements
+        dico_proportions[element] = dico_nombre_elements[element] / taille
 
     return dico_proportions
 

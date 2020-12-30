@@ -27,13 +27,6 @@ def test_fasta_to_genome():
                                                                   'AAGGUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUC']
 
 
-def test_total_elements():
-    assert total_elements('ACU') == 3
-    assert total_elements('ACUCU') == 5
-    assert total_elements([]) == 0
-    assert total_elements('AUUAAAGGTTTATACCTTCCCAGGTAACAAACCAAC') == len('AUUAAAGGTTTATACCTTCCCAGGTAACAAACCAAC')
-
-
 def test_taille_ensemble():
     assert taille_ensemble([[1, 2, 3, 4, 5], [4, 5, 6, 5, 6, 8, 0, 'a'], ['a', 'b1', 123, 147, 000], [], [''], [1]]) == [5, 8, 5, 0, 1, 1]
     assert taille_ensemble([]) == []
