@@ -1,4 +1,4 @@
-def needleman(seq1, seq2, cost_table = None, cost_mat = None, key = None):
+def needleman(seq1, seq2, cost_table = None, cost_mat = None, key = None, verbose = False):
     '''Function that calculates the global alignement of two sequences
     
     Args:
@@ -73,6 +73,8 @@ def needleman(seq1, seq2, cost_table = None, cost_mat = None, key = None):
     coord = (len_seq2, len_seq1)
     output_seq1 = ""
     output_seq2 = ""
+    coord_path = []
+    coord_path.append(coord)
 
     while coord != (0, 0):
         if coord[0] == 0:
@@ -101,7 +103,12 @@ def needleman(seq1, seq2, cost_table = None, cost_mat = None, key = None):
                 output_seq1 = '-' + output_seq1
                 output_seq2 = seq2[highest_neighbour[0]] + output_seq2
             coord = highest_neighbour
-    return [ output_seq1, output_seq2, alignement_mat[len_seq2][len_seq1] ]
+        coord_path.append(coord)
+
+    if not verbose:
+        return [ output_seq1, output_seq2, alignement_mat[len_seq2][len_seq1] ]
+    else:
+        return [ output_seq1, output_seq2, alignement_mat[len_seq2][len_seq1] ], alignement_mat, coord_path
 
 
 def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
@@ -264,6 +271,3 @@ def nw_bio(seq1, seq2, cost_table):
         formated_alignments.append([als[0], als[2], int(alignments[i].score)])
 
     return formated_alignments
-
-def needleman_all_mt():
-    pass
