@@ -61,12 +61,12 @@ def quartile(list, n):  # quartile(2,list) est la médiane
         return None
     if n not in [1, 2, 3]:
         return None
+    if n == 2:  # la médiane
+        return mediane(list)
 
     L = sorted(list)
     t = len(list)
 
-    if n == 2:  # la médiane
-        return mediane(list)
     if t % 4 == 0:
         if n == 1:
             return L[t//4 - 1]
@@ -88,6 +88,8 @@ def intervalle_interquartile(list):
     Returns:
         la valeur de l'invertalle interquartile (Q3-Q1) de la liste d'entrée
     '''
+    if not list:
+        return None
     return quartile(list, 3) - quartile(list, 1)
 
 
@@ -120,6 +122,8 @@ def ecart_type(list):
     Returns :
         l'écart-type' de la liste
     '''
+    if not list:
+        return None
     return math.sqrt(variance(list))
 
 #####################################
