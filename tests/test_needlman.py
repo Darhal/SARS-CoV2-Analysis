@@ -13,7 +13,7 @@ from src.performance import *
 # TOTAL_TESTS_PER_FUNCTION = FUNC_RUNS * EPOCHS
 EPOCHS = 10         # How many times we test iterations we should run per function
 NW_RUNS = 10        # How many arguments we will generate per epoch for needleman (fast)
-NW_ALL_RUNS = 8    # How many arguments we will generate per epoch for needleman_all (slow)
+NW_ALL_RUNS = 6     # How many arguments we will generate per epoch for needleman_all (slow)
 
 # Test cases for needleman all (both versions) (Q9/Q7)
 TEST_CASES_NORMAL = [
@@ -89,7 +89,8 @@ def test_needleman_random_gen():
     for _ in range(0, EPOCHS) :
         #----------- Generating random arguments -----------
         cost_table = [ random.randint(-10, 10), random.randint(-10, 0), random.randint(-10, 0) ]
-        args = arg_generator(N=NW_RUNS, stride=1, type=STRINGS, variant_arg_pos=[0, 1], static_args=[cost_table], start=1)
+        args = arg_generator(N=NW_RUNS, stride=1, type=STRINGS, variant_arg_pos=[0, 1], static_args=[cost_table], start=1,
+                    same_size=False, lower=NW_RUNS/2, upper=NW_RUNS)
         for arg in args:
             #------------------ Test ------------------
             assert needleman(*arg) in nw_bio_generic(*arg)
@@ -98,7 +99,8 @@ def test_needleman_all_random_gen():
     for _ in range(0, EPOCHS) :
         #----------- Generating random arguments -----------
         cost_table = [ random.randint(-10, 10), random.randint(-10, 0), random.randint(-10, 0) ]
-        args = arg_generator(N=NW_ALL_RUNS, stride=1, type=STRINGS, variant_arg_pos=[0, 1], static_args=[cost_table], start=1)
+        args = arg_generator(N=NW_ALL_RUNS, stride=1, type=STRINGS, variant_arg_pos=[0, 1], static_args=[cost_table], start=1,
+                    same_size=False, lower=NW_ALL_RUNS/2, upper=NW_ALL_RUNS)
         for arg in args:
             #------------------ Test ------------------
             assert sorted(needleman_all(*arg)) == sorted(nw_bio_generic(*arg))
@@ -108,7 +110,8 @@ def test_needleman_mat_random_gen():
         #----------- Generating random arguments -----------
         key = ''.join(list(set(random.choices(string.ascii_lowercase, k=i+2))))
         cost_mat = [ random.randint(-10, 10) for _ in range(len(key) ** 2 + 1) ]
-        args = arg_generator(N=NW_RUNS, stride=1, type=STRINGS, samples=key, variant_arg_pos=[0, 1], static_args=[None, cost_mat, key], start=1)
+        args = arg_generator(N=NW_RUNS, stride=1, type=STRINGS, samples=key, variant_arg_pos=[0, 1], static_args=[None, cost_mat, key], 
+                    start=1, same_size=False, lower=NW_RUNS/2, upper=NW_RUNS)
         for arg in args:
             #------------------ Test ------------------
             assert needleman(*arg) in nw_bio_generic(*arg)
@@ -118,7 +121,8 @@ def test_needleman_mat_all_random_gen():
         #----------- Generating random arguments -----------
         key = ''.join(list(set(random.choices(string.ascii_lowercase, k=i+2))))
         cost_mat = [ random.randint(-10, 10) for _ in range(len(key) ** 2 + 1) ]
-        args = arg_generator(N=NW_ALL_RUNS, stride=1, type=STRINGS, samples=key, variant_arg_pos=[0, 1], static_args=[None, cost_mat, key], start=1)
+        args = arg_generator(N=NW_ALL_RUNS, stride=1, type=STRINGS, samples=key, variant_arg_pos=[0, 1],static_args=[None, cost_mat, key], 
+                    start=1, same_size=False, lower=NW_ALL_RUNS/2, upper=NW_ALL_RUNS)
         for arg in args:
             #------------------ Test ------------------
             assert sorted(needleman_all(*arg)) == sorted(nw_bio_generic(*arg))

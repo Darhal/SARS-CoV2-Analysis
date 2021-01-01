@@ -229,7 +229,7 @@ def test_gen_variance():
             #------------------ Test ------------------
             assert abs(variance(*arg) - np.var(*arg)) <= 0.01 # we will do this due to precision error
 
-def test_ecart_type():
+def test_gen_ecart_type():
     for _ in range(0, EPOCHS) :
         #----------- Generating random arguments -----------
         args = arg_generator(N=STD_RUNS, stride=1, type=NUMBERS, lower=random.randint(-10000, 0), upper=random.randint(0, 10000), start=1)
