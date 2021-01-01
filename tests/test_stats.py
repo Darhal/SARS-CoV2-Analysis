@@ -1,8 +1,21 @@
 import pytest
+from numpy.lib.scimath import sqrt
 import numpy as np
-# import statistics as st
-
 from src.stats import *
+
+# used to generate bunch of random arguments for testing
+from src.performance import * 
+
+# Settings for randomly generated arguments tests
+# If you want tests to run quickly then you should modify these 
+# you can also set EPOCHS to 0 to completely turn them off:
+# TOTAL_TESTS_PER_FUNCTION = FUNC_RUNS * EPOCHS
+EPOCHS      = 100    # How many times we test iterations we should run per function
+MOY_RUNS    = 100    # How many arguments we will generate per epoch for moyenne
+MED_RUNS    = 100    # How many arguments we will generate per epoch for mediane
+QUART_RUNS  = 100    # How many arguments we will generate per epoch for quartile
+VAR_RUNS    = 100    # How many arguments we will generate per epoch for variance
+STD_RUNS    = 100    # How many arguments we will generate per epoch for ecart_type
 
 def test_moyenne(): # on n'a pas test les chaînes de caractère, ou des lites qui n'ont pas comme éléments des nombres
     assert moyenne([1, 2, 3]) == 2
@@ -169,3 +182,57 @@ def test_perform_all_stats():
                                                                                                    'quart1': {'A': 16, 'U': 19, 'G': 6, 'C': 15},
                                                                                                    'quart3': {'A': 18, 'U': 20, 'G': 8, 'C': 17},
                                                                                                    'int_quart': {'A': 2, 'U': 1, 'G': 2, 'C': 2}}
+
+
+############################################################
+###################  THE ULTIMATE TEST!  ###################
+# we will test wide variety of statistical functions with
+# random generated arguments and compare them to NumPy
+############################################################
+
+def test_gen_moy():
+    for _ in range(0, EPOCHS) :
+        #----------- Generating random arguments -----------
+        args = arg_generator(N=MOY_RUNS, stride=1, type=NUMBERS, lower=random.randint(-10000, 0), upper=random.randint(0, 10000), start=1)
+        for arg in args:
+            #------------------ Test ------------------
+            assert moyenne(*arg) == np.mean(*arg) 
+
+def test_gen_mediane():
+    for _ in range(0, EPOCHS) :
+        #----------- Generating random arguments -----------
+        args = arg_generator(N=MED_RUNS, stride=1, type=NUMBERS, lower=random.randint(-10000, 0), upper=random.randint(0, 10000), start=1)
+        for arg in args:
+            #------------------ Test ------------------
+            assert mediane(*arg) == np.median(*arg)
+
+def test_gen_quartile():
+    for _ in range(0, EPOCHS) :
+        #----------- Generating random arguments -----------
+        args = arg_generator(N=QUART_RUNS, stride=1, type=NUMBERS, lower=random.randint(-10000, 0), upper=random.randint(0, 10000), start=1)
+        for arg in args:
+            #------------------ Test ------------------
+            quart = random.randint(1, 3)
+            inter = "higher"
+            if quart == 1:
+                inter="lower"
+            if quart == 2:
+                assert quartile(arg[0], quart) == np.median(arg[0])
+            else:
+                assert quartile(arg[0], quart) == np.quantile(arg[0], quart/4, interpolation=inter)
+
+def test_gen_variance():
+    for _ in range(0, EPOCHS) :
+        #----------- Generating random arguments -----------
+        args = arg_generator(N=VAR_RUNS, stride=1, type=NUMBERS, lower=random.randint(-10000, 0), upper=random.randint(0, 10000), start=1)
+        for arg in args:
+            #------------------ Test ------------------
+            assert abs(variance(*arg) - np.var(*arg)) <= 0.01 # we will do this due to precision error
+
+def test_ecart_type():
+    for _ in range(0, EPOCHS) :
+        #----------- Generating random arguments -----------
+        args = arg_generator(N=STD_RUNS, stride=1, type=NUMBERS, lower=random.randint(-10000, 0), upper=random.randint(0, 10000), start=1)
+        for arg in args:
+            #------------------ Test ------------------
+            assert abs(ecart_type(*arg) - sqrt(np.var(*arg))) <= 0.01 # we will do this due to precision error

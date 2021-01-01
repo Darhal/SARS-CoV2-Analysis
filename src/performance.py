@@ -10,14 +10,14 @@ import string
 STRINGS = 1
 NUMBERS = 1 << 1
 
-def arg_generator(N=10, stride=1, type=STRINGS, variant_arg_pos=[0], static_args=None, samples=string.ascii_lowercase, lower=0, upper=100):
+def arg_generator(N=10, stride=1, type=STRINGS, variant_arg_pos=[0], static_args=None, samples=string.ascii_lowercase, lower=0, upper=100, start=0):
     args = []
     total_nb_args = len(variant_arg_pos)
 
     if static_args != None:
         total_nb_args += len(static_args)
 
-    for i in range(0, N+1, stride):
+    for i in range(start, N+1, stride):
         arg = [None for _ in range(0, total_nb_args)]
 
         for k in variant_arg_pos:

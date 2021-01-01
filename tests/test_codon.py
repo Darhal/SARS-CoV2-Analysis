@@ -2,6 +2,18 @@ from Bio import Seq
 from src.stats import *
 from src.codon import *
 
+# used to generate bunch of random arguments for testing
+from src.performance import * 
+
+# Settings for randomly generated arguments tests
+# If you want tests to run quickly then you should modify these 
+# you can also set EPOCHS to 0 to completely turn them off:
+# TOTAL_TESTS_PER_FUNCTION = FUNC_RUNS * EPOCHS
+EPOCHS           = 100    # How many times we test iterations we should run per function
+CODONS_RUNS      = 100    # How many arguments we will generate per epoch for codons
+CODONSV2_RUNS    = 100    # How many arguments we will generate per epoch for codons_v2
+CODONSV3_RUNS    = 100    # How many arguments we will generate per epoch for codons_v3
+
 TEST_CASES = [
     "UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUGGCUUCUCCUACUGCCUCCCCCACCGCAUCACCAACAGCGUCGCCGACGGAUUAUCAUAAUGACUACCACAACGAAUAACAAAAAGAGUAGCAGAAGGGUUGUCGUAGUGGCUGCCGCAGCGGAUGACGAAGAGGGUGGCGGAGGG",
 ]
@@ -65,31 +77,29 @@ def test_transcription():
         assert transcription_complementaire(arn) == str(Seq.Seq(arn).transcribe()) 
 
 
-# def test_codons_v3_bio_seq():
-#     for s in TEST_CASES:
-#         fragments = s.split("AUG")[1:]
-#         amino_acids = [ str(Seq.Seq("AUG"+f).translate(to_stop=True)) for f in fragments ]
-#         ac = '*'.join(amino_acids)
-#         assert codons_v3(s) == ac
-#
-#     for f in TEST_FASTA:
-#         arn = fasta_to_genome(f)
-#         fragments = arn.split("AUG")[1:]
-#         amino_acids = [ str(Seq.Seq("AUG"+f).translate(to_stop=True)) for f in fragments ]
-#         ac = '*'.join(amino_acids)
-#         assert codons_v3(arn) == ac
+def test_codons_v3_bio_seq():
+    for s in TEST_CASES:
+        cds = start_to_stop(s)
+        amino_acids = ''.join([ str(Seq.Seq(c).translate(to_stop=True)) for c in cds ])
+        assert codons_v3(s) == amino_acids
 
-# def test_codons_bio_seq():
-#     for s in TEST_CASES:
-#         fragments = s.split("AUG")[1:]
-#         amino_acids = [ str(Seq.Seq("AUG"+f).translate(to_stop=True)) for f in fragments ]
-#         assert codons(s) == amino_acids
-#
-#     for f in TEST_FASTA:
-#         arn = fasta_to_genome(f)
-#         fragments = arn.split("AUG")[1:]
-#         amino_acids = [ str(Seq.Seq("AUG"+f).translate(to_stop=True)) for f in fragments ]
-#         assert codons(arn) == amino_acids
+    for f in TEST_FASTA:
+        arn = fasta_to_genome(f)
+        cds = start_to_stop(arn)
+        amino_acids = ''.join([ str(Seq.Seq(c).translate(to_stop=True)) for c in cds ])
+        assert codons_v3(arn) == amino_acids
+
+def test_codons_bio_seq():
+    for s in TEST_CASES:
+        cds = start_to_stop(s)
+        amino_acids = [ str(Seq.Seq(c).translate(to_stop=True)) for c in cds ]
+        assert codons(s) == amino_acids
+
+    for f in TEST_FASTA:
+        arn = fasta_to_genome(f)
+        cds = start_to_stop(arn)
+        amino_acids = [ str(Seq.Seq(c).translate(to_stop=True)) for c in cds ]
+        assert codons(arn) == amino_acids
 
 
 def test_start_to_stop():
@@ -113,3 +123,37 @@ def test_start_to_stop():
     assert start_to_stop('AUGGDHDTHAUGDJHUAR') == ['AUGGDHDTHAUGDJH']
     assert start_to_stop('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAUGUGUUGCUGAUAG') == ['AUGUCUUCCUCAUCGUAUUAC', 'AUGUGUUGC']
     assert start_to_stop('UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUGGCUUCUCCUACUGCCUCCCCCACCGCAUCACCAACAGCGUCGCCGACGGAUUAUCAUAAUGACUACCACAACGAAUAACAAAAAGAGUAGCAGAAGGGUUGUCGUAGUGGCUGCCGCAGCGGAUGACGAAGAGGGUGGCGGAGGG') == ['AUGGCUUCUCCUACUGCCUCCCCCACCGCAUCACCAACAGCGUCGCCGACGGAUUAUCAUAAUGACUACCACAACGAA']
+
+############################################################
+###################  THE ULTIMATE TEST!  ###################
+# we will test wide variety of codons functions and compare
+# them to BioPython
+############################################################
+
+def test_codons_gen():
+    for _ in range(0, EPOCHS) :
+        #----------- Generating random arguments -----------
+        args = arg_generator(N=CODONS_RUNS, stride=1, type=STRINGS, samples=NUCLEOTIDES, start=1)
+        for arg in args:
+            cds = start_to_stop(arg[0])
+            amino_acids = [ str(Seq.Seq(c).translate(to_stop=True)) for c in cds ]
+            assert codons(arg[0]) == amino_acids
+
+def test_codonsv2_gen():
+    for _ in range(0, EPOCHS) :
+        #----------- Generating random arguments -----------
+        args = arg_generator(N=CODONSV3_RUNS, stride=1, type=STRINGS, samples=NUCLEOTIDES, start=1)
+        for arg in args:
+            #------------------ Test ------------------
+            s = arg[0]
+            mul3 = (len(s) - len(s)%3) # This is used to avoid an annoying warning in BioSeq library
+            assert codons_v2(s[:mul3]) == str(Seq.Seq(s[:mul3]).translate())
+
+def test_codonsv3_gen():
+    for _ in range(0, EPOCHS) :
+        #----------- Generating random arguments -----------
+        args = arg_generator(N=CODONSV2_RUNS, stride=1, type=STRINGS, samples=NUCLEOTIDES, start=1)
+        for arg in args:
+            cds = start_to_stop(arg[0])
+            amino_acids = ''.join([ str(Seq.Seq(c).translate(to_stop=True)) for c in cds ])
+            assert codons_v3(arg[0]) == amino_acids

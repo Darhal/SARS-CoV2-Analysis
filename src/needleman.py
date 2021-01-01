@@ -77,6 +77,7 @@ def needleman(seq1, seq2, cost_table = None, cost_mat = None, key = None, verbos
     coord_path.append(coord)
 
     while coord != (0, 0):
+        cost = get_cost(seq1[coord[1] - 1], seq2[coord[0] - 1])
         if coord[0] == 0:
             coord = (coord[0], coord[1] - 1)
             output_seq1 = seq1[coord[1]] + output_seq1
@@ -85,24 +86,21 @@ def needleman(seq1, seq2, cost_table = None, cost_mat = None, key = None, verbos
             coord = (coord[0] - 1, coord[1])
             output_seq1 = '-' + output_seq1
             output_seq2 = seq2[coord[0]] + output_seq2
-        elif seq2[coord[0] - 1] == seq1[coord[1] - 1]:
+        elif alignement_mat[coord[0] - 1][coord[1] - 1] + cost == alignement_mat[coord[0]][coord[1]]: 
             coord = (coord[0] - 1, coord[1] - 1)
             output_seq1 = seq1[coord[1]] + output_seq1
             output_seq2 = seq2[coord[0]] + output_seq2
         else:
-            neighbours = [ (coord[0], coord[1] - 1), (coord[0] - 1, coord[1] - 1), (coord[0] - 1, coord[1]) ]
-            highest_neighbour = [c for c in neighbours if alignement_mat[c[0]][c[1]] == max(alignement_mat[c1[0]][c1[1]] for c1 in neighbours)][0]
+            neighbours = [ (coord[0], coord[1] - 1), (coord[0] - 1, coord[1]) ]
+            fit_neighbour = [c for c in neighbours if alignement_mat[c[0]][c[1]] + gap == alignement_mat[coord[0]][coord[1]]][0]
             
-            if highest_neighbour == neighbours[1]:
-                output_seq1 = seq1[highest_neighbour[1]] + output_seq1
-                output_seq2 = seq2[highest_neighbour[0]] + output_seq2
-            elif highest_neighbour == neighbours[0]:
-                output_seq1 = seq1[highest_neighbour[1]] + output_seq1
+            if fit_neighbour == neighbours[0]:
+                output_seq1 = seq1[fit_neighbour[1]] + output_seq1
                 output_seq2 = '-' + output_seq2
             else:
                 output_seq1 = '-' + output_seq1
-                output_seq2 = seq2[highest_neighbour[0]] + output_seq2
-            coord = highest_neighbour
+                output_seq2 = seq2[fit_neighbour[0]] + output_seq2
+            coord = fit_neighbour
         coord_path.append(coord)
 
     if not verbose:
@@ -180,7 +178,7 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
 
     for j in range(1, len_seq2+1):
         alignement_mat[j][0] = alignement_mat[j - 1][0] + gap
-        mat_dir[j][0] = 1 << 2 # we go up all the way up!
+        mat_dir[j][0] = 1 << 2 # we go all the way up!
 
     # Filling:
     for j in range(1, len_seq2+1):
@@ -254,11 +252,16 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
     
     return output
 
+##############################################
+# These functions use BioPython and are used 
+# to cross-check our results and test them
+##############################################
 
 from Bio.Align import PairwiseAligner
+from Bio.Align import substitution_matrices
 
 def nw_bio(seq1, seq2, cost_table):
-    aligner = PairwiseAligner()
+    aligner = PairwiseAligner(alphabet=list(set(seq1+seq2)))
     aligner.match_score = cost_table[0]
     aligner.mismatch_score = cost_table[1]
     aligner.gap_score = cost_table[2]
@@ -270,3 +273,26 @@ def nw_bio(seq1, seq2, cost_table):
         formated_alignments.append([als[0], als[2], int(alignments[i].score)])
 
     return formated_alignments
+
+def nw_bio_mat(seq1, seq2, cost_mat, key):
+    aligner = PairwiseAligner(alphabet=key)
+    matrix = {}
+    for i in range(len(key)):
+        for j in range(0, len(key)):
+            matrix[(key[i], key[j])] = cost_mat[i * len(key) + j]
+    aligner.substitution_matrix  = substitution_matrices.Array(data=matrix)
+    aligner.gap_score = cost_mat[len(key) ** 2]
+    alignments = aligner.align(seq1, seq2)
+    formated_alignments = []
+
+    for i in range(len(alignments)):
+        als = str(alignments[i]).split("\n")
+        formated_alignments.append([als[0], als[2], int(alignments[i].score)])
+
+    return formated_alignments
+
+def nw_bio_generic(seq1, seq2, cost_table = None, cost_mat = None, key = None):
+    if cost_table == None:
+        return nw_bio_mat(seq1, seq2, cost_mat, key)
+    else:
+        return nw_bio(seq1, seq2, cost_table)

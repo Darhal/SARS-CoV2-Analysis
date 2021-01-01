@@ -92,3 +92,5 @@ def nw_verbose(seq1, seq2, cost_table = None, cost_mat = None, key = None, timer
 nw_verbose("ATGCT", "AGCT",  [1, -1, -1])
 nw_verbose("ABC", "ABC", cost_mat=[1, 2, 3, 1, 2, 3, 1, 2, 3, 0], key="ABC", timer=0.5)
 nw_verbose("HOTDOG", "HOTCAT",  [1, -1, -2], timer=0.5)
+nw_verbose("NGNYGG", "NNYGG", cost_mat=[1, 2, 3, 2, 0, 3, 0, 0, 0, -2], key="NYG")
+nw_verbose("ABC", "ABC", cost_mat=[1, 2, 3, 1, 2, 3, 1, 2, 3, 0], key="ABC", timer=0.5)
