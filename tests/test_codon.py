@@ -9,10 +9,10 @@ from src.performance import *
 # If you want tests to run quickly then you should modify these 
 # you can also set EPOCHS to 0 to completely turn them off:
 # TOTAL_TESTS_PER_FUNCTION = FUNC_RUNS * EPOCHS
-EPOCHS           = 100    # How many times we test iterations we should run per function
-CODONS_RUNS      = 100    # How many arguments we will generate per epoch for codons
-CODONSV2_RUNS    = 100    # How many arguments we will generate per epoch for codons_v2
-CODONSV3_RUNS    = 100    # How many arguments we will generate per epoch for codons_v3
+EPOCHS           = 4      # How many times we test iterations we should run per function
+CODONS_RUNS      = 1000    # How many arguments we will generate per epoch for codons
+CODONSV2_RUNS    = 1000    # How many arguments we will generate per epoch for codons_v2
+CODONSV3_RUNS    = 1000    # How many arguments we will generate per epoch for codons_v3
 
 TEST_CASES = [
     "UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUGGCUUCUCCUACUGCCUCCCCCACCGCAUCACCAACAGCGUCGCCGACGGAUUAUCAUAAUGACUACCACAACGAAUAACAAAAAGAGUAGCAGAAGGGUUGUCGUAGUGGCUGCCGCAGCGGAUGACGAAGAGGGUGGCGGAGGG",
