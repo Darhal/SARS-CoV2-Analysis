@@ -1,6 +1,16 @@
 import pytest
 from src.levenshtein import *
 
+# used to generate bunch of random arguments for testing
+from src.performance import * 
+
+# Settings for randomly generated arguments tests
+# If you want tests to run quickly then you should modify these 
+# you can also set EPOCHS to 0 to completely turn them off:
+# TOTAL_TESTS_PER_FUNCTION = FUNC_RUNS * EPOCHS
+EPOCHS       = 20       # How many times we test iterations we should run per function
+LEV_RUNS     = 10      # How many arguments we will generate per epoch for lev, lev_dp, lev_rec
+
 TEST_CASES = [
     ["Book", "Back", 2],
     ["Levenshtein", "Levenshtein", 0],
@@ -46,3 +56,15 @@ def test_dp():
 def test_dp_rec_itr():
     for t in TEST_CASES:
         assert lev(t[0], t[1]) == lev_dp(t[0], t[1]) == lev_rec(t[0], t[1]) == t[2]
+
+def test_lev_total():
+    for t in TEST_CASES:
+        assert lev(t[0], t[1]) == lev_dp(t[0], t[1]) == lev_rec(t[0], t[1]) == t[2]
+
+def test_gen_lev():
+    for _ in range(0, EPOCHS) :
+        #----------- Generating random arguments -----------
+        args = arg_generator(N=LEV_RUNS, stride=1, type=STRINGS, variant_arg_pos=[0, 1], start=0, same_size=False, 
+                    lower=LEV_RUNS/2, upper=LEV_RUNS)
+        for arg in args:
+            assert lev(*arg) == lev_dp(*arg) == lev_rec(*arg)

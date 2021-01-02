@@ -10,7 +10,7 @@ import string
 STRINGS = 1
 NUMBERS = 1 << 1
 
-def arg_generator(N=10, stride=1, type=STRINGS, variant_arg_pos=[0], static_args=None, samples=string.ascii_lowercase, lower=0, upper=100, start=0):
+def arg_generator(N=10, stride=1, type=STRINGS, variant_arg_pos=[0], static_args=None, samples=string.ascii_lowercase, lower=0, upper=100, start=0, same_size=True):
     args = []
     total_nb_args = len(variant_arg_pos)
 
@@ -23,7 +23,10 @@ def arg_generator(N=10, stride=1, type=STRINGS, variant_arg_pos=[0], static_args
         for k in variant_arg_pos:
             gen_arg = None
             if type == (STRINGS | NUMBERS):
-                gen_arg = ''.join(random.choices(string.ascii_lowercase + string.digits, k=i))
+                size = i
+                if not same_size:
+                    size = random.randint(lower, upper)
+                gen_arg = ''.join(random.choices(string.ascii_lowercase + string.digits, k=size))
             elif type & STRINGS and samples != None:
                 gen_arg = ''.join(random.choices(samples, k=i))
             elif type & NUMBERS:

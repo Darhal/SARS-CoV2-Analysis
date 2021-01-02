@@ -134,7 +134,8 @@ def test_start_to_stop():
 def test_codons_gen():
     for _ in range(0, EPOCHS) :
         #----------- Generating random arguments -----------
-        args = arg_generator(N=CODONS_RUNS, stride=1, type=STRINGS, samples=NUCLEOTIDES, start=1)
+        args = arg_generator(N=CODONS_RUNS, stride=1, type=STRINGS, samples=NUCLEOTIDES, start=1,
+                    same_size=False, lower=CODONS_RUNS/2, upper=CODONS_RUNS)
         for arg in args:
             cds = start_to_stop(arg[0])
             amino_acids = [ str(Seq.Seq(c).translate(to_stop=True)) for c in cds ]
@@ -143,7 +144,8 @@ def test_codons_gen():
 def test_codonsv2_gen():
     for _ in range(0, EPOCHS) :
         #----------- Generating random arguments -----------
-        args = arg_generator(N=CODONSV3_RUNS, stride=1, type=STRINGS, samples=NUCLEOTIDES, start=1)
+        args = arg_generator(N=CODONSV3_RUNS, stride=1, type=STRINGS, samples=NUCLEOTIDES, start=1,
+                    same_size=False, lower=CODONSV3_RUNS/2, upper=CODONSV3_RUNS)
         for arg in args:
             #------------------ Test ------------------
             s = arg[0]
@@ -153,7 +155,8 @@ def test_codonsv2_gen():
 def test_codonsv3_gen():
     for _ in range(0, EPOCHS) :
         #----------- Generating random arguments -----------
-        args = arg_generator(N=CODONSV2_RUNS, stride=1, type=STRINGS, samples=NUCLEOTIDES, start=1)
+        args = arg_generator(N=CODONSV2_RUNS, stride=1, type=STRINGS, samples=NUCLEOTIDES, start=1,
+                    same_size=False, lower=CODONSV2_RUNS/2, upper=CODONSV2_RUNS)
         for arg in args:
             cds = start_to_stop(arg[0])
             amino_acids = ''.join([ str(Seq.Seq(c).translate(to_stop=True)) for c in cds ])

@@ -57,12 +57,13 @@ func_performance(intervalle_interquartile, args_arr=interquart_args, sizes=[0], 
 
 
 ###################### CODONS ######################
-codons_args = arg_generator(N=10000, stride=10, type=STRINGS, samples=NUCLEOTIDES)
-funcs_performance([ codons, codons_v2, codons_v3 ], args_arr=codons_args, sizes=[0], tick_spacing=25)
+codons_args = arg_generator(N=9000, stride=25, type=STRINGS, samples=NUCLEOTIDES)
+funcs_performance([ codons, codons_v2, codons_v3 ], args_arr=codons_args, sizes=[0], tick_spacing=10)
+
 
 ###################### LEVENSHTEIN ######################
-lev_args = arg_generator(N=200, stride=5, type=STRINGS, samples=NUCLEOTIDES, variant_arg_pos=[0, 1])
-funcs_performance([ lev_rec, lev_dp, lev ], args_arr=lev_args, sizes=[0], tick_spacing=10)
+lev_args = arg_generator(N=200, stride=10, type=STRINGS, samples=NUCLEOTIDES, variant_arg_pos=[0, 1])
+funcs_performance([ lev_rec, lev_dp, lev ], args_arr=lev_args, sizes=[0], tick_spacing=5)
 
 ###################### NEEDLEMAN ######################
 nw_args = arg_generator(N=40, stride=5, type=STRINGS, samples=NUCLEOTIDES, variant_arg_pos=[0, 1], static_args=[[1, -1, -1]])
