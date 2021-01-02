@@ -57,8 +57,8 @@ func_performance(intervalle_interquartile, args_arr=interquart_args, sizes=[0], 
 
 
 ###################### CODONS ######################
-codons_args = arg_generator(N=3000, stride=5, type=STRINGS, samples=NUCLEOTIDES)
-funcs_performance([ codons, codons_v2, codons_v3 ], args_arr=codons_args, sizes=[0], tick_spacing=10)
+codons_args = arg_generator(N=10000, stride=10, type=STRINGS, samples=NUCLEOTIDES)
+funcs_performance([ codons, codons_v2, codons_v3 ], args_arr=codons_args, sizes=[0], tick_spacing=25)
 
 ###################### LEVENSHTEIN ######################
 lev_args = arg_generator(N=200, stride=5, type=STRINGS, samples=NUCLEOTIDES, variant_arg_pos=[0, 1])
