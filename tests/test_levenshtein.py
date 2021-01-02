@@ -49,17 +49,16 @@ def test_rec():
     for t in TEST_CASES:
         assert lev_rec(t[0], t[1]) == t[2]
 
+
 def test_dp():
     for t in TEST_CASES:
         assert lev_dp(t[0], t[1]) == t[2]
 
-def test_dp_rec_itr():
-    for t in TEST_CASES:
-        assert lev(t[0], t[1]) == lev_dp(t[0], t[1]) == lev_rec(t[0], t[1]) == t[2]
 
 def test_lev_total():
     for t in TEST_CASES:
         assert lev(t[0], t[1]) == lev_dp(t[0], t[1]) == lev_rec(t[0], t[1]) == t[2]
+
 
 def test_gen_lev():
     for _ in range(0, EPOCHS) :
