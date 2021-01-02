@@ -61,22 +61,6 @@ def test_codons_v3():
     assert codons_v3('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAUGUGUUGCUGAUAG') == 'MSSSSYY' + 'MCC'
 
 
-def test_codons():
-    assert codons('UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG') == []
-    assert codons('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG') == ['MSSSSYY']
-    assert codons('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAUGUGUUGCUGAUAG') == ['MSSSSYY','MCC']
-    assert codons('UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUGGCUUCUCCUACUGCCUCCCCCACCGCAUCACCAACAGCGUCGCCGACGGAUUAUCAUAAUGACUACCACAACGAAUAACAAAAAGAGUAGCAGAAGGGUUGUCGUAGUGGCUGCCGCAGCGGAUGACGAAGAGGGUGGCGGAGGG') == [codons_v2('AUGGCUUCUCCUACUGCCUCCCCCACCGCAUCACCAACAGCGUCGCCGACGGAUUAUCAUAAUGACUACCACAACGAA')]
-
-
-def test_transcription():
-    for s in TEST_CASES:
-        assert transcription_complementaire(s) == str(Seq.Seq(s).transcribe())
-    
-    for f in TEST_FASTA:
-        arn = fasta_to_genome(f)
-        assert transcription_complementaire(arn) == str(Seq.Seq(arn).transcribe()) 
-
-
 def test_codons_v3_bio_seq():
     for s in TEST_CASES:
         cds = start_to_stop(s)
@@ -89,6 +73,14 @@ def test_codons_v3_bio_seq():
         amino_acids = ''.join([ str(Seq.Seq(c).translate(to_stop=True)) for c in cds ])
         assert codons_v3(arn) == amino_acids
 
+
+def test_codons():
+    assert codons('UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG') == []
+    assert codons('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUG') == ['MSSSSYY']
+    assert codons('UUUUUCUUAUGUCUUCCUCAUCGUAUUACUAAUAUGUGUUGCUGAUAG') == ['MSSSSYY','MCC']
+    assert codons('UUUUUCUUAUUGUCUUCCUCAUCGUAUUACUAAUAGUGUUGCUGAUGGCUUCUCCUACUGCCUCCCCCACCGCAUCACCAACAGCGUCGCCGACGGAUUAUCAUAAUGACUACCACAACGAAUAACAAAAAGAGUAGCAGAAGGGUUGUCGUAGUGGCUGCCGCAGCGGAUGACGAAGAGGGUGGCGGAGGG') == [codons_v2('AUGGCUUCUCCUACUGCCUCCCCCACCGCAUCACCAACAGCGUCGCCGACGGAUUAUCAUAAUGACUACCACAACGAA')]
+
+
 def test_codons_bio_seq():
     for s in TEST_CASES:
         cds = start_to_stop(s)
@@ -100,6 +92,15 @@ def test_codons_bio_seq():
         cds = start_to_stop(arn)
         amino_acids = [ str(Seq.Seq(c).translate(to_stop=True)) for c in cds ]
         assert codons(arn) == amino_acids
+
+
+def test_transcription():
+    for s in TEST_CASES:
+        assert transcription_complementaire(s) == str(Seq.Seq(s).transcribe())
+    
+    for f in TEST_FASTA:
+        arn = fasta_to_genome(f)
+        assert transcription_complementaire(arn) == str(Seq.Seq(arn).transcribe())
 
 
 def test_start_to_stop():
