@@ -90,7 +90,7 @@ def test_needleman_random_gen():
         #----------- Generating random arguments -----------
         cost_table = [ random.randint(-10, 10), random.randint(-10, 0), random.randint(-10, 0) ]
         args = arg_generator(N=NW_RUNS, stride=1, type=STRINGS, variant_arg_pos=[0, 1], static_args=[cost_table], start=1,
-                    same_size=False, lower=NW_RUNS/2, upper=NW_RUNS)
+                    same_size=False, lower=(NW_RUNS//2)+1, upper=NW_RUNS)
         for arg in args:
             #------------------ Test ------------------
             assert needleman(*arg) in nw_bio_generic(*arg)
@@ -100,7 +100,7 @@ def test_needleman_all_random_gen():
         #----------- Generating random arguments -----------
         cost_table = [ random.randint(-10, 10), random.randint(-10, 0), random.randint(-10, 0) ]
         args = arg_generator(N=NW_ALL_RUNS, stride=1, type=STRINGS, variant_arg_pos=[0, 1], static_args=[cost_table], start=1,
-                    same_size=False, lower=NW_ALL_RUNS/2, upper=NW_ALL_RUNS)
+                    same_size=False, lower=(NW_ALL_RUNS//2)+1, upper=NW_ALL_RUNS)
         for arg in args:
             #------------------ Test ------------------
             assert sorted(needleman_all(*arg)) == sorted(nw_bio_generic(*arg))
@@ -111,7 +111,7 @@ def test_needleman_mat_random_gen():
         key = ''.join(list(set(random.choices(string.ascii_lowercase, k=i+2))))
         cost_mat = [ random.randint(-10, 10) for _ in range(len(key) ** 2 + 1) ]
         args = arg_generator(N=NW_RUNS, stride=1, type=STRINGS, samples=key, variant_arg_pos=[0, 1], static_args=[None, cost_mat, key], 
-                    start=1, same_size=False, lower=NW_RUNS/2, upper=NW_RUNS)
+                    start=1, same_size=False, lower=(NW_RUNS//2)+1, upper=NW_RUNS)
         for arg in args:
             #------------------ Test ------------------
             assert needleman(*arg) in nw_bio_generic(*arg)
@@ -122,7 +122,7 @@ def test_needleman_mat_all_random_gen():
         key = ''.join(list(set(random.choices(string.ascii_lowercase, k=i+2))))
         cost_mat = [ random.randint(-10, 10) for _ in range(len(key) ** 2 + 1) ]
         args = arg_generator(N=NW_ALL_RUNS, stride=1, type=STRINGS, samples=key, variant_arg_pos=[0, 1],static_args=[None, cost_mat, key], 
-                    start=1, same_size=False, lower=NW_ALL_RUNS/2, upper=NW_ALL_RUNS)
+                    start=1, same_size=False, lower=(NW_ALL_RUNS//2)+1, upper=NW_ALL_RUNS)
         for arg in args:
             #------------------ Test ------------------
             assert sorted(needleman_all(*arg)) == sorted(nw_bio_generic(*arg))
