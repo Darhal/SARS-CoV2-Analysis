@@ -174,11 +174,10 @@ def call_stat_taille_genome(stat_func, tab, *args):
 
 
 def perform_all_stats_taille(sequences):
-    '''Fonction general qui fait tout l'analyse statistique
+    '''Fonction generale qui fait tout l'analyse statistique sur la taille des séquences
 
     Args:
-        stat_func:  fonction statistique à appeler
-        sampler:    les valeurs à prendre comme des echantillons
+        sequences:  l'échantillon
 
     Returns:
         Dictionnaire qui contients les stats
@@ -238,7 +237,7 @@ def call_stat_prop(stat_func, sequences, sampler, *args):
     Args:
         stat_func:  fonction statistique à appeler (moyenne, mediane, quartile, intervalle_interquartile, variance, ecart_type)
         sequences:  tableau des sequances ARNm ou d'Acides aminés
-        sampler:    les valeurs à prendre comme des echantillons (NUCLEOTIDES ou AMINO_ACIDS
+        sampler:    les valeurs à prendre comme des echantillons (NUCLEOTIDES ou AMINO_ACIDS)
         *args:      arguments supplémentaires optionel (notamment n pour l'appel de quartile)
 
     Returns: 
@@ -252,6 +251,27 @@ def call_stat_prop(stat_func, sequences, sampler, *args):
         resultat[element] = stat_func(liste, *args)
 
     return resultat
+
+
+def perform_all_stats_prop(sequences, sampler):
+    '''Fonction generale qui fait tout l'analyse statistique sur la proportion des nucléotides dans les séquences
+
+    Args:
+        sequences:  l'échantillon
+        sampler : la base laquelle prendre comme des échantillons (NUCLEOTIDES ou AMINO_ACIDS)
+
+    Returns:
+        Dictionnaire qui contients les stats
+    '''
+    stats = {}
+    stats["moy"] = call_stat_prop(moyenne, sequences, sampler)
+    stats["med"] = call_stat_prop(mediane, sequences, sampler)
+    stats["ecartt"] = call_stat_prop(ecart_type, sequences, sampler)
+    stats["var"] = call_stat_prop(variance, sequences, sampler)
+    stats["quart1"] = call_stat_prop(quartile, sequences, sampler, 1)
+    stats["quart3"] = call_stat_prop(quartile, sequences, sampler, 3)
+    stats["int_quart"] = call_stat_prop(intervalle_interquartile, sequences, sampler)
+    return stats
 
 
 def perform_all_stats(sequences, sampler):
