@@ -56,7 +56,7 @@ def measure_single_call(func, args, sizes):
         argument_size = tuple([len(args[i]) for i in sizes])
     else:
         argument_size = len(args[0])
-    ms = (end-start) / 1000
+    ms = (end-start)
     return (argument_size, ms)
 
 
@@ -71,8 +71,8 @@ def plot_multi_graph(graphs, legends, tick_spacing=1, title="Function Performanc
     else:
         ax.plot([ str(t[0]) for t in graphs ], [ t[1] for t in graphs ], label=legends[0])
     
-    ax.set_xlabel('Argument (s) Size')                  # Add an x-label to the axes.
-    ax.set_ylabel('Time (ms)')                          # Add a y-label to the axes.
+    ax.set_xlabel('Argument(s) Size')                  # Add an x-label to the axes.
+    ax.set_ylabel('Time (in seconds)')                          # Add a y-label to the axes.
     ax.set_title(title)                                 # Add a title to the axes.
     ax.xaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))
     ax.legend()
