@@ -35,12 +35,14 @@ def color(str, color):
         return ''.join([c for c in color]) + str + COLORS.ENDC
     return color + str + COLORS.ENDC
 
+
 def spacer(nb_space, str):
     rns = (nb_space - len(str)) // 2
     rest = (nb_space - len(str)) % 2
     return (" "*(rns + rest))+str+(" "*(rns))
 
-def print_footer(seen, alg, len_header):
+
+def print_footer(seen, alg):
     if seen[-1] != (0, 0):
         print("Seq1: "+color(alg[0][len(alg[0])-len(seen)], COLORS.BOLD)+alg[0][(len(alg[0])-len(seen) + 1):])
         print("      "+color(alg[3][len(alg[0])-len(seen)], COLORS.BOLD)+alg[3][(len(alg[3])-len(seen) + 1):])
@@ -49,6 +51,7 @@ def print_footer(seen, alg, len_header):
         print("Seq1: "+alg[0])
         print("      "+alg[3])
         print("Seq2: "+alg[1])
+
 
 def print_nw_table(seq1, seq2, alg, alg_mat, coord = None, seen = None):
     nb_space = max([ len(str(alg_mat[i][j])) for i in range(len(seq2) + 1) for j in range(len(seq1) + 1)]) + 2
@@ -73,7 +76,7 @@ def print_nw_table(seq1, seq2, alg, alg_mat, coord = None, seen = None):
         print(line)
     print("-"*len(header))
     if seen and len(seen) != 0:
-        print_footer(seen, alg, len(header))
+        print_footer(seen, alg)
 
 
 def nw_verbose(seq1, seq2, cost_table = None, cost_mat = None, key = None, timer = 1):
@@ -88,7 +91,9 @@ def nw_verbose(seq1, seq2, cost_table = None, cost_mat = None, key = None, timer
         sleep(timer)
 
 
+#######################################
 # Some application:
+#######################################
 nw_verbose("ATGCT", "AGCT",  [1, -1, -1])
 nw_verbose("ABC", "ABC", cost_mat=[1, 2, 3, 1, 2, 3, 1, 2, 3, 0], key="ABC", timer=0.5)
 nw_verbose("HOTDOG", "HOTCAT",  [1, -1, -2], timer=0.5)

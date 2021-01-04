@@ -7,9 +7,12 @@ import matplotlib.ticker as ticker
 import random
 import string
 from multiprocessing import Pool # we will be doing some multiprocessing as some performance tests are painfully slow
+import os
 
 STRINGS = 1
 NUMBERS = 1 << 1
+
+CORES = os.cpu_count() if os.cpu_count() <= 2 else os.cpu_count() - 4
 
 def arg_generator(N=10, stride=1, type=STRINGS, variant_arg_pos=[0], static_args=None, samples=string.ascii_lowercase, 
                     lower=0, upper=100, start=0, same_size=True):
@@ -19,7 +22,7 @@ def arg_generator(N=10, stride=1, type=STRINGS, variant_arg_pos=[0], static_args
     if static_args != None:
         total_nb_args += len(static_args)
 
-    for i in range(start, N+1, stride):
+    for i in range(start, N+stride, stride):
         arg = [None for _ in range(0, total_nb_args)]
 
         for k in variant_arg_pos:
@@ -57,9 +60,10 @@ def measure_single_call(func, args, sizes):
     return (argument_size, ms)
 
 
-def plot_multi_graph(graphs, legends, tick_spacing=1, title="Function Performance Comparison"):
+def plot_multi_graph(graphs, legends, tick_spacing=1, title="Function Performance Comparison", save=True):
     plt.style.use('seaborn-whitegrid')
     fig, ax = plt.subplots()
+    fig.set_size_inches(16, 9)
     
     if isinstance(graphs, list) and isinstance(graphs[0], list):
         for i in range(len(graphs)):
@@ -73,10 +77,13 @@ def plot_multi_graph(graphs, legends, tick_spacing=1, title="Function Performanc
     ax.xaxis.set_major_locator(ticker.MultipleLocator(tick_spacing))
     ax.legend()
     plt.xticks(fontsize=9, rotation=90)
-    plt.show()
+    if not save:
+        plt.show()
+    else:
+        plt.savefig(f"benchmark_{''.join(legends)}-{title}-{random.randint(0, 99)}.png", bbox_inches='tight', dpi=200)
 
 
-def func_performance(func, args_arr, sizes, figure=True, sort_by=0, tick_spacing=1):
+def func_performance(func, args_arr, sizes, figure=True, sort_by=0, tick_spacing=1, save=True):
     performance = []
 
     for args in args_arr:
@@ -85,11 +92,11 @@ def func_performance(func, args_arr, sizes, figure=True, sort_by=0, tick_spacing
     performance.sort(key=lambda p: p[sort_by])
     
     if figure:
-        plot_multi_graph(performance, legends=[f'{func.__name__} performance'], tick_spacing=tick_spacing, title=f'{func.__name__} performance')
+        plot_multi_graph(performance, legends=[f'{func.__name__} performance'], tick_spacing=tick_spacing, title=f'{func.__name__} performance', save=save)
     return performance
 
 
-def funcs_performance(funcs, args_arr, sizes, figure=True, tick_spacing=1, title="Function Performance Comparison"):
+def funcs_performance(funcs, args_arr, sizes, figure=True, tick_spacing=1, title="Function Performance Comparison", save=True):
     performance = [ [] for _ in range(len(funcs))]
 
     for i in range(len(funcs)):
@@ -99,35 +106,35 @@ def funcs_performance(funcs, args_arr, sizes, figure=True, tick_spacing=1, title
         performance[i].sort(key=lambda p: p[0])
     
     if figure:
-        plot_multi_graph(performance, legends=[f'{func.__name__} performance' for func in funcs], tick_spacing=tick_spacing, title=title)
+        plot_multi_graph(performance, legends=[f'{func.__name__} performance' for func in funcs], tick_spacing=tick_spacing, title=title, save=save)
     return performance
 
 
 # Multi-threading solutions
 
-def func_performance_mt(func, args_arr, sizes, figure=True, sort_by=0, tick_spacing=1):
+def func_performance_mt(func, args_arr, sizes, figure=True, sort_by=0, tick_spacing=1, save=True):
     performance = []
-    mt_pool = Pool()
+    mt_pool = Pool(CORES)
     performance = mt_pool.starmap(measure_single_call, [(func, args, sizes) for args in args_arr])
     performance.sort(key=lambda p: p[sort_by])
 
     if figure:
-        plot_multi_graph(performance, legends=[f'{func.__name__} performance'], tick_spacing=tick_spacing, title=f'{func.__name__} performance')
+        plot_multi_graph(performance, legends=[f'{func.__name__} performance'], tick_spacing=tick_spacing, title=f'{func.__name__} performance', save=save)
     
     return performance
 
-def funcs_performance_mt(funcs, args_arr, sizes, figure=True, tick_spacing=1, title="Function Performance Comparison"):
+def funcs_performance_mt(funcs, args_arr, sizes, figure=True, tick_spacing=1, title="Function Performance Comparison", save=True):
     performance = []
-    mt_pool = Pool()
+    mt_pool = Pool(CORES)
     performance = mt_pool.starmap(func_performance, [(func, args_arr, sizes, False) for func in funcs])
 
     if figure:
-        plot_multi_graph(performance, legends=[f'{func.__name__} performance' for func in funcs], tick_spacing=tick_spacing, title=title)
+        plot_multi_graph(performance, legends=[f'{func.__name__} performance' for func in funcs], tick_spacing=tick_spacing, title=title, save=save)
     
     return performance
 
 
-def funcs_performance_mt_v2(funcs, args_arr, sizes, figure=True, tick_spacing=1, title="Function Performance Comparison"):
+def funcs_performance_mt_v2(funcs, args_arr, sizes, figure=True, tick_spacing=1, title="Function Performance Comparison", save=True):
     performance = []
 
     for func in funcs:
@@ -135,6 +142,6 @@ def funcs_performance_mt_v2(funcs, args_arr, sizes, figure=True, tick_spacing=1,
         print(f"{func.__name__} finished.")
 
     if figure:
-        plot_multi_graph(performance, legends=[f'{func.__name__} performance' for func in funcs], tick_spacing=tick_spacing, title=title)
+        plot_multi_graph(performance, legends=[f'{func.__name__} performance' for func in funcs], tick_spacing=tick_spacing, title=title, save=save)
     
     return performance

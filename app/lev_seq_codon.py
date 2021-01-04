@@ -21,7 +21,6 @@ print(lev(codons_v2(seqUSABrazil[0]), codons_v2(seqUSABrazil[1])))
 # le résultat est 18 (vérifié), ceci est petit.
 
 
-
 ############################# MEME PERIODE ##############################
 
 seqbelger = fasta_to_genome("../genome/deux_sequences_belgium_germany_15122020.fasta")
