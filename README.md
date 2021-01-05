@@ -14,7 +14,7 @@ Group members:
 ## Required packages:
 Please install the following packages in order to be able to run the code
 
-|Library |Usage|Installing|
+|Library |Usage|Installation|
 |----|:-------|:-------|
 |BioPython|Parsing FASTA files and testing| `python -m pip install -U biopython`|
 |MatPlotLib|Used to plot graphs|`python -m pip install -U matplotlib`|
