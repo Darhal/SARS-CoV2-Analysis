@@ -14,7 +14,7 @@ Group members:
 ## Required packages:
 Please install the following packages in order to be able to run the code
 |Library |Usage|Installing|
-|----:|:-------:|:-------|
+|----|:-------|:-------|
 |BioPython|Parsing FASTA files and testing| `python -m pip install -U biopython`|
 |MatPlotLib|Used to plot graphs |`python -m pip install -U matplotlib`|
 |NumPy|Dependcy and testing | `python -m pip install -U numpy`|
@@ -30,7 +30,7 @@ This package will be used by `app` and the `tests` folder to apply some of the f
 
 # Project Structure
 |Folder |Content|
-|----:|:-------|
+|----|:-------|
 |src|Containts all the source files and functions used to analyse the genome. This acts like a library used by app.|
 |tests|Test cases of the functions written in `src`.|
 |app|Uses the functions and utilities defined in `src` to apply them to genomes and amino acids sequences|
