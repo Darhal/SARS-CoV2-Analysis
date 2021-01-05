@@ -18,8 +18,10 @@ Please install the following packages in order to be able to run the code
 |BioPython|Parsing FASTA files and testing| `python -m pip install -U biopython`|
 |MatPlotLib|Used to plot graphs |`python -m pip install -U matplotlib`|
 |NumPy|Dependcy and testing | `python -m pip install -U numpy`|
-|SetupTools|To install src as a package (normally comes installed by default) | `python -m pip install -U setuptools`|
+|SetupTools|To install src as a package | `python -m pip install -U setuptools`|
 |PyTest|Test driver to run the  tests | `python -m pip install -U pytest`|
+
+The `setuptools` package normally comes installed by default.
 ## Setup
 Run `python setup.py develop` to install `src` as a package.\
 This package will be used by `app` and the `tests` folder to apply some of the functions on genome sequences and amino acids.
