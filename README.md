@@ -12,13 +12,14 @@ Group members:
 
 # How to run the code?
 ## Required packages:
-Please install the following packages in order to be able to run the code\
+Please install the following packages in order to be able to run the code
+
 |Library |Usage|Installing|
 |----|:-------|:-------|
 |BioPython|Parsing FASTA files and testing| `python -m pip install -U biopython`|
 |MatPlotLib|Used to plot graphs|`python -m pip install -U matplotlib`|
 |NumPy|Dependcy and testing| `python -m pip install -U numpy`|
-|SetupTools|To install src as a package| `python -m pip install -U setuptools`|
+|SetupTools|To install *src* as a package| `python -m pip install -U setuptools`|
 |PyTest|Test driver to run the  tests| `python -m pip install -U pytest`|
 
 The `setuptools` package normally comes installed by default.
