@@ -13,14 +13,16 @@ Group members:
 # How to run the code?
 ## Required packages:
 Please install the following packages in order to be able to run the code
-* BioPython: Parsing FASTA files and testing: `python -m pip install -U biopython`
-* MatPlotLib: Used to plot graphs :`python -m pip install -U matplotlib`
-* NumPy: Dependcy and testing : `python -m pip install -U numpy`
-* SetupTools: To install src as a package : `python -m pip install -U setuptools` (normally comes installed by default)
-* PyTest: Test driver to run the  tests : `python -m pip install -U pytest`
+|Library |Usage|Installing|
+|----:|:-------:|:-------|
+|BioPython|Parsing FASTA files and testing| `python -m pip install -U biopython`|
+|MatPlotLib|Used to plot graphs |`python -m pip install -U matplotlib`|
+|NumPy|Dependcy and testing | `python -m pip install -U numpy`|
+|SetupTools|To install src as a package (normally comes installed by default) | `python -m pip install -U setuptools`|
+|PyTest|Test driver to run the  tests | `python -m pip install -U pytest`|
 ## Setup
 Run `python setup.py develop` to install `src` as a package.\
-This package will be used by `app` and the `tests` folder to apply some of the functions on genome sequences and amino acids. \
+This package will be used by `app` and the `tests` folder to apply some of the functions on genome sequences and amino acids.
 ## Execution
 - Make sure you are in the root directory of the project (the one that contain the sub folders: 'src', 'tests', 'app', ...)
 - To run the tests please type: `pytest` (these take a while to run)
