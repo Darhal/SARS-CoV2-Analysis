@@ -86,7 +86,7 @@ def lev(seq1, seq2):
         Returns:
             Levenshtein distance
     '''
-    dp = [[ -1 for _ in range(len(seq2) + 1) ] for _ in range(len(seq1) + 1)]
+    dp = [[-1 for _ in range(len(seq2) + 1) ] for _ in range(len(seq1) + 1)]
     len_seq1, len_seq2 = len(seq1), len(seq2)
 
     for i in range(len_seq1 + 1):
