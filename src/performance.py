@@ -15,7 +15,7 @@ NUMBERS = 1 << 1
 '''
 Number of cores used to execute in parralel the performance tests
 '''
-CORES = os.cpu_count() if os.cpu_count() <= 2 else os.cpu_count() - 2
+CORES = os.cpu_count() if os.cpu_count() <= 3 else os.cpu_count() - 2
 
 def arg_generator(N=10, stride=1, type=STRINGS, variant_arg_pos=[0], static_args=None, samples=string.ascii_lowercase, 
                     lower=0, upper=100, start=0, same_size=True):
@@ -264,7 +264,7 @@ def funcs_performance_mt_v2(funcs, args_arr, sizes, figure=True, tick_spacing=1,
 
     for func in funcs:
         performance.append(func_performance_mt(func, args_arr, sizes, figure=False))
-        print(f"{func.__name__} finished.")
+        # print(f"{func.__name__} finished.")
 
     if figure:
         plot_multi_graph(performance, legends=[f'{func.__name__} performance' for func in funcs], tick_spacing=tick_spacing, title=title, save=save)

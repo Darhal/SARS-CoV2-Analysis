@@ -1,3 +1,5 @@
+import pytest
+
 from Bio import Seq
 from src.stats import *
 from src.codon import *

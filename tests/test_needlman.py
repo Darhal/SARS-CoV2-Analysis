@@ -13,9 +13,9 @@ from src.performance import *
 # TOTAL_TESTS_PER_FUNCTION = FUNC_RUNS * EPOCHS
 EPOCHS = 10         # How many times we test iterations we should run per function
 NW_RUNS = 10        # How many arguments we will generate per epoch for needleman (fast)
-NW_ALL_RUNS = 6     # How many arguments we will generate per epoch for needleman_all (slow)
+NW_ALL_RUNS = 7     # How many arguments we will generate per epoch for needleman_all (slow)
 
-# Test cases for needleman all (both versions) (Q9/Q7)
+# Test cases for needleman (both versions) (Q9/Q7)
 TEST_CASES_NORMAL = [
     # Function input and result
     [ "ATGCT", "AGCT",  [1, -1, -2] ],
@@ -30,10 +30,11 @@ TEST_CASES_NORMAL = [
     [ "31415", "31017", [1, 0, 0] ],
     [ "HOTDOG", "HOTCAT", [0, 0, 0] ],
     [ "31415", "31017",  [1, 0, 0] ] ,
-    [ "HOTDOG", "HOTCAT", [0, 0, 0] ],
+    [ "HOTCOT", "HOTCAT", [0, 0, 0] ],
     [ "NGNYGG", "NNYGG", [1, 0, 0] ],
 ]
 
+# Test cases for needleman (both versions / matrix) (Q9/Q7)
 TEST_CASES_MAT = [
     [ "ABC", "ABC", [1, 2, 3, 1, 2, 3, 1, 2, 3, 0], "ABC" ],
     ["NGNYGG", "NNYGG", [1, 2, 3, 2, 0, 3, 0, 0, 0, -2], "NYG"],

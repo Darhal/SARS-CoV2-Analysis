@@ -63,6 +63,7 @@ def plot_histo_nb_nucleotide(fasta, nucleotide, précision):
     maximum = max(dico[nucleotide])+1
 
     nb_tranches = précision
+    boolean = 'y'
 
     if nb_tranches > maximum - minimum :
         print('La précision excède la précision maximum ( max = ',maximum - minimum,") pour cet échantillon!\n")

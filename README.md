@@ -24,7 +24,7 @@ Please install the following packages in order to be able to run the code
 
 The `setuptools` package normally comes installed by default.
 ## Setup
-Run `python setup.py develop` to install `src` as a package.\
+Make sure you are in the root directory of the project then run `python setup.py develop` to install `src` as a package.\
 This package will be used by `app` and the `tests` folder to apply some of the functions on genome sequences and amino acids.
 ## Execution
 - Make sure you are in the root directory of the project (the one that contain the sub folders: 'src', 'tests', 'app', ...)
@@ -35,7 +35,7 @@ This package will be used by `app` and the `tests` folder to apply some of the f
 |Folder |Content|
 |----|:-------|
 |src|Containts all the source files and functions used to analyse the genome. This acts like a library used by app.|
-|tests|Test cases of the functions written in `src`.|
+|tests|Test cases of the functions written in `src` (Q11).|
 |app|Uses the functions and utilities defined in `src` to apply them to genomes and amino acids sequences|
 |genome|Containts the genomic data downloded from the internet.|
 |rapport|Contains the files used in the report. (Latex files, notices, etc)|
