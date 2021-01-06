@@ -1105,10 +1105,10 @@ Les tests de toutes les fonctions calculant les statisques ont été faits en pa
 
 \subsubsection{Les fonctions codons}
 Des différents tests ont été écrits pour les trois versions de \texttt{codons}. 
-Pour la fonction \texttt{codons}, des tests codés en dur ont été réalisés, ainsi que deux autres fonctions \texttt{test\_codons\_bio\_seq} et \texttt{test\_codons\_gen}. En effet, \texttt{test\_codons\_bio\_seq} test la fonction \texttt{codons} en utilisant le module \texttt{Seq}  prédéfini de la librairie \texttt{biopython}. Toutefois, à travers la fonction, on a adapté les résultats de \texttt{Seq} de sorte que ça soit compatible aux résultats de la fonction \texttt{codons} qui est conforme à la documentation comme expliqué dans la partie \ref{subsec:imp_codons}.
+Pour la fonction \texttt{codons}, des tests codés en dur ont été réalisés, ainsi que deux autres fonctions \texttt{test\_codons\_bio\_seq} et \texttt{test\_codons\_gen}. En effet, \texttt{test\_codons\_bio\_seq} teste la fonction \texttt{codons} en utilisant le module \texttt{Seq}  prédéfini de la librairie \texttt{biopython}. Toutefois, à travers la fonction, on a adapté les résultats de \texttt{Seq} de sorte à ce que ce soit compatible aux résultats de la fonction \texttt{codons} qui est conforme à la documentation comme expliqué dans la partie \ref{subsec:imp_codons}.
 Quant à \texttt{test\_codons\_gen}, elle est conforme à \texttt{test\_codons\_bio\_seq} mais en génèrant pseudo-aléatoirement les arguments pour les tests.
 C'est le cas aussi pour \texttt{test\_codonsv2\_gen} et \texttt{test\_codonsv3\_gen} qui sont conformes respectivement à \texttt{test\_codon\_v2} et \texttt{test\_codons\_v3\_bio\_seq}.
-Il faut noté aussi qu'à travers les tests on a constaté que la fonction \texttt{codon\_v2} est la version la plus conforme à la fonction \texttt{translate()} du module \texttt{Seq} de \texttt{biopython}.
+Il faut noter aussi qu'à travers les tests on a constaté que la fonction \texttt{codon\_v2} est la version la plus conforme à la fonction \texttt{translate()} du module \texttt{Seq} de \texttt{biopython}.
 
 
 
@@ -1272,9 +1272,9 @@ Cette partie est consacrée à la présentation de notre gestion de projet. L'é
 \subsection{Équipe de projet}
 Ce projet a été réalisé par le groupe 13 dont les membres sont~:
 \begin{itemize}
-    \item Mohamed Omar CHIDA, le leader développeur du SCRUM, il s'assure du découpage des tâches, s'occupe de régler tous les soucis informatique au sein du projet, et il se charge de trancher lors des débats;
+    \item Mohamed Omar CHIDA, le leader développeur du SCRUM, il s'assure le découpage des tâches, s'occupe de régler tous les soucis informatique au sein du projet, et il se charge de trancher lors des débats;
     \item Mathis DUMAS, le développeur côté documentaire, il s'occupe l'exactitude des notions abordées, vérifie les sources de celles-ci et s'occupe des graphes d'analyse du rapport;
-    \item Chaima TOUNSI OMEZZINE, le développeur code reviewer, elle s'assure de l'utilité de chaque fonction, la correspondance avec le sujet du projet (les cahiers de charges), et vérfie les tests de celles-ci;
+    \item Chaima TOUNSI OMEZZINE, le développeur code reviewer, elle s'assure de l'utilité de chaque fonction, la correspondance avec le sujet du projet (le cahier de charges), et vérfie les tests de celles-ci;
     \item Céline ZHANG, le développeur organisateur, elle s'occupe de l'organisation des réunions, du déroulement des réunions, de la répartition des tâches à la fin de celles-ci, de l'avancée du rapport, et elle se charge de rédiger les comptes rendus de réunions.
 \end{itemize}
 Chaque membre est développeur, donc participe à la conception et à l'écriture des codes.%, en plus des rôles complémentaires spécifiques.
@@ -1342,17 +1342,17 @@ Le projet a commencé 18 Octobre 2020 et s'est terminé le 5 Janvier 2020, pour 
 \subsubsection{Le cadre méthodologique SCRUM}
 % SCRUM est un cadre méthodologique et non pas une méthode.
 
-Pour une meilleure organisation, on a choisit d'adapter une gestion de projet agile avec SCRUM. On a estimé que l'adaptation collective et rapide sera plus productive et plus constructive pour tous les membres de l'équipe.
+Pour une meilleure organisation, nous avons choisi d'adapter une gestion de projet agile avec SCRUM. On a estimé que l'adaptation collective et rapide sera plus productive et plus constructive pour tous les membres de l'équipe.
 
-Par conséquent, on s'est basé sur les 3 piliers fondamentaux de SCRUM: 
+Par conséquent, nous nous sommes basés sur les 3 piliers fondamentaux de SCRUM: 
 \begin{itemize}
     \item Transparence (visibilité concrète sur la situation)
     \item Inspection (détection des écarts par rapport aux objectifs)
     \item Adaptation (réctification de ces écarts par rapport aux objectifs)
 \end{itemize}
 
-Conformément à ce cadre, un ordonnancement du product backlog a été effectué, au début. On a divisé les tâches sur des \textsl{sprints} fixés afin de pouvoir concevoir, réaliser et tester les nouvelles fonctionnalités au fur et à mesure.
-En effet, pour chaque \textsl{sprint} on fixe un objectif à court terme et on se lance dans la réalisation. Une fois cet objectif atteint, on discute et on s'adapte à la situation, à travers les réunions hebdomadaires. \\
+Conformément à ce cadre, un ordonnancement du product backlog a été effectué, au début. Nous avons divisé les tâches sur des \textsl{sprints} fixés afin de pouvoir concevoir, réaliser et tester les nouvelles fonctionnalités au fur et à mesure.
+En effet, pour chaque \textsl{sprint} on fixe un objectif à court terme et on se lance dans la réalisation. Une fois cet objectif atteint, nous discutons et nous nous adaptons à la situation, à travers les réunions hebdomadaires. \\
 Toutes ces organisations ont été mis en oeuvre dans le tableau Trello\footnote{\url{https://trello.com/b/N92bj53G/projet-grp13}} comme illustré dans la figure~\ref{fig:Trellomid}.
     \begin{figure}[!h]
         \centering
@@ -1474,7 +1474,7 @@ Les réunions ont été essentielles pour planifier les \textsl{sprints}, régle
 \section*{Conclusion}
     \addcontentsline{toc}{section}{Conclusion}
     %\renewcommand{\thesubsection}{\alph{subsection})}
-    Pour conclure le projet, l'implémentation des fonctions statistiques ont permis d'analyser les séquences du génome SARS-CoV-2 et d'avoir une idée globale des caractéristiques de celui-ci. De plus, pour une étude plus avancée, la fonction \texttt{codons} a été réalisée afin d'identifier les sous-séquences d'acides aminés dans les séquences d'ARNm, cela a permis de faire des analyses statistiques sur celles-ci en plus des analyses sur les séquences de nucléotides. La taille d'une séquence de nucléotides est d'environ 29812($\pm$43), avec pour nombres de nucléotides 8901($\pm$20) Adénine, 9580($\pm$20) Uracile, 5849($\pm$11) Guanine, 5474($\pm$11) Cytosine, pour proportions respectives 29.9\%, 32.1\%, 19.6\%, 18.4\%; la taille d'une séquence d'acides aminés est d'environ 9612($\pm$11), le nombre de chaque acide aminé se trouve sur la figure~\ref{fig: echantillonOctNov}, et leur proportion se trouve sur le diagramme circulaire~\ref{graph:propac}. Afin de mesurer les différences entre les séquences d'acides aminés qui représentent les protéines, la fonction calculant la distance de Levenshtein a été conçue, elle permet de connaître la distance d'édition entre deux séquences représentées par deux chaînes de caractères. Dans l'intention d'étudier les alignements globals entre deux séquences du génome, des fonctions (\texttt{needleman}, \texttt{needleman\_all}, \texttt{nw\_verbose}) calculant l'algorithme de Needleman-Wunsch ont été (codées), elles nous permettent respectivement d'avoir un alignement global avec son score, tous les alignements avec leur score, et l'affichage animé du retraçage en couleur du chemin dans la matrice pour obtenir un alignement global.
+    Pour conclure le projet, l'implémentation des fonctions statistiques a permis d'analyser les séquences du génome SARS-CoV-2 et d'avoir une idée globale des caractéristiques de celui-ci. De plus, pour une étude plus avancée, la fonction \texttt{codons} a été réalisée afin d'identifier les sous-séquences d'acides aminés dans les séquences d'ARNm, cela a permis de faire des analyses statistiques sur celles-ci en plus des analyses sur les séquences de nucléotides. La taille d'une séquence de nucléotides est d'environ 29812($\pm$43), avec pour nombres de nucléotides 8901($\pm$20) Adénine, 9580($\pm$20) Uracile, 5849($\pm$11) Guanine, 5474($\pm$11) Cytosine, pour proportions respectives 29.9\%, 32.1\%, 19.6\%, 18.4\%; la taille d'une séquence d'acides aminés est d'environ 9612($\pm$11), le nombre de chaque acide aminé se trouve sur la figure~\ref{fig: echantillonOctNov}, et leur proportion se trouve sur le diagramme circulaire~\ref{graph:propac}. Afin de mesurer les différences entre les séquences d'acides aminés qui représentent les protéines, la fonction calculant la distance de Levenshtein a été conçue, elle permet de connaître la distance minimale d'édition entre deux séquences représentées par deux chaînes de caractères. Dans l'intention d'étudier les alignements globaux entre deux séquences du génome, des fonctions (\texttt{needleman}, \texttt{needleman\_all}, \texttt{nw\_verbose}) calculant l'algorithme de Needleman-Wunsch ont été (codées), elles nous permettent respectivement d'avoir un alignement global avec son score, tous les alignements avec leur score, et l'affichage animé du retraçage en couleur du chemin dans la matrice pour obtenir un alignement global.
     
     En vue de vérifier le bon fonctionnement des fonctions, plusieurs tests exhaustifs ont été effectués, en parcourant toutes les situations possibles, notamment les cas limites, et en ajoutant des tests pseudo-aléatoires. Ces tests ont permis de corriger des coquilles, des bugs, des incohérences. (De plus) des mesures de performances ont été réalisées dans le but de comparer le temps d'exécution des fonctions avec leur complexité théorique. Elles ont mis en évidence l'importance des méthodes d'implémentation pour réduire la complexité de la fonction. En effet, plusieurs problèmes, comme \textsl{stack overflow} et le temps d'exécution pour des entrées de grandes tailles, ont été soulignés, certaines fontions avaient une complexité exponentielle sans l'utilisation de la programmation dynamique.
     
@@ -1674,5 +1674,6 @@ Les réunions ont été essentielles pour planifier les \textsl{sprints}, régle
 \addcontentsline{toc}{section}{Bibliographie}
 \bibliographystyle{unsrt}
 \bibliography{bibsources}
+
 
 \end{document}
