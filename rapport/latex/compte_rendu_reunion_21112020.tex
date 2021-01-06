@@ -1,0 +1,81 @@
+% \documentclass[12pt]{article}
+% \usepackage[frenchb]{babel}
+% \usepackage{natbib}
+% \usepackage[utf8]{inputenc}
+% \usepackage[T1]{fontenc}
+% \usepackage{tikz}
+% \usepackage{amsmath}
+% \usepackage{graphics}
+% \usepackage{graphicx}
+% \usepackage{url}
+% \usepackage{psfrag}
+% \usepackage{fancyhdr}
+% \usepackage{vmargin}
+% \usepackage[backend=biber]{biblatex}
+% \usepackage{csquotes}
+% \usepackage[hidelinks]{hyperref}
+% \usepackage{enumitem}
+
+% \pagestyle{fancy}
+
+
+% \begin{document}
+\subsubsection*{\large{Réunion d'équipe du 21 novembre 2020}}
+    \addcontentsline{toc}{subsubsection}{Réunion d'équipe du 21 novembre 2020}
+\begin{center}
+\begin{tabular}{| l | l || c | c |}
+    \hline
+    Membres présents & Membres absents & Durée & Lieu \\
+    \hline
+    Mohamed-Omar CHIDA & & & \\ Mathis DUMAS & & 3h & Discord \\ Chaima TOUNSI OMEZZINE & & & \\ Céline ZHANG & & & \\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsubsection*{Ordre du jour}
+\begin{enumerate}
+    \item Avancement de chacun sur le projet (première partie test et deuxième partie)
+    \item Résolution des difficultés rencontrées
+    \item Optimisation des solutions proposées
+    \item Vérification simpliste des tests
+    \item Planification du prochain \textsl{sprint}
+\end{enumerate}
+
+\subsubsection*{Avancement de chacun sur le projet}
+Nous avons discuté de l'avancement de chacun sur nos tâches, en partageant ce qui a été réalisé.
+\paragraph*{Omar CHIDA} a testé \texttt{fasta\_to\_genome} nettoyé un peu les fichiers inutiles, a corrigé le style d'écriture des fonctions (commentaires, tabulations, saut de ligne, etc.), a résolu les conflicts.
+
+\paragraph*{Mathis DUMAS} a testé sa fonction \texttt{transcription\_complementaire}, a rendu plus souple le code de certaines fonctions (\texttt{fasta\_to\_genome}, \texttt{nombre\_nucleotide}, etc.) et le dictionnaire des acides aminés.
+
+\paragraph*{Chaima TOUNSI OMEZZINE} a testé ses fonctions \texttt{nombre\_nucleotide} et \texttt{total\_nucleotide} et a apporté des optimisations.
+
+\paragraph*{Céline ZHANG} a testé ses fonctions stastiques de \texttt{stats.py} et ses fonctions de \texttt{utility.py}, a ajouté les fonctions d'application des fonctions d'analyse statistique sur les échantillons de séquences (\texttt{moyenne\_nucleotides}, \texttt{quartile\_nucleotides}, \texttt{variance\_nucleotides}, \texttt{taille\_genome}, \texttt{moyenne\_taille\_genome}, etc.) qui permettent de décrire le génome du SARS-COV2.
+
+\subsubsection*{Résolution des difficultés rencontrées}
+Céline a un doute avec la fonction quartile après un débat, nous avons préféré demander à Madame MÉZIÈRES, pour lever le doute sur le calcul de la fonction quartile (car il y avait plusieurs interpolation possible). Plusieurs diverses problèmes (coquilles, structures, etc.) ont été réglé.
+
+\subsubsection*{Optimisation des solutions proposées}
+On a proposé une fonction qui regroupe l'application des fonctions statistiques car l'appel de ces fonctions est assez répétitif. Omar a noté cette idée qui se trouvera dans le prochain \textsl{sprint}. On a regroupé les fonctions pour nucléotides et acides aminés en un type de fonction ayant pour terminaison \texttt{\_elements}.
+
+\subsubsection*{Vérification simpliste des tests}
+Les tests proposés ont bien fonctionné et ont été approuvés.
+
+\subsubsection*{Planification du prochain \textsl{sprint}}
+\paragraph*{Omar CHIDA} doit réfléchir à la partie concernant les condons et réaliser la fonction \texttt{codons}.
+
+\paragraph*{Mathis DUMAS} doit réfléchir à la partie concernant les condons et implémenter le nécessaire pour les applications de \texttt{codons}.
+
+\paragraph*{Chaima TOUNSI OMEZZINE} doit regarder la partie pour les acides aminés, faire les applications.
+
+\paragraph*{Céline ZHANG} résoudre le problème de quartile, corriger la fonction \texttt{quartile} et finir les tests des fonctions \texttt{quartile}, \texttt{intervalle\_interquartile}.
+
+\paragraph{\emph{TO-DO LIST}}
+\begin{itemize}
+    \item Implémenter la fonction \texttt{codons}
+    \item Appliquer les fonctions statisques sur les acides aminés
+    \item Résoudre le problème de la fonction \texttt{quartile} et refaire les tests pour les fonctions \texttt{quartile} et \texttt{intervalle\_interquartile}
+\end{itemize}
+
+\emph{Prochaine réunion : 28/11/2020}\\
+
+% \end{document}

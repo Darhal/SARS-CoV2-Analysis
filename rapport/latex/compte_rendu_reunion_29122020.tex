@@ -1,0 +1,82 @@
+% \documentclass[12pt]{article}
+% \usepackage[frenchb]{babel}
+% \usepackage{natbib}
+% \usepackage[utf8]{inputenc}
+% \usepackage[T1]{fontenc}
+% \usepackage{tikz}
+% \usepackage{amsmath}
+% \usepackage{graphics}
+% \usepackage{graphicx}
+% \usepackage{url}
+% \usepackage{psfrag}
+% \usepackage{fancyhdr}
+% \usepackage{vmargin}
+% \usepackage[backend=biber]{biblatex}
+% \usepackage{csquotes}
+% \usepackage[hidelinks]{hyperref}
+% \usepackage{enumitem}
+
+% \pagestyle{fancy}
+
+
+% \begin{document}
+\subsubsection*{\large{Réunion d'équipe du 29 décembre 2020}}
+    \addcontentsline{toc}{subsubsection}{Réunion d'équipe du 29 décembre 2020}
+\begin{center}
+\begin{tabular}{| l | l || c | c |}
+    \hline
+    Membres présents & Membres absents & Durée & Lieu \\
+    \hline
+    Mohamed-Omar CHIDA & & & \\ Mathis DUMAS & & 3h & Discord \\ Chaima TOUNSI OMEZZINE & & & \\ Céline ZHANG & & & \\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsubsection*{Ordre du jour}
+\begin{enumerate}
+    \item Avancement de chacun sur le projet (quatrième partie conclusion, review du rapport)
+    \item Résolution des difficultés rencontrées
+    \item Optimisation des solutions proposées
+    \item Vérification simpliste des tests
+    \item Planification du prochain \textsl{sprint}
+\end{enumerate}
+
+\subsubsection*{Avancement de chacun sur le projet}
+\paragraph*{Omar CHIDA} a fait les tests de \texttt{biopython}, et a fait l'application pour la question 8, elle affiche en couleur le retraçage du tableau étape par étape avec l'apparition de l'alignement global optimal.
+
+\paragraph*{Mathis DUMAS} a écrit l'état de l'art pour la distance de Levenshtein et l'algorithme de Needleman-Wunsch.
+
+\paragraph*{Chaima TOUNSI OMEZZINE} a fini l'état de l'art concernant la partie \texttt{codons} et a écrit l'implémentation des fonctions \texttt{codons}.
+
+\paragraph*{Céline ZHANG} a fini l'écriture de la partie implémentation des algorithmes pour les fonctions d'analyses statistiques du rapport, a vérifié \texttt{codons}, et a corrigé le rapport (relecture).
+
+\subsubsection*{Résolution des difficultés rencontrées}
+La fonction \texttt{codons} a eu des problèmes de tests avec le module \texttt{BioSeq}, les documentations proposent une méthode qui diverge de celle que nous montre \texttt{BioSeq}, de ce fait plusieurs fonctions \texttt{codons} existent pour différente utilisation (statistiques, distance de Levenshtein, \texttt{BioSeq}). Les fonctions \texttt{needleman} ont eu des problèmes de test avec \texttt{biopython}, cela a été réglé en envoyant une requête aux contributeurs, nous proposant d'utiliser le module \texttt{Aligner} au lieu de \texttt{pairwise2}.
+
+\subsubsection*{Optimisation des solutions proposées}
+Céline ZHANG a écrit la fonction \texttt{bank\_sequences} et une version récursive \texttt{bank\_sequences\_rec} afin de sélectionner des échantillons de séquences pour les tests, il suffit de donner un entier qui sera la taille de l'échantillon, pour que la fonction renvoie un échantillon de séquences sans indétermination\footnote{sans problème de code IUPAC (K, N, Y, etc.)} de taille voulu issue de la banque de séquences\footnote{un fichier de 20000 séquences sélectionnées sur le site de \textsl{NCBI}~: \url{https://www.ncbi.nlm.nih.gov/labs/virus/vssi/\#/}}. Omar CHIDA a proposé des fonctions pour les tests de performances de nos fonctions, elles se trouvent dans le fichier \texttt{performance.py}.
+
+\subsubsection*{Vérification simpliste des tests}
+Les tests des fonctions \texttt{codons} ont été vérifiés, ceux des fonctions \texttt{needleman} ont été vérifiés (en dure et en utilisant \texttt{biopython}).
+
+\subsubsection*{Planification du prochain \textsl{sprint}}
+\paragraph*{Omar CHIDA} doit écrire dans le rapport, l'implémentation des fonctions concernant l'algorithme de Needleman-Wunsch, l'\texttt{abstract}, doit faire les tests de performance pour \texttt{levenshtein} et \texttt{needleman}.
+
+\paragraph*{Mathis DUMAS} doit écrire l'implémentation des fonctions concernant la distance de Levenshtein, doit finir l'état de l'art concernant l'algorithme de Needleman-Wunsch.
+
+\paragraph*{Chaima TOUNSI OMEZZINE} doit réaliser et écrire la partie tests et performances pour les fonctions \texttt{codons} et les tests de Levenshtein.
+
+\paragraph*{Céline ZHANG} doit réaliser et écrire la partie tests et performances pour les fonctions statistiques, continuer la partie gestion de projet.
+
+\paragraph{\emph{TO-DO LIST}}
+\begin{itemize}
+    \item Faire l'abstract
+    \item Faire les tests de performances, et les écrire
+    \item Écrire la partie implémentation pour les fonctions distance de Levenshtein et algorithme de Needleman-Wunsch
+    \item Finir l'état de l'art (algorithme de Needleman-Wunsch)
+    \item Finir la gestion de projet
+\end{itemize}
+
+\emph{Prochaine réunion : 02/01/2021}\\
+
+% \end{document}

@@ -1,6 +1,6 @@
 # File Structure
 |File |Content|
-|----:|:-------|
+|----|:-------|
 |genome_stat.py|Contains a descriptive statistics anaylsis of the genome (Q2 & Q4).|
 |stat_plot.py|Contains a descriptive statistics anaylsis of the genome (Q2 / Bonus).|
 |lev_seq_codon.py|Application of Levenshtein on genomes and codons (Q5 & Q6)).|

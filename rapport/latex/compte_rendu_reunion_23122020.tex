@@ -1,0 +1,83 @@
+% \documentclass[12pt]{article}
+% \usepackage[frenchb]{babel}
+% \usepackage{natbib}
+% \usepackage[utf8]{inputenc}
+% \usepackage[T1]{fontenc}
+% \usepackage{tikz}
+% \usepackage{amsmath}
+% \usepackage{graphics}
+% \usepackage{graphicx}
+% \usepackage{url}
+% \usepackage{psfrag}
+% \usepackage{fancyhdr}
+% \usepackage{vmargin}
+% \usepackage[backend=biber]{biblatex}
+% \usepackage{csquotes}
+% \usepackage[hidelinks]{hyperref}
+% \usepackage{enumitem}
+
+% \pagestyle{fancy}
+
+
+% \begin{document}
+\subsubsection*{\large{Réunion d'équipe du 23 décembre 2020}}
+    \addcontentsline{toc}{subsubsection}{Réunion d'équipe du 23 décembre 2020}
+\begin{center}
+\begin{tabular}{| l | l || c | c |}
+    \hline
+    Membres présents & Membres absents & Durée & Lieu \\
+    \hline
+    Mohamed-Omar CHIDA & & & \\ Mathis DUMAS & & 3h & Discord \\ Chaima TOUNSI OMEZZINE & & & \\ Céline ZHANG & & & \\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsubsection*{Ordre du jour}
+\begin{enumerate}
+    \item Avancement de chacun sur le projet (fin de la deuxième partie, troisième partie test, quatrième partie discussion)
+    \item Résolution des difficultés rencontrées
+    \item Optimisation des solutions proposées
+    \item Vérification simpliste des tests
+    \item Planification du prochain \textsl{sprint}
+\end{enumerate}
+
+\subsubsection*{Avancement de chacun sur le projet}
+\paragraph*{Omar CHIDA} a continué l'implémentation de l'algorithme de Needleman-Wunsch, la fonction \texttt{needleman} pour la question 7 et la fonction \texttt{needleman\_all} question 9.
+
+\paragraph*{Mathis DUMAS} a testé \texttt{needleman} et a trouvé des problèmes (de \textsl{out of range}) a ajouté les tests de la fonction \texttt{test\_call\_stat\_prop}.
+
+\paragraph*{Chaima TOUNSI OMEZZINE} a appliqué la fonction \texttt{lev\_itr} (la distance de Levenshtein) sur les paires de séquences et a trouvé un problème \textsl{RecursionError} en appliquant \texttt{lev\_dp} d'où la proposition d'une fonction itérative, a structuré la partie gestion de projet dans le rapport, a fait la fonction \texttt{start\_to\_stop}.
+
+\paragraph*{Céline ZHANG} a ajouté des paires de séquences pour l'application de la fonction \texttt{lev\_itr} (calculant la distance de Levenshtein), a appliqué sur celles-ci et a ajouté les tests pour les fonctions \texttt{call\_stats}, \texttt{call\_stats\_taille\_genome}, \texttt{perform\_all\_stats}, \texttt{perform\_all\_stats\_taille}, etc. et a fait la mise en page du rapport.
+
+\subsubsection*{Résolution des difficultés rencontrées}
+Il y a eu un problème de \textsl{out of range} sur les fonctions \texttt{needleman}. Le soucis a été réglé par Omar CHIDA.\\
+Il y a eu un problème aussi de \textsl{RecursionError} dans l'application de la fonction de \texttt{Levenshtein}. On a réglé le soucis par l'implémentation d'une version \texttt{Levenshtein} itérative.
+
+\subsubsection*{Optimisation des solutions proposées}
+Céline ZHANG a fait une fonction \texttt{bank\_sequences} (et une recursive), qui permet de prendre dans une banque de séquences de nucléotides un échantillon donné (inférieur ou égal à 10000).
+
+\subsubsection*{Vérification simpliste des tests}
+Les nouveaux tests ajoutés ont été verifiés.
+
+\subsubsection*{Planification du prochain \textsl{sprint}}
+\paragraph*{Omar CHIDA} doit finir les tests des fonctions \texttt{needleman}, puis doit commencer les performances des fonctions.
+
+\paragraph*{Mathis DUMAS} doit faire des histogrammes pour les résultats statisques pour la question 2, doit faire les tests pour les fonctions \texttt{needleman}.
+
+\paragraph*{Chaima TOUNSI OMEZZINE} doit corriger la fonction \texttt{codons}, faire les tests de celle-ci, réappliquer sur les séquences de codons.
+
+\paragraph*{Céline ZHANG} doit écrire les résultats pour la première partie avec les applications et les graphes, appliquer sur un échantillon de 10000 séquences, finir la banque de séquences.
+
+\paragraph{\emph{TO-DO LIST}}
+\begin{itemize}
+    \item Finir les fonctions \texttt{needleman} avec les tests
+    \item Faire les graphes pour les premières parties
+    \item Corriger la fonction \texttt{codons}
+    \item Appliquer sur des échantillons des mois de mars et d'avril
+    \item Continuer les conclusions des premières parties et la gestion de projet
+\end{itemize}
+
+\emph{Prochaine réunion : 26/12/2020}\\
+
+% \end{document}

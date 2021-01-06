@@ -1,0 +1,84 @@
+% \documentclass[12pt]{article}
+% \usepackage[frenchb]{babel}
+% \usepackage{natbib}
+% \usepackage[utf8]{inputenc}
+% \usepackage[T1]{fontenc}
+% \usepackage{tikz}
+% \usepackage{amsmath}
+% \usepackage{graphics}
+% \usepackage{graphicx}
+% \usepackage{url}
+% \usepackage{psfrag}
+% \usepackage{fancyhdr}
+% \usepackage{vmargin}
+% \usepackage[backend=biber]{biblatex}
+% \usepackage{csquotes}
+% \usepackage[hidelinks]{hyperref}
+% \usepackage{enumitem}
+
+% \pagestyle{fancy}
+
+
+% \begin{document}
+\subsubsection*{\large{Réunion d'équipe du 20 décembre 2020}}
+    \addcontentsline{toc}{subsubsection}{Réunion d'équipe du 20 décembre 2020}
+\begin{center}
+\begin{tabular}{| l | l || c | c |}
+    \hline
+    Membres présents & Membres absents & Durée & Lieu \\
+    \hline
+    Mohamed-Omar CHIDA & & & \\ Mathis DUMAS & & 3h & Discord \\ Chaima TOUNSI OMEZZINE & & & \\ Céline ZHANG & & & \\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsubsection*{Ordre du jour}
+\begin{enumerate}
+    \item Avancement de chacun sur le projet (fin de la deuxième partie et troisième partie test, début quatrième partie)
+    \item Résolution des difficultés rencontrées
+    \item Optimisation des solutions proposées
+    \item Vérification simpliste des tests
+    \item Planification du prochain \textsl{sprint}
+\end{enumerate}
+
+\subsubsection*{Avancement de chacun sur le projet}
+Nous avons discuté de l'avancement de chacun sur nos tâches après la session d'examens.
+\paragraph*{Omar CHIDA} a implémenté la fonction calculant la distance de Levenshtein \texttt{lev} et a proposé une version récursive en programmation dynamique \texttt{lev\_dp}, et a commencé à implémenter la fonction qui donne l'alignement global optimal de deux séquences.
+
+\paragraph*{Mathis DUMAS} a rédigé un début de l'introduction et de l'état de l'art (les parties concernant la distance de Levenshtein et l'algorithme de Needleman-Wunsch) et a ajouté des tests pour la fonctions \texttt{proportions}.
+
+\paragraph*{Chaima TOUNSI OMEZZINE} s'est documentée et a réfléchi à l'implémentation de l'algorithme de Needleman-Wunsch avec Céline ZHANG, en bordant toutes les manières pour le \textsl{filling} (en utilisant une matrice de similarité ou une liste de coût de transformation) et pour le \textsl{traceback} (en comporant ou bien en utilisant une matrice qui stock les parcours).
+
+\paragraph*{Céline ZHANG} s'est documentée et a réfléchi à l'implémentation de l'algorithme de Needleman-Wunsch avec Chaima TOUNSI OMEZZINE, en bordant toutes les manières pour le \textsl{filling} (en utilisant une matrice de similarité ou une liste de coût de transformation) et pour le \textsl{traceback} (en comporant ou bien en utilisant une matrice qui stock les parcours).
+
+\subsubsection*{Résolution des difficultés rencontrées}
+Lors de l'implémentation de l'algorithme de Needleman, il y a eu des doutes sur les situations dans lesquelles plusieurs maxima était possible, Omar CHIDA a choisi de favoriser le \textsl{match} puis le \textsl{left gap}.
+
+\subsubsection*{Optimisation des solutions proposées}
+Pour l'algorithme de Needleman-Wunsch, Céline ZHANG et Chaima TOUNSI OMEZZINE ont conseillé Omar CHIDA de sauvegarder dans une matrice parallèle le parcours menant à chaque case, ceci évite de refaire les tests pour le traceback.
+
+% ajouter un graphe de la matrice
+
+\subsubsection*{Vérification simpliste des tests}
+Les tests de fonctions Levenshtein ont été vérifiés. Céline ZHANG avait ajouté des tests pour la fonction \texttt{taille\_ensemble} qui ont été vérifiés.
+
+\subsubsection*{Planification du prochain \textsl{sprint}}
+\paragraph*{Omar CHIDA} doit continuer la fonction \texttt{needleman} et la terminer au mieux avec les tests.
+
+\paragraph*{Mathis DUMAS} doit continuer la rédaction de l'introduction et l'état de l'art pour le rapport ainsi que les graphes.
+
+\paragraph*{Chaima TOUNSI OMEZZINE} doit appliquer les fonctions calculant la distance de Levenshtein sur des paires de séquences de codons.
+
+\paragraph*{Céline ZHANG} doit faire la mise en page du rapport et organiser le rapport en \LaTeX \ sur \textsf{Overleaf}, et commencer à rédiger les réponses à la première et deuxième parties.
+
+\paragraph{\emph{TO-DO LIST}}
+\begin{itemize}
+    \item Finir d'implémenter l'algorithme de Needleman-Wunsch
+    \item Appliquer les fonctions de distance de Levenshtein sur les séquences de codons
+    \item Continuer l'introduction et l'état de l'art
+    \item Faire la mise en page et organiser le rapport
+\end{itemize}
+
+\emph{Prochaine réunion : 23/12/2020}\\
+
+% \end{document}
