@@ -284,13 +284,13 @@ Par exemple, dans une soirée, on note le nombre de personne en couple $N_{CP}$ 
     \[P_{CP} = \frac{8}{20} = 0,4\] et \[P_{S} = \frac{12}{20} = 0,6\] de plus \[P_{CP} + P_{S} = 0,4 + 0,6 = 1\]
         
 
-\paragraph{La médiane} d'une variable décrivant un caractère au sein d'une population (resp. d'un échantillon) est la valeur dont 50\% des éléments sur le caractère étudié lui sont inférieurs et 50\% lui sont supérieurs~\cite{stats}. Si plusieurs valeurs peuvent être candidat, on prend la moyenne de la plus petite valeur et la plus grande.\\
+\paragraph{La médiane} d'une variable décrivant un caractère au sein d'une population (resp. d'un échantillon) est la valeur dont 50\% des éléments sur le caractère étudié lui sont inférieurs et 50\% lui sont supérieurs~\cite{stats}. Si plusieurs valeurs peuvent être candidates, on prend la moyenne entre la plus petite valeur et la plus grande.\\
 En particulier, lorsque nous avons une variable quantitative discrète, nous étudions, par exemple, dans un ensemble de 5 individus, la taille en mètre des individus est donnée par la liste suivante (1,70 ; 1,58 ; 1,65 ; 1,70 ; 1,81).\\
 Nous trions la liste, ce qui donne (1,58 ; 1,65 ; 1,70 ; 1,70 ; 1,81) et la valeur du milieu de la liste correspond à notre médiane, dans notre cas 1,70 est la médiane.\\
-Cependant, si nous avons une liste de longueur pair, par exemple (1,58 ; 1,65 ; 1,70 ; 1,81), les valeurs 1,65 et 1,70 peuvent être candidat, ainsi nous prenons la moyenne du plus petit candidat et du plus grand comme médiane, dans notre cas c'est la moyenne de 1,65 et 1,70 donc 1,675 est notre médiane.
+Cependant, si nous avons une liste de longueur paire, par exemple (1,58 ; 1,65 ; 1,70 ; 1,81), les valeurs 1,65 et 1,70 peuvent être candidates, ainsi nous prenons la moyenne entre le plus petit candidat et le plus grand comme médiane, dans notre cas c'est la moyenne de 1,65 et 1,70 donc 1,675 est notre médiane.
 
-\paragraph{Les quartiles} d'une variable discrète décrivant un caractère dans une population (resp. un échantillon sont, en général, au nombre de trois~\cite{quart}~: $Q_1$, $Q_2$, $Q_3$. $Q_2$ n'est autre que la médiane, $Q_1$ est la valeur dont 25\% des valeurs prises par la variable lui sont inférieurs et 75\% lui sont supérieurs, $Q_3$ est la valeur dont 75\% des valeurs prises par la variable lui sont inférieurs et 25\% lui sont supérieurs. Losrqu'il y a plusieurs candidats possible, nous choisissons le plus petit pour le premier quartile $Q_1$ (l'interpolation par la plus petite valeur) et le plus grand pour le troisième quartile pour $Q_3$ (l'interpolation par la plus grande valeur).\\
-En particulier, si nous regardons par exemple le nombre de chocolat reçu à Noël parmi un groupe d'amis, on donne la liste triée (30, 90, 95, 100).\\
+\paragraph{Les quartiles} d'une variable discrète décrivant un caractère dans une population (resp. un échantillon sont, en général, au nombre de trois~\cite{quart}~: $Q_1$, $Q_2$, $Q_3$. $Q_2$ n'est autre que la médiane. $Q_1$ est la valeur dont 25\% des valeurs prises par la variable lui sont inférieures et 75\% lui sont supérieures. $Q_3$ est la valeur dont 75\% des valeurs prises par la variable lui sont inférieures et 25\% lui sont supérieures. Losrqu'il y a plusieurs candidats possible, nous choisissons le plus petit pour le premier quartile $Q_1$ (l'interpolation par la plus petite valeur) et le plus grand pour le troisième quartile pour $Q_3$ (l'interpolation par la plus grande valeur).\\
+En particulier, si nous regardons par exemple le nombre de chocolats reçus à Noël parmi un groupe d'amis, on donne la liste triée (30, 90, 95, 100).\\
 30 et 90 sont des candidats pour le premier quartile $Q_1$, mais nous choisissons l'interpolation par la plus petite valeur, donc $Q_1 = 30$.\\
 95 et 100 sont des candidats pour le troisième quartile $Q_3$, mais nous choisissons l'interpolation par la plus grande valeur, donc $Q_3 = 100$.\\
 
@@ -299,11 +299,11 @@ En particulier, si nous regardons par exemple le nombre de chocolat reçu à No�
         \Delta Q = Q_3 - Q_1
         \label{intquart}
     \end{equation}
-Elle nous permet de calculer la dispersion des valeurs d'un caractère étudié dans population (ou de l'échantillon). Comme le choix de l'interpolation pour $Q_1$ et $Q_3$ est la plus extrême, la valeur de la dispersion (l'intervalle interquartile) est la plus large.\\
+Il nous permet de calculer la dispersion des valeurs d'un caractère étudié dans population (ou de l'échantillon). Comme le choix de l'interpolation pour $Q_1$ et $Q_3$ est la plus extrême, la valeur de la dispersion (l'intervalle interquartile) est la plus large.\\
 Dans l'exemple précédent des chocolats, l'écart interquartile $\Delta Q_c$ est~:
 \[\Delta Q_c = 100 - 30 = 70\]
 
-\paragraph{La variance et l'écart-type} sont aussi des indicateurs de dispersion~\cite{dispersion}. La variance notée $Var(X)$ d'une variable discrète $X$ associé à un caractère d'une population (resp. un échantillon) de taille $N$ est définie comme suit, où les $X_i$ sont les valeurs que prend $X$ et $\bar{X}$ est sa valeur moyenne~:
+\paragraph{La variance et l'écart-type} sont aussi des indicateurs de dispersion~\cite{dispersion}. La variance notée $Var(X)$ d'une variable discrète $X$ associée à un caractère d'une population (resp. un échantillon) de taille $N$ est définie comme suit, où les $X_i$ sont les valeurs que prend $X$ et $\bar{X}$ est sa valeur moyenne~:
     \begin{equation}
         Var(X) = \frac{1}{N} \sum_{i=1}^{N} (X_i-\bar{X})^2
         \label{var}
@@ -313,21 +313,21 @@ L'écart-type noté $\sigma$ de la variable $X$ est la racine carré de la varia
         \sigma = \sqrt{Var(X)}
         \label{ecartt}
     \end{equation}
-Toujours dans l'exemple des chocolats (30, 90, 95, 100), calculons la variance et l'écart-type de cette liste. On note $\bar{X_c}$ la moyenne du nombre de chocolat, $V_c$ la variance du nombre de chocolat dans cette liste, et $\sigma_c$ son écart-type.
+Toujours dans l'exemple des chocolats (30, 90, 95, 100), calculons la variance et l'écart-type de cette liste. On note $\bar{X_c}$ la moyenne du nombre de chocolat, $V_c$ la variance du nombre de chocolats dans cette liste, et $\sigma_c$ son écart-type.
     \[\bar{X_c} = \frac{30 + 90 + 95 + 100}{4} = 78,75\]
     \[V_c = \frac{1}{4}[(30 - 78,75)^2 + (90 - 78,75)^2 + (95 - 78,75)^2 + (100 - 78,75)^2] \approx 804,69\]
     \[\sigma_c \approx 28,37\]
 
 \subsection{Les codons} 
  
-Afin de décrire plus spécifiquement le génome, on va passer de l'analyse descriptive des échantillons d'ARNm à l'analyse descriptive des échantillons de séquences d'acides aminés. Le but alors est de générer ces séquences. \\
-En effet, les acides aminés ce sont des molécules qui, combinées entre-elles, forment les protéines et ils sont produits dans la cellules par lecture du code génétique contenu dans l'ADN (les bases A, T, C, G). \\
-D'abord, on procède à la transcription de la séquence d'ADN pour obtenir une séquence d'ARNm (les bases A, U, C, G). Ensuite, le ribosome, qui est l'usine à protéine de la cellule, se charge pour établir des liens entre la séquence d'ARNm et la séquence d'acides aminés à produire en mettant en place un système de lecture. Et enfin, on procède à la traduction en suivant les étapes~\cite{synthpep}~suivantes~: \\
+Afin de décrire plus spécifiquement le génome, on va passer de l'analyse descriptive des échantillons d'ARNm à l'analyse descriptive des échantillons de séquences d'acides aminés. Le but est alors de générer ces séquences. \\
+En effet, les acides aminés sont des molécules qui, combinées entre-elles, forment les protéines. Ces protéines sont produites dans la cellules par lecture du code génétique contenu dans l'ADN (les bases A, T, C, G). \\
+D'abord, on procède à la transcription de la séquence d'ADN pour obtenir une séquence d'ARNm (les bases A, U, C, G). Ensuite, le ribosome, qui est l'usine à protéine de la cellule, se charge  d'établir des liens entre la séquence d'ARNm et la séquence d'acides aminés à produire en mettant en place un système de lecture. Et enfin, on procède à la traduction en suivant les étapes~\cite{synthpep}~suivantes~: \\
 
 
 \begin{itemize}
-\item  le ribosome lit un codon~\cite{codon} (3 nucléotides successifs d’un acide ribonucléique messager ARNm),
-\item  on capte l'acide aminé correspondant à ce codon dans le milieu environnant, en suivant la table~\ref{fig:table des codons ARN}, par l'intermédiaire de l'ARN de transfert. Celui-ci est un ARN comptant une centaine de nucléotides et portant un acide aminé,\\
+\item  Le ribosome lit un codon~\cite{codon} (3 nucléotides successifs dans une séquence d'acide ribonucléique messager ARNm),
+\item  On capte l'acide aminé correspondant à ce codon dans le milieu environnant, en suivant la table~\ref{fig:table des codons ARN}, par l'intermédiaire de l'ARN de transfert. Celui-ci est un ARN comptant une centaine de nucléotides et portant un acide aminé,\\
 
         \begin{table}[!h]
              \centering
@@ -352,7 +352,7 @@ Mais, il faut bien noter que le ribosome reconnait~\cite{synth} des codons START
         \end{figure}
         
 
-Toutefois, pour les nucléotides, il existe plus de quatre codes IUPAC~\cite{nucl}  de base (A, G, C , T ou U) comme indiqué sur la table \ref{fig:table des codes IUPAC} ce qui rend le processus plus compliqué.\\
+De plus, pour les nucléotides, il existe plus de quatre codes IUPAC~\cite{nucl}  de base (A, G, C , T ou U) comme indiqué sur la table \ref{fig:table des codes IUPAC} ce qui rend le processus plus compliqué.\\
 
         \begin{table} [!h]
              \centering
@@ -369,8 +369,8 @@ Toutefois, pour les nucléotides, il existe plus de quatre codes IUPAC~\cite{nuc
 
 
 La distance de Levenshtein est une mesure mathématique de la distance entre deux mots, phrases ou ici séquences d'ARN. Concrètement, cette distance correspond au nombre minimal de lettres à ajouter, supprimer ou remplacer pour obtenir une égalité entre les deux chaînes de caractères.\\
-Ce sont Wagner et Fischer qui, en 1974, mettent au point l'algorithme calculant cette distance de Levenstein entre deux chaînes de caractères. 
-En génomique, la distance de Levenstein peut être utilisée pour calculer un "score" de similarité entre deux séquences de nucléotides ou d'acides aminés, et ainsi identifier différents degrés de parenté entre différents génomes.\\
+Ce sont Wagner et Fischer qui, en 1974, mettent au point l'algorithme calculant cette distance de Levenstein entre deux chaînes de caractères. Cet algorithme est un exemple de programmation dynamique.
+En génomique, la distance de Levenstein peut être utilisée pour calculer un "score" de similarité entre deux séquences de nucléotides ou d'acides aminés, et ainsi identifier différents degrés de parenté entre différents génomes. D'autres applications sont envisageables, notamment en reconnaissance vocale.\\
 
 L'algorithme prend en entrée deux chaînes de caractères $seq1$ et $seq2$ (ici "maison" et "long"), de longueur $m$ et $n$ (ici 6 et 4) respectivement. La phase d'initialisation consiste à créer une matrice (ici nommée "dp" pour dynamic programming) vide de dimension $(m+1)\times (n+1)$ et d'attribuer à chaque case de la première ligne le numero de la colonne correspondante et à chaque case de la première colonne le numéro de la ligne correspondante.
 
@@ -392,7 +392,7 @@ dp(i-1,j-1) & \mbox{si } seq1(m) = seq2(n) \\
 \end{array}
 \right.$\\\\
 
-En reprenant l'exemple, le calcul de $dp(1,1)$ se fait ainsi : on constate d'abord que $seq(1)\neq seq(2)$ car "a" n'est pas "m". Ainsi, dp(1,1) prend la valeur minimum entre $dp(0,1)+1=1+1=2$, $dp(1,0)+1=1+1=2$ et $dp(0,0)+1=0+1=1$. Donc $dp(1,1)$ prend la valeur $1$.\\
+En reprenant l'exemple, le calcul de $dp(1,1)$ se fait ainsi : on constate d'abord que $seq1(1)\neq seq2(1)$ car "L" n'est pas "M". Ainsi, dp(1,1) prend la valeur minimum entre $dp(0,1)+1=1+1=2$, $dp(1,0)+1=1+1=2$ et $dp(0,0)+1=0+1=1$. Donc $dp(1,1)$ prend la valeur $1$.\\
 
 \begin{figure}[!h]
     \centering
@@ -401,7 +401,7 @@ En reprenant l'exemple, le calcul de $dp(1,1)$ se fait ainsi : on constate d'abo
     \label{fig:Remplissage de la matrice "dp"}
 \end{figure}
 
-Concrètement, prendre la valeur du dessus et y ajouter 1 correspond à effacer une lettre, prendre la valeur de gauche et y ajouter 1 correspond à insérer une lettre et prendre la diagonale correspond soit à une substitution (si elles ne sont pas identiques), soit à la conservation des lettres.\\
+Concrètement, prendre la valeur du dessus correspond à effacer une lettre, prendre la valeur de gauche correspond à insérer une lettre et prendre la diagonale correspond soit à une substitution (si elles ne sont pas identiques), soit à la conservation des lettres.\\
 
 \newpage
 
@@ -414,7 +414,7 @@ Voici donc la matrice complétée de l'exemple précédent :
     \label{fig:Matrice "dp" complète}
 \end{figure}
 
-Finalement, on retrouve notre distance de Levenstein dans la case $(n,m)$ de la matrice ainsi obtenue. Dans l'exemple précédent, la distance de Levenstein entre "maison" et "long" est de 5.\\
+Finalement, on retrouve notre distance de Levenstein dans la case $(n,m)$ de la matrice ainsi obtenue. Dans l'exemple précédent, la distance de Levenstein entre "maison" et "long" est donc 5.\\
 
 Il est éventuellement possible d'ajouter une table des coûts en paramètre, pour modifier les coûts de suppression, d'addition ou de substitution des lettres : on peut considérer par exemple qu'une substitution coûte 2 dans le sens où elle s'apparente à une suppression puis une addition. Evidemment, les résultats obtenus ne seront pas tout à fait les mêmes, ce qui permet de personnaliser l'algortihme selon les préférences de l'utilisateur.\\
 Par exemple, mettre un fort coût de suppression et d'addition avec un faible coût de substitution donnera une distance plus courte entre deux mots de même taille, même si leurs lettres sont différentes etc...
@@ -430,7 +430,7 @@ L'algorithme de Needleman-Wunsch est un algorithme permettant de réaliser un al
 Cet algorithme est un exemple de programmation dynamique pour la résolution de problème d'optimisation, tout comme l'algorithme de Wagner et Fischer, auquel il est apparenté.\\
 Son utilisation en génomique est évidente puisqu'il permet d'effectuer des alignements de séquences d'ADN ou d'ARN, qui nous perttent d'identifier les régions semblables entre deux génomes, ainsi que les lieux où ces séquences ont subies des mutations, notamment pour le génome du virus SARS-CoV2 dans le cadre de ce projet~\cite{alignement}.
 
-L'algorithme prend en entrée deux chaînes de caractères $seq1$ de longueur $m$ et $seq2$ de longueur $n$, ainsi qu'un tableau de score contenant les scores à attribuer dans le cas d'un match (les deux caractères correspondent), mismatch (les deux caractères ne correspondent pas) et gap (un caractère est mis en face d'un espace). Voici ci-dessous un exemple d'alignement pour les mots "maison" et "long", ainsi que le calcul du score associé~:\\
+L'algorithme prend en entrée deux chaînes de caractères $seq1$ de longueur $n$ et $seq2$ de longueur $m$, ainsi qu'un tableau de score contenant les scores à attribuer dans le cas d'un match (les deux caractères correspondent), mismatch (les deux caractères ne correspondent pas) et gap (un caractère est mis en face d'un espace). Voici ci-dessous un exemple d'alignement pour les mots "maison" et "long", ainsi que le calcul du score associé~:\\
 
 \begin{figure}[!h]
     \centering
@@ -463,7 +463,7 @@ dp(i-1,j-1) + cout\: Match & \mbox{si } seq1(m) = seq2(n) \\
 
 \newpage
 
-En reprenant l'exemple, le calcul de $dp(1,1)$ se fait ainsi : on constate d'abord que $seq(1)\neq seq(2)$ car "a" n'est pas "m". Ainsi, dp(1,1) prend la valeur maximum entre $dp(0,1)-2=-2-2=-4$, $dp(1,0)-2=-2-2=-4$ et $dp(0,0)-3=0-3=-3$.\\
+En reprenant l'exemple, le calcul de $dp(1,1)$ se fait ainsi : on constate d'abord que $seq1(1)\neq seq2(1)$ car "L" n'est pas "M". Ainsi, dp(1,1) prend la valeur maximum entre $dp(0,1)-2=-2-2=-4$, $dp(1,0)-2=-2-2=-4$ et $dp(0,0)-3=0-3=-3$.\\
 Donc $dp(1,1)$ prend la valeur $-3$.\\
 
 On obtient finalement la matrice "dp" remplie suivante :
@@ -507,26 +507,26 @@ En reprenant l'exemple, il y a donc quatre alignements optimaux pour les mots "m
     \label{fig:Matrice "dp" remplis pour les mots "maison" et "long" en utilisant la table de coûts illustrée.}
 \end{figure}
 
-Dans la pratique, on ajoute souvent un coût d'extension de gap, pour faire en sorte que chaque gap consécutif coûte moins cher que le premier gap de la série (-5 pour le premier gap et -1 pour tout gap consécutif suivant). Cet ajout favorise donc les grandes séquences de gap plutôt que de nombreuses petites. Ceci est essentiel pour pouvoir aligner un génome avec un gène : on aura une série de gaps au début, jusqu'à ce que la séquence du gène corresponde avec celle du génome, puis à nouveau une série de gaps jusqu'à la fin de la séquence du génome~\cite{alignmit}.\\
+Dans la pratique, on ajoute souvent un coût d'extension de gap, pour faire en sorte que chaque gap consécutif coûte moins cher que le premier gap de la série (-5 pour le premier gap et -1 pour tout gap consécutif suivant par exemple). Cet ajout favorise donc les grandes séquences de gap plutôt que de nombreuses petites. Ceci est essentiel pour pouvoir aligner un génome avec un gène : on aura une série de gaps au début, jusqu'à ce que la séquence du gène corresponde avec celle du génome, puis à nouveau une série de gaps jusqu'à la fin de la séquence du génome~\cite{alignmit}.\\
 
 \newpage
 
 \section{Implémentation et application des algorithmes} 
-Dans cette partie, nous implémentons les fonctions et les algorithmes présentés dans la partie précédente (l'état de l'art). L'objectif est d'expliquer la structure du code, les choix des données, des variables, des paramètres, de présenter les applications réalisées pour chaque partie du projet, et de donner la complexité théorique de ces codes.
+Dans cette partie, nous implémentons les fonctions et les algorithmes présentés dans l'état de l'art. L'objectif est d'expliquer la structure du code, les choix des données, des variables, des paramètres, de présenter les applications réalisées pour chaque partie du projet, et de donner la complexité théorique de ces codes.
 
 
 
 \subsection{Les fonctions de description statistique}
-La plupart des fonctions d'analyse statistique sont simples à implémenter, les plus grandes difficultés sont le choix des types d'interpolation pour les fonctions calculant les quartiles, le choix de la structure des fonctions qui répondent aux demandes du sujet, la question d'application sur des échantillons.
+La plupart des fonctions d'analyse statistique sont simples à implémenter, les plus grandes difficultés sont le choix des types d'interpolation pour les fonctions calculant les quartiles, le choix de la structure des fonctions qui répondent aux demandes du sujet ainsi que l'application sur des échantillons.
 
 
 
 
 \subsubsection{Élaboration des fonctions statistiques}
-L'écriture des fonctions calculant les quartiles, ne peuvent pas être faites n'importe comment, il faut choisir une interpolation\footnote{donne une unique solution} à nos fonctions, et pour les tests, il est nécessaire de savoir quelles types d'interpolation est choisie. De ce fait, après plusieurs documentations et renseignements, nous avons choisi (comme décrit dans l'état de l'art) la plus petite valeur pour le premier quartile $Q_1$ et la plus grande pour le troisième quartile $Q_3$, ceci donnera donc le plus large écart interquartile $\Delta Q$. Ainsi, pour les tests, on peut utiliser dans la bibliothèque \texttt{numpy}, la fonction \texttt{quantile} qui prend en entrée une liste de valeur, la valeur de la fractile (dans notre cas c'est \texttt{0.25} pour $Q_1$, \texttt{0.75} pour $Q_3$), et le type d'interpolation (\texttt{interpolation="lower"} pour $Q_1$ et \texttt{interpolation="higher"} pour $Q_3$).\\
+L'écriture des fonctions calculant les quartiles, ne peuvent pas être faites n'importe comment. Il faut choisir une interpolation\footnote{donne une unique solution} à nos fonctions puis rédiger les tests en conséquence. De ce fait, après renseignement, nous avons choisi (comme décrit dans l'état de l'art) la plus petite valeur pour le premier quartile $Q_1$ et la plus grande pour le troisième quartile $Q_3$. Ceci donnera donc le plus large écart interquartile $\Delta Q$. Ainsi, pour les tests, on peut utiliser dans la bibliothèque \texttt{numpy}, la fonction \texttt{quantile} qui prend en entrée une liste de valeur, la valeur du fractile (dans notre cas c'est \texttt{0.25} pour $Q_1$, \texttt{0.75} pour $Q_3$), et le type d'interpolation (\texttt{interpolation="lower"} pour $Q_1$ et \texttt{interpolation="higher"} pour $Q_3$).\\
 
 
-Après avoir réglé le soucis d'ambiguïté sur l'interpolation concernant les fonctions calculant le quartile, il est primordial de savoir comment présenter et structurer nos fonctions pour répondre aux questions posées dans la première partie, et éventuellement dans la deuxième partie qui concerne l'analyse statistique des acides aminés. Ainsi pour éviter de répéter les codes des fonctions pour chaque fonction d'application, nous avons choisi d'écrire des fonctions très générales de statistiques~: \texttt{moyenne}, \texttt{proportions}, \texttt{mediane}, \texttt{quartile}, \texttt{variance}, \texttt{ecart\_type}, \texttt{intervalle\_interquartile}. Elles prennent toutes en entrée une liste de nombres et renvoie chacune une valeur, sauf pour les fonctions \texttt{quartile} et \texttt{proportions}. La première prend une liste de nombres et un entier entre 1 et 3, puis renvoie une valeur. La deuxième prend une chaîne de caractère et une base d'éléments\footnote{les nucléotides par exemple}, elle renvoie la proportion de chaque caractère dans la chaîne.
+Après avoir réglé le souci d'ambiguïté sur l'interpolation concernant les fonctions calculant le quartile, il est primordial de savoir comment présenter et structurer nos fonctions pour répondre aux questions posées dans la première partie, et éventuellement dans la deuxième partie qui concerne l'analyse statistique des acides aminés. Ainsi pour éviter de répéter les codes des fonctions pour chaque fonction d'application, nous avons choisi d'écrire des fonctions très générales de statistique~: \texttt{moyenne}, \texttt{proportions}, \texttt{mediane}, \texttt{quartile}, \texttt{variance}, \texttt{ecart\_type} et \texttt{intervalle\_interquartile}. Elles prennent toutes en entrée une liste de nombres et renvoient chacune une valeur, sauf pour les fonctions \texttt{quartile} et \texttt{proportions}. \texttt{quartile} prend une liste de nombres et un entier entre 1 et 3, puis renvoie une valeur. \texttt{proportions} prend une chaîne de caractère et une base d'éléments\footnote{les nucléotides par exemple}, et renvoie la proportion de chaque caractère dans la chaîne.
 \paragraph{\texttt{moyenne}} somme toutes les valeurs de la liste d'entrée par une boucle \texttt{for} et renvoie le résultat de la somme divisé par la taille de la liste d'entrée. Cette fonction est de complexité linéaire $\Theta(n)$, avec $n$ la taille de la liste.
 \paragraph{\texttt{proportions}} fait appel à la fonction \texttt{nombre\_elements} pour le décompte de chaque élément de la liste d'entrée dans une base d'entrée (\texttt{NUCLEOTIDES}\footnote{est la base des nucléotides} ou \texttt{AMINO\_ACIDS}\footnote{est la base des acides aminés}) qu'elle stock dans un dictionnaire. Cette fonction fait une boucle \texttt{for} avec des vérifications (\texttt{if}) simple dans la base d'élément, comme la taille de la base est fixe, on a une complexité linéaire $\Theta(n)$ dans notre situation. Ensuite, s'il y a aucun élément dans la liste, la fonction retourne un dictionnaire avec tous les éléments de la base de décompte nul, sinon elle entre dans une boucle \texttt{for} et met dans un dictionnaire la division du nombre de l'élément sur l'effectif total, cela nous donne les proportions de chaque élément (nucléotides par exemple). Cette fonction est de complexité linéaire, $\Theta(n)$, l'appel des fonctions est en dehors de la boucle \texttt{for} et dans la boucle, il n'y a que des calculs simples.
 \paragraph{\texttt{mediane}} range la liste d'entrée de taille $n$ avec la fonction \texttt{sorted} de \texttt{python}, celle-là a une complexité en $\Theta(nlog(n))$ dans le pire des cas, et une complexité en $\Theta(n)$ dans le meilleur des cas. La fonction \texttt{mediane} renvoie la moyenne des deux valeurs centrales de la liste triée si celle-ci est paire, sinon elle renvoie l'élément central de la liste triée. Cette fonction est de complexité quasi-linéaire, $\Theta(nlog(n))$.
@@ -540,7 +540,7 @@ Ces fonctions vont être appelées dans les fonctions d'application sur les séq
 
 
 \subsubsection{Introduction des fonctions intermédiaires}
-En effet, nos fonctions très générales de statistiques citées plus haut prennent chacunes en entrée qu'une liste de valeurs, sauf pour la fonction \texttt{quartile}, elle prend une liste de valeurs et un nombre entier compris entre 1 et 3\footnote{les cas intéressant sont 1 pour $Q_1$ et 3 pour $Q_3$, 2 étant pour la médiane} qui permet de spécifier quel quartile calculer. Or, nos applications sont sur des échantillons, de ce fait nous avons besoin tout d'abord de convertir nos fichiers \texttt{.fasta}, dans lesquels se trouvent nos séquences, en liste de chaînes de caractères (car nos séquences du génome sont des chaînes de caractères), ceci est la raison d'être de notre fonction \texttt{fasta\_to\_genome}, nous donnons en entrée un fichier \texttt{.fasta} (plus précisément l'adresse du fichier), elle nous retourne une liste de chaînes de caractères qui réprésentent des séquences du génome, comme le présente la figure~\ref{appfasta}. 
+En effet, nos fonctions très générales de statistiques citées plus haut prennent chacunes en entrée qu'une seule liste de valeurs, sauf pour la fonction \texttt{quartile}, qui prend une liste de valeurs et un nombre entier compris entre 1 et 3\footnote{les cas intéressant sont 1 pour $Q_1$ et 3 pour $Q_3$, 2 étant pour la médiane} qui permet de spécifier quel quartile calculer. Or, nos applications sont sur des échantillons, nous avons donc²²² besoin tout d'abord de convertir nos fichiers \texttt{.fasta}, dans lesquels se trouvent nos séquences, en liste de chaînes de caractères (car nos séquences du génome sont des chaînes de caractères), ceci est la raison d'être de notre fonction \texttt{fasta\_to\_genome}, nous donnons en entrée un fichier \texttt{.fasta} (plus précisément l'adresse du fichier), elle nous retourne une liste de chaînes de caractères qui réprésentent des séquences du génome, comme le présente la figure~\ref{appfasta}. 
     \begin{figure}[!h]
         \centering
         \includegraphics[scale = 0.85]{Images/Stats/app_fasta_to_genome.PNG}
@@ -601,7 +601,7 @@ La même fonction pour les statistiques sur la taille du génome a été écrite
 
 
 \subsubsection{Applications des fonctions statistiques sur des échantillons}
-Toutefois, les fonctions \texttt{perform\_all\_stats} et \texttt{perform\_all\_stats\_taille} a été introduite pour appeler toutes les fonctions d'analyse statistique en une fois, cela réduit les lignes de codes à écrire pour les appels et elle répond aux premiers objectifs du projet qui est de décrire en utilisant la statistique descriptive le génome du SARS-CoV2.
+Toutefois, les fonctions \texttt{perform\_all\_stats} et \texttt{perform\_all\_stats\_taille} ont été introduites pour appeler toutes les fonctions d'analyse statistique en une fois, cela réduit les lignes de codes à écrire pour les appels et répond aux premier objectif du projet qui est de décrire en utilisant la statistique descriptive le génome du SARS-CoV2.
 
 La fonction \texttt{perform\_all\_stats} prend en entrée une liste de séquences et une base d'élément (nucléotides par exemple), elle appelle toutes les fonctions statistiques\footnote{en utilisant \texttt{nombre\_element\_echantillon} et \texttt{call\_stat\_on\_echantillon}} et renvoie dans un dictionnaire la valeur statistique de chaque élément. Sur la figure~\ref{appnucl10000seq}, les résultats de deux applications de la fonction \texttt{perform\_all\_stats} sur deux échantillons de dix mille séquences de nucléotides de période différente\footnote{l'une sont des séquences de janvier 2020 à août 2020, et l'autre sont des séquences d'octobre à novembre 2020} sont mis en évidence.
     \begin{figure}[!h]
@@ -613,7 +613,7 @@ La fonction \texttt{perform\_all\_stats} prend en entrée une liste de séquence
 
 \newpage
     
-Les résultats des deux applications sur les deux échantillons diffèrent très peu. En effet, nous avons à peu près en moyenne 8901 (avec plus ou moins 20 d'écart) de nucléotides A, 9580 (avec plus ou moins 20 d'écart) de nucléotides U, 5849 (avec plus ou moins 11 d'écart) de nucléotides G et 5474 (avec plus ou moins 11 d'écart) nucléotides C. Les médianes sont très proches des moyennes, ceci nous laisse croire que la répartition est plutôt symétrique, l'écart interquartile est assez petite, donc nous supposons que les valeurs sont assez regroupées autour de la médiane. De plus l'écart-type de chaque nucléotide est acceptable, il ne dépasse pas 20 pour l'échantillon d'octobre à novembre, mais pour celui de janvier à août est plus important (environ le double). Cette différence peut s'expliquer par le fait que l'échantillon de janvier à août est d'une période plus large que celui d'octobre à novembre, le virus a pu muter beaucoup plus de fois, produisant des séquences qui s'écartent de plus en plus de la moyenne. Un exemple graphique sur la nucléotide G est illustré par la figure~\ref{graph:nuclG}, et un exemple d'application de la fonction \texttt{proportions} est montré sur la figure~\ref{graph:propnucl}.
+Les résultats des deux applications sur les deux échantillons diffèrent très peu. En effet, nous avons à peu près en moyenne 8901 (avec plus ou moins 20 d'écart) nucléotides A, 9580 (avec plus ou moins 20 d'écart)  nucléotides U, 5849 (avec plus ou moins 11 d'écart)  nucléotides G et 5474 (avec plus ou moins 11 d'écart) nucléotides C. Les médianes sont très proches des moyennes, ceci nous laisse croire que la répartition est plutôt symétrique, l'écart interquartile est assez petit, donc nous supposons que les valeurs sont assez regroupées autour de la médiane. De plus l'écart-type de chaque nucléotide est acceptable, il ne dépasse pas 20 pour l'échantillon d'octobre à novembre, mais celui de janvier à août est plus important (environ le double). Cette différence peut s'expliquer par le fait que l'échantillon de janvier à août est d'une période plus large que celui d'octobre à novembre, le virus a pu muter beaucoup plus de fois, produisant des séquences qui s'écartent de plus en plus de la moyenne. Un exemple graphique sur le nucléotide G est illustré par la figure~\ref{graph:nuclG}, et un exemple d'application de la fonction \texttt{proportions} est montré sur la figure~\ref{graph:propnucl}.
 
     \begin{figure}[!h]
         \centering
@@ -626,7 +626,7 @@ Les résultats des deux applications sur les deux échantillons diffèrent très
         \caption{Proportions des nucléotides dans un échantillon de 1000}      \label{graph:propnucl}
     \end{figure}
 
-La fonction \texttt{perform\_all\_stats\_taille} prend en entrée une liste de séquences\footnote{un échantillon}, elle applique les fonctions statistiques en utilisant la fonction \texttt{call\_stat\_taille\_genome}, et renvoie dans un dictionnaire les valeurs statistiques sur l'échantillon sur la taille du génome. Sur la figure~\ref{apptaille10000seq}, les résultats de deux applications de la fonction \texttt{perform\_all\_stats} sur deux échantillons de dix mille séquences de nucléotides de période différente\footnote{l'une sont des séquences de janvier à août 2020, et l'autre sont des séquences d'octobre à novembre 2020} sont mis en évidence.
+La fonction \texttt{perform\_all\_stats\_taille} prend en entrée une liste de séquences\footnote{un échantillon}, elle applique les fonctions statistiques en utilisant la fonction \texttt{call\_stat\_taille\_genome}, et renvoie dans un dictionnaire les valeurs statistiques sur l'échantillon sur la taille du génome. Sur la figure~\ref{apptaille10000seq}, les résultats de deux applications de la fonction \texttt{perform\_all\_stats} sur deux échantillons de dix mille séquences de nucléotides de périodes différentes\footnote{l'une sont des séquences de janvier à août 2020, et l'autre sont des séquences d'octobre à novembre 2020} sont mis en évidence.
     \begin{figure}[!h]
         \centering
         \includegraphics[scale = 0.8]{Images/Stats/app_10000_seq_taille.PNG}
@@ -634,7 +634,7 @@ La fonction \texttt{perform\_all\_stats\_taille} prend en entrée une liste de s
         \label{apptaille10000seq}
     \end{figure}
     
-De même que précédemment, les résultats des deux applications sur les deux échantillons diffèrent très peu. Nous avons environ 29812 (avec plus ou moins 43 d'écart) de nucléotides pour une séquence du génome. On retrouve les mêmes conclusions, la moyenne est assez proche de la médiane, l'écart interquartile n'est pas très grande, les valeurs sont plutôt symétrique et regroupées autour de la médiane. L'écart-type est plutôt petite par rapport à la taille des séquences, cependant pour l'échantillon de janvier à août, il est presque trois fois plus grande que celui d'octobre à novembre. Pareillement, cette différence peut s'expliquer par le fait que l'échantillon de janvier à août est d'une période plus large que celui d'octobre à novembre, le virus a pu muter beaucoup plus de fois, produisant des séquences qui s'écartent de plus en plus de la moyenne.
+De même que précédemment, les résultats des deux applications sur les deux échantillons diffèrent très peu. Nous avons en moyenne 29812 (avec plus ou moins 43 d'écart) nucléotides pour chaque séquence du génome. On retrouve les mêmes conclusions, la moyenne est assez proche de la médiane, l'écart interquartile n'est pas très grand, les valeurs sont plutôt symétriques et regroupées autour de la médiane. L'écart-type est plutôt petit par rapport à la taille des séquences, cependant pour l'échantillon de janvier à août, il est presque trois fois plus grand que celui d'octobre à novembre. Pareillement, cette différence peut s'expliquer par le fait que l'échantillon de janvier à août est d'une période plus large que celui d'octobre à novembre, le virus a pu muter beaucoup plus de fois, produisant des séquences qui s'écartent de plus en plus de la moyenne.
 
 Par ailleurs, une représentation graphique de l'application sur un échantillon de 1000 séquences a été réalisé, voir figure~\ref{graph:taillenucl} et en comparaison avec les résultats précédents, les différences sont assez petites.
     \begin{figure}[!h]
@@ -649,21 +649,21 @@ Par ailleurs, une représentation graphique de l'application sur un échantillon
 
 Le but de cette partie est d'écrire une fonction \texttt{codons} qui permet de générer les séquences d'acides aminés. La fonction doit prendre en paramètre une liste d'ARNm et renvoie la liste de la séquence d'acides aminés. \\
 
-Pour l'implémentation de la fonction, les codons et leur correspondant en acide aminé ont été ajoutés comme une constante globale dans le fichier \texttt{globals.py} sous forme d'un dictionnaire  \texttt{CODONS\_TO\_AMINO\_ACIDS}. La structure du dictionnaire a été choisie pour sa facilité d'appel et sa structure non-ordonnée. \\
+Pour l'implémentation de la fonction, les codons et leur acide aminé correspondant ont été ajoutés comme une constante globale dans le fichier \texttt{globals.py} sous forme d'un dictionnaire  \texttt{CODONS\_TO\_AMINO\_ACIDS}. La structure du dictionnaire a été choisie pour sa facilité d'appel et sa structure non-ordonnée. \\
 
 \label{subsec:imp_codons}
 Aprés de multiples documentations, un problème de traduction entre les codons START et STOP a été pris en compte. Donc une fonction \texttt{start\_to\_stop} a été implémentée pour séléctionner les séquences de l'ARNm sur lesquelles on va appliquer la fonction \texttt{codons}. Ces séquences sont retournées sous forme d'une liste de chaînes de caractères. \
 
 Toutefois, en appliquant la fonction sur les séquences du génome fournies par le site~: 
-\textsl{National Center for Biology Information (NCBI)}, un nouveau problème a été rencontré. Il y avait des codes IUPAC dans les fichiers FASTA autres que les quatres de base (A, G, C et U). Le problème c'est que ces codes, comme indiqué dans la table~\ref{fig:table des codes IUPAC}, page~\pageref{fig:table des codes IUPAC}, peuvent avoir plusieurs traductions. Par exemple, le code N qui fait référence à n'importe quels nucléotides. On a pris donc en considération le code R (A ou G) dans la liste des codons STOP (UGA, UAA, UAG, UAR). Sachant que le codon UAR couvre les deux cas (UAA et UAG). 
+\textsl{National Center for Biology Information (NCBI)}, un nouveau problème a été rencontré. Il y avait des codes IUPAC dans les fichiers FASTA autres que les quatres de base (A, G, C et U). Le problème c'est que ces codes, comme indiqué dans la table~\ref{fig:table des codes IUPAC}, page~\pageref{fig:table des codes IUPAC}, peuvent avoir plusieurs traductions, comme ar exemple, le code N qui fait référence à n'importe quel nucléotide. On a donc pris en considération le code R (A ou G) dans la liste des codons STOP (UGA, UAA, UAG, UAR). Sachant que le codon UAR couvre les deux cas (UAA et UAG). 
 Pour les autres codes plusieurs solutions ont été prensées~:
 \begin{itemize}
-\item l'implémentation d'une fonction \texttt{random} qui retourne aléatoirement le nucléotide~: cette solution a été rejetée puisque dans des sequences il peut y avoir, par exemple, une succession de plusieurs N. Donc, cela serait comme si on génèrait toute une sous-séquence aléatoirement et les résultats seront erronées.
-\item l'étude de tous les cas, c'est-à-dire, à chaque code on fait une séquence pour chaque nucléotide possible. Cette solution aussi a été rejetée car cela serait très lourd en terme de mémoire et pour chaque séquence on aura plus d'une centaine de séquences\footnote{L'explosion combinatoire}.
-\item l'implémentation d'une fonction \texttt{try\_AUGC} qui test s'il y a un code autre que les nucléotides. Puis, on ignore tout codon contenant un code différent de (A, G, U, C et R). C'est la solution qui a été adaptée au final. 
+\item L'implémentation d'une fonction \texttt{random} qui retourne aléatoirement le nucléotide~: cette solution a été rejetée puisque dans des sequences il peut y avoir, par exemple, une succession de plusieurs N. Donc, cela serait comme si on génèrait toute une sous-séquence aléatoirement et les résultats seront erronées.
+\item L'étude de tous les cas, c'est-à-dire, à chaque code on fait une séquence pour chaque nucléotide possible. Cette solution aussi a été rejetée car cela serait très lourd en terme de mémoire et pour chaque séquence on aurait plus d'une centaine de séquences\footnote{L'explosion combinatoire}.
+\item L'implémentation d'une fonction \texttt{try\_AUGC} qui teste s'il y a un code autre que les nucléotides. Puis, on ignore tout codon contenant un code différent de (A, G, U, C et R). C'est la solution qui a été adaptée au final. 
 \end{itemize}
 
-Finalement, la fonction \texttt{codons}, voir figure~\ref{fig: fctCodons}, elle prend en paramètre une chaîne de caractères ou une liste d'ARNm et renvoie une liste des séquences d'acides aminés qui correspond à la traduction de chaque séquence entre les codons START et STOP tout en ignorant le problème des codes IUPAC. 
+Finalement, la fonction \texttt{codons}, voir figure~\ref{fig: fctCodons}, prend en paramètre une chaîne de caractères ou une liste d'ARNm et renvoie une liste des séquences d'acides aminés qui correspond à la traduction de chaque séquence entre les codons START et STOP tout en ignorant le problème des codes IUPAC. 
 
      \begin{figure}[!h]
         \centering
@@ -681,7 +681,7 @@ Mais, on a tout de même gardé la première version de \texttt{codons}, nommée
         \label{fig: fctCodonsV2}
     \end{figure}
 
-Dû à l'ambiguïté du sujet, on a fait une troisième version de la fonction \texttt{codons\_v3}, voir figure~\ref{fig: fctCodonsV3}, qui prend en paramètre l'ARNm  et renvoie le même résultat que \texttt{codons} mais sous forme d'une chaine de caractères. Cette version est utile pour les applications des analyses statistiques. Par conséquent, une fonction \texttt{codons\_echantillon} a été implémentée, prennant en paramètre un échantillon du génome (plusieurs séquences d'ARNm) et renvoyant la liste des séquences d'acides aminés qui convient.
+Dû à l'ambiguïté du sujet, une troisième version de la fonction nommée \texttt{codons\_v3} à été implémentée, voir figure~\ref{fig: fctCodonsV3}, qui prend en paramètre l'ARNm  et renvoie le même résultat que \texttt{codons} mais sous forme d'une chaine de caractères. Cette version est utile pour les applications des analyses statistiques. Par conséquent, une fonction \texttt{codons\_echantillon} a été implémentée, prennant en paramètre un échantillon du génome (plusieurs séquences d'ARNm) et renvoyant la liste des séquences d'acides aminés qui convient.
 
      \begin{figure}[!h]
         \centering
@@ -815,7 +815,7 @@ C'est pourquoi \texttt{lev} est notre fonction la plus efficace pour le calcul d
 
 \subsubsection{Applications et interprétation}
 La fonction \texttt{meme\_taille} prend en argument deux listes de chaînes de caractères de tailles différentes et qui retourne deux listes de la même taille en ajoutant des chaînes vides.
-La fonction \texttt{affiche\_res} a été implémentée pour l'affichage du résultat. Elle prend en argument les deux séquences de d'acides aminés\footnote{obtenues par l'application de la fonction \texttt{codons} sur deux ARNm de la base NCBI.} \\
+La fonction \texttt{affiche\_res} a été implémentée pour l'affichage du résultat. Elle prend en argument les deux séquences d'acides aminés\footnote{obtenues par l'application de la fonction \texttt{codons} sur deux ARNm de la base NCBI.}. \\
 Différentes applications ont été faites en comparant à chaque fois les séquences de codons selon les critères de la période et du lieu: 
 \begin{itemize}[label=\textbullet]%, font=\large \color{green}]
     \item Différentes périodes et différents lieu : 
@@ -909,7 +909,7 @@ Alors, la matrice de coûts (de similarité) sera dans la table~\ref{tab:matcout
 % C\hspace{5mm}-7\hspace{5mm}-8\hspace{5mm}-9
 % }\\
 
-Pourquoi cette disposition, pourquoi ne pas se contenter d'une table python multidimensionnelle~? Ce que vous pourriez demander. Plusieurs arguments peuvent être avancés pour justifier cette conception. Premièrement, est la simplicité et la facilité d'utilisation. Deuxièment, les performances, les tableaux linéaires sont plus conviviaux pour le cache\footnote{La mémoire cache du processeur} que les tableaux multidimensionnels et donc plus rapides d'accès, et il n'y a pas de perte de temps pour la récupération d'informations des caches de niveau supérieur, voire même de la mémoire principale.\\
+Pourquoi cette disposition, pourquoi ne pas se contenter d'une table python multidimensionnelle~? Ce que vous pourriez demander. Plusieurs arguments peuvent être avancés pour justifier cette conception. Premièrement, la simplicité et la facilité d'utilisation. Deuxièment, les performances. En effet, les tableaux linéaires sont plus conviviaux pour le cache\footnote{La mémoire cache du processeur} que les tableaux multidimensionnels et donc plus rapides d'accès, et il n'y a pas de perte de temps pour la récupération d'informations des caches de niveau supérieur, voire même de la mémoire principale.\\
 Pour finir sur cela, il est important de mentionner que \texttt{needleman} a un argument supplémentaire nommé \texttt{verbose} qui est défini par défaut sur \texttt{False}. Ceci est utilisé pour renvoyer, en plus de l'alignement global, la matrice de score et le chemin emprunté pour construire l'alignement. Ils sont ensuite utilisés plus tard pour montrer une exécution animée de l'algorithme Needleman-Wunsch et la construction de l'alignement global pour répondre à la question~8 (voir \texttt{app/needleman\_seq.py}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
