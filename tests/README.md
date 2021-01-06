@@ -1,6 +1,6 @@
 # Settings for random generated tests
 * `EPOCHS`: can be used to turn off completely (set to 0) the random generated tests or to increase their number
-* `FUNC_RUNS`: define how many test cases will run on each epoch
+* `FUNC_RUNS`: define how many test cases will run on each epoch\
 **WARNNING/ATTENTION: TESTS CAN TAKE A LOT OF TIME TO FINISH DEPENDING ON YOUR COMPUTER SPECS**
 # File Structure
 |File |Content|
