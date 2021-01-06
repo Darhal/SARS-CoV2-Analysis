@@ -131,7 +131,9 @@
 \end{titlepage}
 
 \section*{Remerciements}
-Nous tenons à remercier chaque membre de l'équipe pour leurs contributions à la réalisation de ce projet. Nous tenons à remercier Madame Sophie Mézières pour son aide concernant l'implémentation de la fonction calculant les quartiles. Nous remercions, de plus, Markus Piotrowski, un contributeur de la bibliothèque \texttt{BioPython} qui nous a aidé pour l'utilisation du module \texttt{pairwise2} et du module \texttt{PairwiseAligner}. Nous remercions les encadrants du projet de nous avoir guidé pendant ce projet, notamment pour les réponses aux e-mails.\\[2.5 cm]
+Nous tenons à remercier chaque membre de l'équipe pour leurs contributions à la réalisation de ce projet. Nous tenons à remercier également Madame Sophie Mézières pour son aide concernant l'implémentation de la fonction calculant les quartiles. Nous aimerions remercier, de plus, Markus Piotrowski, un contributeur de la bibliothèque \texttt{BioPython} qui nous a aidé pour l'utilisation du module \texttt{pairwise2} et du module \texttt{PairwiseAligner}. Nous aimerions remercier les encadrants du projet pour nous avoir guidé durant ce projet, et notamment pour leurs réponses aux e-mails.\\[2.5 cm]
+
+%\newpage
 
 \begin{abstract}
     Dans le cadre de l'étude des algorithmes et de leur application, nous avons été chargés de faire des travaux de recherches sur la génomique, en particulier concernant le virus SARS-CoV-2, et de mettre en œuvre différentes méthodes (implémentations d'algorithmes, de fonctions) pour l'analyse du génome du SARS-CoV2. Ce virus est à l'origine de la pandémie mondiale 2020. Une analyse statistique des nucléotides et des acides aminés des séquences d'ARNm du génome a d'abord été réalisée. Ensuite, des algorithmes nécessaires à l'étude ont été mis en œuvre, tels que la distance de Levenshtein pour mesurer la distance minimale d'édition et l'algorithme de Needleman-Wunsch pour calculer un alignement optimal des séquences. Une poignée d'autres diverses outils ont également été mis en œuvre pour faciliter les tests et les analyses comparatives.
@@ -182,7 +184,7 @@ Les résultats du projet sont présentés dans ce rapport, il y a une partie con
             Application des fonctions d'analyses sur les séquences de codons \\
             Fonction distance de Levenshtein \\
             Application de la fonction distance de Levenshtein sur les séquences de codons \\
-            Fonctions algorithme Needleman-Wunsch \\
+            Fonctions algorithme Needleman-Wunsch (un seul alignement, tous les alignements) \\
             Afficher les opérations de l'algorithme Needleman-Wunsch \\
             Calcul de complexité \\
             Tests des fonctions réalisées \\
@@ -1275,7 +1277,7 @@ Ce projet a été réalisé par le groupe 13 dont les membres sont~:
     \item Chaima TOUNSI OMEZZINE, le développeur code reviewer, elle s'assure de l'utilité de chaque fonction, la correspondance avec le sujet du projet (les cahiers de charges), et vérfie les tests de celles-ci;
     \item Céline ZHANG, le développeur organisateur, elle s'occupe de l'organisation des réunions, du déroulement des réunions, de la répartition des tâches à la fin de celles-ci, de l'avancée du rapport, et elle se charge de rédiger les comptes rendus de réunions.
 \end{itemize}
-Chaque membre est développeur, donc participe à la conception et l'écriture des codes, mais en plus il a des rôles complémentaires spécifiques.
+Chaque membre est développeur, donc participe à la conception et à l'écriture des codes.%, en plus des rôles complémentaires spécifiques.
 \begin{table}[!h]
 \begin{center}
     \begin{tabular}{|l|l|}
@@ -1297,11 +1299,7 @@ Chaque membre est développeur, donc participe à la conception et l'écriture d
 \label{tab:roles}
 \end{table}
 
-
-
 \subsection{Analyse du projet}
-
-
 
 \subsubsection{Définition des objectifs}
 Les objectifs ont été définis en se basant sur la méthode SMART comme indiqué sur la table~\ref{tab:SMART}: 
@@ -1317,16 +1315,15 @@ Les objectifs ont été définis en se basant sur la méthode SMART comme indiqu
  \hline
  A & Ambitieux et Atteignable & Objectif représentant un défi atteignable et non démotivant \\
  \hline
- R & Réaliste & Objectif envisageables et suffisamment motivants \\
+ R & Réaliste & Objectif envisageable et suffisamment motivant \\
  \hline
- T & Temporellement défini  & Objectif défini et délimité dans le temps \\
+ T & Temporellement défini & Objectif défini et délimité dans le temps \\
  \hline
  \end{tabular}
  \end{center}
  \caption{La méthode SMART}
  \label{tab:SMART}
  \end{table}
-
 
 
 \subsubsection{Analyse des risques: Matrice SWOT}
@@ -1588,13 +1585,13 @@ Les réunions ont été essentielles pour planifier les \textsl{sprints}, régle
                     Implémentation & 28h & 14h & 10h & 11h \\
                     Code Review & 12h & 2h & 8h & 3h \\
                     Tests et performances & 18h & 5h & 7h & 9h \\
-                    Rédaction des documents & 8h & 25h & 25h & 27h \\
+                    Rédaction des documents & 8h & 25h & 25h & 29h \\
                     \hline
-                    TOTAL & 88h & 63h & 68h & 70h \\
+                    TOTAL & 88h & 63h & 68h & 72h \\
                     \hline
                 \end{tabular}
             \end{center}
-            \caption{Temps moyen consacré au projet de chaque membre}
+            \caption{Le temps moyen consacré au projet de chaque membre}
             \label{tab:times}
         \end{table}
 
@@ -1621,20 +1618,20 @@ Les réunions ont été essentielles pour planifier les \textsl{sprints}, régle
     \addcontentsline{toc}{subsection}{Trello}
         \begin{figure}[!h]
             \centering
-            \includegraphics[scale = 0.43]{Images/Gestion de Projet/Trello/trello_debut.PNG}
+            \includegraphics[scale = 0.44]{Images/Gestion de Projet/Trello/trello_debut.PNG}
             \caption{L'organisation du Trello en début de projet}
             \label{fig:Trellodebut}
         \end{figure}
         \begin{figure}[!h]
             \centering
-            \includegraphics[scale = 0.43]{Images/Gestion de Projet/Trello/trello_milieu.PNG}
+            \includegraphics[scale = 0.44]{Images/Gestion de Projet/Trello/trello_milieu.PNG}
             \caption{L'organisation du Trello en milieu de projet}
         \label{fig:Trellomilieu}
         \end{figure}
         \newpage
         \begin{figure}[!h]
             \centering
-            \includegraphics[scale = 0.43]{Images/Gestion de Projet/Trello/trello_fin.PNG}
+            \includegraphics[scale = 0.45]{Images/Gestion de Projet/Trello/trello_fin.PNG}
             \caption{L'organisation du Trello en fin de projet}
             \label{fig:Trellofin}
         \end{figure}
