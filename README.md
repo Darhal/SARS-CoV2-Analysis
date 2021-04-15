@@ -1,6 +1,5 @@
 # Introduction
-A statistical and genomic study of the SARS-CoV-2 virus.
-The project contains implementation wide range of statistical  functions as well as different genomic analysis algorithms like Levenshtein distance algorithm, Needleman-Wunsch for global alignement...
+A statistical and genomic study of the SARS-CoV-2 virus. The project contains implementation wide range of statistical functions as well as different genomic analysis algorithms like Levenshtein distance algorithm, Needleman-Wunsch for global alignement among others
 
 ## Group Members:
 Groupe Number 13.\
@@ -9,6 +8,9 @@ Group members:
 * Mathis DUMAS
 * Chaima TOUNSI OMEZZINE
 * Céline ZHANG
+
+## Report:
+The report can be found in the file named `rapport_projet_taps_grp13.pdf`
 
 # How to run the code?
 ## Required packages:
