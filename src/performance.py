@@ -17,6 +17,7 @@ Number of cores used to execute in parralel the performance tests
 '''
 CORES = os.cpu_count() if os.cpu_count() <= 3 else os.cpu_count() - 2
 
+
 def arg_generator(N=10, stride=1, type=STRINGS, variant_arg_pos=[0], static_args=None, samples=string.ascii_lowercase, 
                     lower=0, upper=100, start=0, same_size=True):
     '''
@@ -134,7 +135,7 @@ def plot_multi_graph(graphs, legends, tick_spacing=1, title="Function Performanc
 def func_performance(func, args_arr, sizes, figure=True, sort_by=0, tick_spacing=1, save=True):
     '''
         Measure the individual execution time of funcs on arg in args_array and return a plottable tuple array
-
+        
         Args:
             funcs: the functioncs to be measured
             args_arr: the argments array that func will be executed on

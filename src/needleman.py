@@ -30,7 +30,7 @@ def needleman(seq1, seq2, cost_table = None, cost_mat = None, key = None, verbos
         return
 
     if cost_mat and key and len(cost_mat) != len(key) ** 2 + 1:
-        print("Error: cost_mat must have the same length of the suqare of the length of key + 1 (the last number is the gap)")
+        print("Error: cost_mat must have the same length of the suqare of the length of key^2 + 1 (the last number is the gap)")
         return
     
     letter_dict = {}
@@ -141,7 +141,7 @@ def needleman_all(seq1, seq2, cost_table = None, cost_mat = None, key = None):
         return
 
     if cost_mat and key and len(cost_mat) != len(key) ** 2 + 1:
-        print("Error: cost_mat must have the same length of the suqare of the length of key + 1 (the last number is the gap)")
+        print("Error: cost_mat must have the same length of the suqare of the length of key^2 + 1 (the last number is the gap)")
         return
 
     letter_dict = {}
@@ -273,6 +273,7 @@ def nw_bio(seq1, seq2, cost_table):
         formated_alignments.append([als[0], als[2], int(alignments[i].score)])
 
     return formated_alignments
+
 
 def nw_bio_mat(seq1, seq2, cost_mat, key):
     aligner = PairwiseAligner(alphabet=key)

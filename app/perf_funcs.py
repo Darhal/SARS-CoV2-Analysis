@@ -15,7 +15,7 @@ if __name__ == '__main__':
     print(f"Some performance tests will execute on {CORES} CPU core(s)...")
     ###################### MOYENNE ######################
     average_args = arg_generator(N=100000, stride=150, type=NUMBERS, lower=1000, upper=100000, variant_arg_pos=[0], start=1)
-    func_performance(moyenne, args_arr=average_args, sizes=[0], tick_spacing=100)
+    func_performance(moyenne, args_arr=average_args, sizes=[0], tick_spacing=100, save=False)
 
 
     ###################### MEDIANE ######################
